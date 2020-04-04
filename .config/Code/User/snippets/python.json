@@ -1,0 +1,66 @@
+{
+	// Place your snippets for python here. Each snippet is defined under a snippet name and has a prefix, body and 
+	// description. The prefix is what is used to trigger the snippet and the body will be expanded and inserted. Possible variables are:
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. Placeholders with the 
+	// same ids are connected.
+	// Example:
+	// "Print to console": {
+	// 	"prefix": "log",
+	// 	"body": [
+	// 		"console.log('$1');",
+	// 		"$2"
+	// 	],
+	// 	"description": "Log output to console"
+	// }
+
+	"pwn exp": {
+		"prefix": ["exp.pwn", "pwn"],
+		"body": [
+			"#!/bin/python2",
+			"# -*- coding: utf-8 -*-\n",
+			"'''",
+			"# Created on $CURRENT_MONTH_NAME_SHORT-$CURRENT_DATE-$CURRENT_YEAR_SHORT $CURRENT_HOUR:$CURRENT_MINUTE",
+			"# $TM_FILENAME",
+			"# @author: kyle - https://3monks.org",
+			"'''",
+			"\nfrom pwn import *",
+			"import argparse",
+			"from LibcSearcher import *",
+			"\n\n##################### Default Env Configs ########################",
+			"context.terminal = ['tmux', 'sp', '-h', '-p', '60']",
+			"# context.terminal = ['gnome-terminal', '-x', 'sh', '-c']",
+			"context.log_level = 'warn'",
+			"\n\n##################### Parse Args ###########################",
+			"parser = argparse.ArgumentParser(description=\"Let's start our exploit!!!\")",
+			"parser.add_argument('-r', '--remote', dest='remote_addr', help='interact with remote server given ip:port')",
+			"parser.add_argument('-f', '--file', dest='exe_filepath', help='interact with local file')",
+			"parser.add_argument('-l', '--log', dest='log_level', choices=['debug', 'info', 'warn', 'error'], help='set log_level')",
+			"parser.add_argument('-d', '--gdb', dest='gdb_on', action='store_true', help='debug using gdb')\n",
+			
+			"args = parser.parse_args()",
+			
+			"\n# log level",
+			"if args.log_level:",
+				"\tcontext.log_level = args.log_level",
+			
+			"\n# io",
+			"if args.remote_addr:",
+				"\tip, port = args.remote_addr.split(':')",
+				"\tio = remote(ip, int(port))",
+			"elif args.exe_filepath:",
+				"\tio = process(args.exe_filepath)",
+				"\tif args.gdb_on:",
+					"\t\tgdb.attach(io)",
+			"else:",
+				"\tparser.print_help()",
+			
+			
+			"\n\n############################################################",
+			"##################### Exploit Start ########################",
+			"############################################################",
+			"$0",
+			"io.interactive()"
+		],
+		"description": "pwn exploitation boilerplate"
+	}
+}
