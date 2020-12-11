@@ -18,7 +18,52 @@
 			"#include <iostream>",
 			"#include <vector>",
 			"\nusing namespace std;",
-			"\n$0",
+			"\n$0\n",
+		]
+	},
+	"competitive cpp": {
+		"prefix": "ccp",
+		"body": [
+			"#include<bits/stdc++.h>",
+            "",
+			"using namespace std;",
+			"",
+			"static int x = []() {ios::sync_with_stdio(false); cin.tie(0); return 0; } ();",
+			"typedef long long ll;",
+			"\n$0\n"
+		]
+	},
+	"d4": {
+		"prefix": "d4",
+		"body": [
+			"int di[4] = {0, 0, 1, -1};",
+			"int dj[4] = {1, -1, 0, 0};"
+		]
+	},
+	"mod": {
+		"prefix": "mod",
+		"body": [
+			"const int MOD = ${1:1e9 + 7};"
+		]
+	},
+	"kickstart": {
+		"prefix": "kick",
+		"body": [
+			"void solve(int case_num) {",
+			"\t$0",
+			"\tint res = 0;",
+			"\tcout << res << \"\\n\";",
+			"}",
+			"",
+			"int main(int argc, char const *argv[]) {",
+			"\tint T;",
+			"\tcin >> T;",
+			"\tfor (int t = 1; t <= T; ++t) {",
+			"\t\tcout << \"Case #\" << t << \": \";",
+			"\t\tsolve(t);",
+			"\t}",
+			"\treturn 0;",
+			"}"
 		]
 	},
 	"leetcode": {
