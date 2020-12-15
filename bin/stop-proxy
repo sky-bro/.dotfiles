@@ -1,0 +1,11 @@
+#!/bin/sh
+
+unset {http,https,ftp,rsync,all}_proxy {HTTP,HTTPS,FTP,RSYNC,ALL}_PROXY
+
+# git config --global --unset http.proxy
+# git config --global --unset https.proxy
+# git config --global --unset core.sshCommand
+
+# git config --global --unset http.https://github.com.proxy
+
+unset ssh_proxy

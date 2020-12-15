@@ -1,0 +1,21 @@
+#!/bin/sh
+# ref: https://gist.github.com/yougg/5d2b3353fc5e197a0917aae0b3287d64
+
+# set http proxy
+export http_proxy=http://127.0.0.1:7890
+# export http_proxy=socks5://127.0.0.1:7891
+
+# export other env variables (another way)
+export {https,ftp,rsync,all}_proxy=$http_proxy
+
+# set no proxy to ignore private network address
+no_proxy="127.0.0.1,localhost,.localdomain.com"
+# ... slow
+# no_proxy=$no_proxy,`echo 10.{0..255}.{0..255}.{0..255}|tr ' ' ','`
+# no_proxy=$no_proxy,`echo 172.{16..31}.{0..255}.{0..255}|tr ' ' ','`
+# no_proxy=$no_proxy,`echo 192.168.{0..255}.{0..255}|tr ' ' ','`
+export no_proxy
+
+# for more private network addresses, check following url
+# https://segmentfault.com/q/1010000010521593
+# https://en.wikipedia.org/wiki/Private_network

@@ -1,0 +1,34 @@
+#!/bin/sh
+
+glibc_install=~/src/glibc/glibc-2.23-out
+
+print_help() {
+  echo "$0 [--glibc_install GLIBC_INSTALL_PATH] gcc_args"
+}
+
+while [[ $# -ge 1 ]]
+do
+  key="$1"
+  case $key in
+    --glibc_install)
+      glibc_install="$2"
+      shift
+      ;;
+    -h)
+      print_help
+      exit 0
+      ;;
+    *)
+      others+=("$1")
+      ;;
+  esac
+  shift
+done
+
+gcc \
+  -L "${glibc_install}/lib" \
+  -I "${glibc_install}/include" \
+  -Wl,--rpath="${glibc_install}/lib" \
+  -Wl,--dynamic-linker="${glibc_install}/lib/ld-linux-x86-64.so.2" \
+  "${others[@]}"
+
