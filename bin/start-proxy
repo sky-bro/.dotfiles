@@ -2,8 +2,8 @@
 # ref: https://gist.github.com/yougg/5d2b3353fc5e197a0917aae0b3287d64
 
 # set http proxy
-export http_proxy=http://127.0.0.1:7890
-# export http_proxy=socks5://127.0.0.1:7891
+# export http_proxy=http://127.0.0.1:7890
+export http_proxy=socks5://127.0.0.1:${1:-1081}
 
 # export other env variables (another way)
 export {https,ftp,rsync,all}_proxy=$http_proxy
