@@ -1,0 +1,21 @@
+#!/bin/sh
+
+test $# -eq 2 || exit 2
+
+test -e "$1" || exit 3
+test -e "$2" || exit 3
+
+if [ -f "$1" -a -f "$2" ]
+then
+  mv -b "$1" "$2" && mv "$2"~ "$1"
+  exit 0
+fi
+
+if [ -d "$1" -a -d "$2" ]
+then
+  mv -T -b "$1" "$2" && mv -T "$2"~ "$1"
+  exit 0
+fi
+
+exit 4
+
