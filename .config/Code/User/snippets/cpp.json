@@ -25,13 +25,37 @@
 		"prefix": "ccp",
 		"body": [
 			"#include<bits/stdc++.h>",
-            "",
+			"",
 			"using namespace std;",
 			"",
-			"static int x = []() {ios::sync_with_stdio(false); cin.tie(0); return 0; } ();",
+			"static int x = []() { std::ios::sync_with_stdio(false); cin.tie(0); return 0; } ();",
 			"typedef long long ll;",
 			"\n$0\n"
 		]
+	},
+	"run case": {
+		"prefix": "runc",
+		"body": [
+			"void run_case() {",
+			"\t$0",
+			"}\n",
+			"int main(int argc, char const *argv[]) {",
+			"\tint T;",
+			"\tcin >> T;",
+			"\twhile (T--) {",
+			"\t\trun_case();",
+			"\t}",
+			"\treturn 0;",
+			"}"
+		]
+	},
+	"long long": {
+		"prefix": "ll",
+		"body": "typedef long long ll;"
+	},
+	"unsigned long long": {
+		"prefix": "ull",
+		"body": "typedef unsigned long long ull;"
 	},
 	"d4": {
 		"prefix": "d4",
