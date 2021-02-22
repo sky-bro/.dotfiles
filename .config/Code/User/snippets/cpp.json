@@ -61,15 +61,28 @@
 	"run case": {
 		"prefix": "runc",
 		"body": [
-			"void run_case() {",
+			"${1:bool} run_case() {",
 			"\t$0",
 			"}\n",
 			"int main(int argc, char const *argv[]) {",
 			"\tint T;",
 			"\tcin >> T;",
 			"\twhile (T--) {",
-			"\t\trun_case();",
+			"\t\t${2:cout << (run_case() ? \"YES\\n\" : \"NO\\n\");}",
 			"\t}",
+			"\treturn 0;",
+			"}"
+		]
+	},
+	"solve": {
+		"prefix": "sol",
+		"body": [
+			"${1:bool} solve() {",
+			"\t$0",
+			"}",
+			"",
+			"int main(int argc, char const *argv[]) {",
+			"\t${2:cout << (solve() ? \"YES\\n\" : \"NO\\n\");}",
 			"\treturn 0;",
 			"}"
 		]
