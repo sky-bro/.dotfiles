@@ -179,5 +179,26 @@
 			"\tfor (const auto &vt : arr2D) printArr(vt);",
 			"}"
 		]
+	},
+	// ALGORITHMS, source code at: https://github.com/sky-bro/AC/tree/master/Algorithms
+	"fenwick": {
+		"prefix": "fenw",
+		"body": [
+			"template <typename T>",
+			"class fenwick {",
+			"public:",
+			"\tint n;",
+			"\tvector<T> A;",
+			"\tfenwick(int n): n(n), A(n+1) {} // A[0] not used",
+			"\tT sum(int i) {  // prefix sum: A[1] + A[2] + ... + A[i]",
+			"\t\tT v{};",
+			"\t\twhile (i) v += A[i], i -= i & -i;",
+			"\t\treturn v;",
+			"\t}",
+			"\tvoid add(int i, T v) {  // adds v to A[i]",
+			"\t\twhile (i <= n) A[i] += v, i += i & -i;",
+			"\t}",
+			"};"
+		]
 	}
 }
