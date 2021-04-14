@@ -3,7 +3,7 @@
 
 # set http proxy
 # export http_proxy=http://127.0.0.1:7890
-export http_proxy=socks5://127.0.0.1:${1:-1081}
+export http_proxy=${2:-socks5}://${3:-127.0.0.1}:${1:-1081}
 
 # export other env variables (another way)
 export {https,ftp,rsync,all}_proxy=$http_proxy
