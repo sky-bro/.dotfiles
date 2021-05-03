@@ -12,6 +12,17 @@
 	// 	],
 	// 	"description": "Log output to console"
 	// }
+	"include header": {
+		"prefix": ["header", "hdr"],
+		"body": [
+			"#ifndef ${1:INCLUDED_${TM_FILENAME/(.*)\\.(.+$)/$1_${2:/upcase}/}}",
+			"#define $1",
+			"",
+			"$0",
+			"",
+			"#endif"
+		]
+	},
 	"cpp": {
 		"prefix": "cpp",
 		"body": [
