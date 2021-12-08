@@ -26,22 +26,14 @@ font pango:DejaVu Sans Mono 10
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
 
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
-
-# Use pactl to adjust volume in PulseAudio.
-set $refresh_i3status killall -SIGUSR1 i3status
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec i3-sensible-terminal
+# i3-sensible-terminal
+# bindsym $mod+Return exec st
+bindsym $mod+Return exec cd "$(xcwd)" && exec st
+bindsym $mod+Shift+Return exec cd "$(xcwd)" && exec st -e "ranger"
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -50,10 +42,39 @@ bindsym $mod+Shift+q kill
 # bindsym $mod+d exec --no-startup-id dmenu_run
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-bindcode $mod+40 exec "rofi -show drun"
+# bindcode $mod+40 exec "rofi -combi-modi window#drun -show combi -modi combi -show-icons"
+bindcode $mod+40 exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
+bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
+
+################################################################################################
+## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
+################################################################################################
+
+# exec --no-startup-id pulseaudio --start # && sleep 2 && volumeicon
+# exec --no-startup-id volumeicon
+# bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
+# exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+m exec pavucontrol
+# Use pactl to adjust volume in PulseAudio.
+set $refresh_i3status killall -SIGUSR1 i3status
+bindsym XF86AudioRaiseVolume exec --no-startup-id volumeControl.sh up && $refresh_i3status
+bindsym XF86AudioLowerVolume exec --no-startup-id volumeControl.sh down && $refresh_i3status
+bindsym XF86AudioMute exec --no-startup-id volumeControl.sh mute && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
+# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
+# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
+# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+
+################################################################################################
+
+# Screen brightness controls
+# bindsym XF86MonBrightnessUp exec "xbacklight -inc 5; notify-send 'brightness up'"
+# bindsym XF86MonBrightnessDown exec "xbacklight -dec 5; notify-send 'brightness down'"
 
 set $up k
 set $down j
@@ -105,10 +126,10 @@ bindsym $mod+Shift+space floating toggle
 bindsym $mod+space focus mode_toggle
 
 # focus the parent container
-bindsym $mod+a focus parent
+bindsym $mod+p focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+c focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -133,7 +154,7 @@ bindsym $mod+6 workspace number $ws6
 bindsym $mod+7 workspace number $ws7
 bindsym $mod+8 workspace number $ws8
 bindsym $mod+9 workspace number $ws9
-bindsym $mod+0 workspace number $ws10
+# bindsym $mod+0 workspace number $ws10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace number $ws1
@@ -154,43 +175,95 @@ bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
 
-# resize window (you can also use the mouse for that)
-mode "resize" {
-        # These bindings trigger as soon as you enter the resize mode
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
 
-        # Pressing left will shrink the window’s width.
-        # Pressing right will grow the window’s width.
-        # Pressing up will shrink the window’s height.
-        # Pressing down will grow the window’s height.
-        bindsym $left resize shrink width 10 px or 10 ppt
-        bindsym $up resize grow height 10 px or 10 ppt
-        bindsym $down resize shrink height 10 px or 10 ppt
-        bindsym $right resize grow width 10 px or 10 ppt
-
-        # same bindings, but for the arrow keys
-        bindsym Left resize shrink width 10 px or 10 ppt
-        bindsym Down resize grow height 10 px or 10 ppt
-        bindsym Up resize shrink height 10 px or 10 ppt
-        bindsym Right resize grow width 10 px or 10 ppt
-
-        # back to normal: Enter or Escape or $mod+r
-        bindsym Return mode "default"
-        bindsym Escape mode "default"
-        bindsym $mod+r mode "default"
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
 }
 
-bindsym $mod+r mode "resize"
+# resize window (you can also use the mouse for that)
+set $resize_step 5
+
+bindsym $mod+y resize shrink width $resize_step px or $resize_step ppt
+bindsym $mod+i resize grow height $resize_step px or $resize_step ppt
+bindsym $mod+u resize shrink height $resize_step px or $resize_step ppt
+bindsym $mod+o resize grow width $resize_step px or $resize_step ppt
+
+# Lock screen
+bindsym $mod+x exec --no-startup-id blurlock
+exec --no-startup-id xautolock -time 10 -locker blurlock
+
+# Autostart applications
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+# wallpaper
+# exec --no-startup-id nitrogen --restore; sleep 1; picom -b
+# exec_always feh --bg-fill ~/Pictures/wallpaper/wallhaven-z8dg9y.png
+exec --no-startup-id ~/bin/wal-feh
+exec_always --no-startup-id picom -b
+# exec --no-startup-id manjaro-hello
+# NetworkManager is the most popular way to manage wireless networks on Linux,
+# and nm-applet is a desktop environment-independent system tray GUI for it.
+# exec --no-startup-id nm-applet # network manager
+# exec --no-startup-id xfce4-power-manager # power manager + backlight control
+# exec --no-startup-id pamac-tray # system tray
+# exec --no-startup-id clipit # clipboard contorl
+# exec --no-startup-id blueman-applet
+# exec_always --no-startup-id sbxkb
+# exec --no-startup-id start_conky_maia
+# exec --no-startup-id start_conky_green
+# exec --no-startup-id fcitx -d
+exec_always --no-startup-id ff-theme-util
+exec_always --no-startup-id fix_xcursor
+exec --no-startup-id dex --autostart --environment i3
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
-# bar {
-#         status_command i3status
-# }
+bar {
+	i3bar_command i3bar
+	status_command i3status
+	status_command exec net-speed.sh
+	# status_command i3blocks
+	position top
+	tray_output primary
 
-for_window [class=".*"] border pixel 2
+	colors {
+		background #222D31
+		statusline #F9FAF9
+		separator #454947
+	#                      border  backgr. text
+		focused_workspace  #F9FAF9 #16a085 #292F34
+		active_workspace   #595B5B #353836 #FDF6E3
+		inactive_workspace #595B5B #222D31 #EEE8D5
+		binding_mode       #16a085 #2C2C2C #F9FAF9
+		urgent_workspace   #16a085 #FDF6E3 #E5201D
+	}
+
+}
+
+# polybar
+# exec_always --no-startup-id $HOME/.config/polybar/launch.sh
+
+# toggle bar
+bindsym $mod+m bar mode toggle
+# bindsym $mod+m exec polybar-msg cmd toggle
+
+
+for_window [class=".*"] border pixel 4
 for_window [title="歌词"] border pixel 0
-gaps inner 10
-gaps outer 10
+gaps inner 14
+gaps outer 0
 
-exec --no-startup-id ~/.fehbg
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
 
