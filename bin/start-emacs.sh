@@ -6,6 +6,8 @@ function send_notification {
   dunstify -r $notification_id -t $delay -u normal "$1"
 }
 
+export LC_CTYPE=zh_CN.UTF-8
+
 emacsclient -nc || ( \
   send_notification "STARTING EMACS SERVER" && \
     (emacs --daemon && \

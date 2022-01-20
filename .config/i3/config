@@ -186,6 +186,7 @@ mode "$mode_system" {
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym Ctrl+g mode "default"
 }
 
 # resize window (you can also use the mouse for that)
@@ -308,7 +309,7 @@ bindsym $mod+m bar mode toggle
 for_window [class=".*"] border pixel 4
 for_window [title="歌词"] border pixel 0
 for_window [class="scrcpy"] floating enable
-gaps inner 14
+gaps inner 10
 gaps outer 0
 
 bindsym $mod+Shift+minus move scratchpad
