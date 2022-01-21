@@ -1,0 +1,17 @@
+#+TITLE: k4i's .dotfiles
+
+* Introduction
+
+These are my dotfiles managed with stow, check [[https://k4i.top/posts/manage-my-dotfiles-with-stow/][this post]] for more details.
+
+* apps I use
+
+- i3
+- picom
+- emacs
+- vim
+- tmux
+- st
+- zsh
+- copyq
+- flameshot
