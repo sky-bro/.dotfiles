@@ -93,6 +93,8 @@
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
 
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;; Make ESC quit prompts
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
@@ -131,17 +133,19 @@
     :prefix "SPC")
 
   (my-space-leader
+    "d" '(lambda () (interactive) (dired default-directory))
+    "f"  '(:ignore t :which-key "file prefix")
+    "fd" '(:ignore t :which-key "dotfiles prefix")
+    "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
+    "k" 'kill-this-buffer
     "o"  '(:ignore t :which-key "org prefix")
     "oa" 'org-agenda
     "oc" 'org-capture
+    "r" 'resize-window
     "t"  '(:ignore t :which-key "toggles")
     "tt" '(counsel-load-theme :which-key "choose theme")
     "tf" 'treemacs
-    "fde" '(lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org")))
     "'" 'vterm-toggle-cd
-    "d" '(lambda () (interactive) (dired default-directory))
-    "r" 'resize-window
-    "k" 'kill-this-buffer
     "=" 'format-all-buffer)
 
   (general-create-definer my-comma-leader
@@ -251,7 +255,7 @@ When called with a prefix arg, resize the window by ARG lines."
 (defvar k4i/default-variable-font-size 200)
 
 ;; Make frame transparency overridable
-(defvar k4i/frame-transparency '(100 . 90))
+;; (defvar k4i/frame-transparency '(100 . 90))
 
 (setq inhibit-startup-message t)
 
@@ -266,8 +270,8 @@ When called with a prefix arg, resize the window by ARG lines."
 (setq visible-bell t)
 
 ;; Set frame transparency
-(set-frame-parameter (selected-frame) 'alpha k4i/frame-transparency)
-(add-to-list 'default-frame-alist `(alpha . ,k4i/frame-transparency))
+;; (set-frame-parameter (selected-frame) 'alpha k4i/frame-transparency)
+;; (add-to-list 'default-frame-alist `(alpha . ,k4i/frame-transparency))
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -560,7 +564,13 @@ When called with a prefix arg, resize the window by ARG lines."
 (defun k4i/org-babel-tangle-config ()
   "tangle any org-mode file inside user-emacs-directory"
   (when (string-equal (file-name-directory (buffer-file-name))
-                      (expand-file-name user-emacs-directory))
+
+                      (let (
+                            ;; (emacs-config-dir user-emacs-directory)
+                            (emacs-config-dir "~/.dotfiles/.emacs.d/")
+                            )
+                        (expand-file-name emacs-config-dir))
+                      )
     ;; Dynamic scoping to the rescue
     (let ((org-confirm-babel-evaluate nil))
       (org-babel-tangle))))

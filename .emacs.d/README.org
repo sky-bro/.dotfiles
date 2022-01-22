@@ -148,6 +148,11 @@ We use the [[https://github.com/emacscollective/no-littering/blob/master/no-litt
 * Keybinding
 
 ** define-key & global-set-key
+
+#+begin_src emacs-lisp
+  (global-set-key (kbd "C-x C-b") 'ibuffer)
+#+end_src
+
 ** evil mode
 This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil-mode]] for a Vi-like modal editing experience.  [[https://github.com/noctuid/general.el][general.el]] is used for easy keybinding configuration that integrates well with which-key.  [[https://github.com/emacs-evil/evil-collection][evil-collection]] is used to automatically configure various Emacs modes with Vi-like keybindings for evil-mode.
 
@@ -196,17 +201,19 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
       :prefix "SPC")
 
     (my-space-leader
+      "d" '(lambda () (interactive) (dired default-directory))
+      "f"  '(:ignore t :which-key "file prefix")
+      "fd" '(:ignore t :which-key "dotfiles prefix")
+      "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
+      "k" 'kill-this-buffer
       "o"  '(:ignore t :which-key "org prefix")
       "oa" 'org-agenda
       "oc" 'org-capture
+      "r" 'resize-window
       "t"  '(:ignore t :which-key "toggles")
       "tt" '(counsel-load-theme :which-key "choose theme")
       "tf" 'treemacs
-      "fde" '(lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org")))
       "'" 'vterm-toggle-cd
-      "d" '(lambda () (interactive) (dired default-directory))
-      "r" 'resize-window
-      "k" 'kill-this-buffer
       "=" 'format-all-buffer)
 
     (general-create-definer my-comma-leader
@@ -362,7 +369,7 @@ this is from [[https://www.emacswiki.org/emacs/WindowResize][emacswiki: WindowRe
   (defvar k4i/default-variable-font-size 200)
 
   ;; Make frame transparency overridable
-  (defvar k4i/frame-transparency '(100 . 90))
+  ;; (defvar k4i/frame-transparency '(100 . 90))
 
   (setq inhibit-startup-message t)
 
@@ -377,8 +384,8 @@ this is from [[https://www.emacswiki.org/emacs/WindowResize][emacswiki: WindowRe
   (setq visible-bell t)
 
   ;; Set frame transparency
-  (set-frame-parameter (selected-frame) 'alpha k4i/frame-transparency)
-  (add-to-list 'default-frame-alist `(alpha . ,k4i/frame-transparency))
+  ;; (set-frame-parameter (selected-frame) 'alpha k4i/frame-transparency)
+  ;; (add-to-list 'default-frame-alist `(alpha . ,k4i/frame-transparency))
   (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
   (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
@@ -808,7 +815,13 @@ The line =#+PROPERTY: header-args:emacs-lisp :tangle ./init.el= at the beginning
   (defun k4i/org-babel-tangle-config ()
     "tangle any org-mode file inside user-emacs-directory"
     (when (string-equal (file-name-directory (buffer-file-name))
-                        (expand-file-name user-emacs-directory))
+
+                        (let (
+                              ;; (emacs-config-dir user-emacs-directory)
+                              (emacs-config-dir "~/.dotfiles/.emacs.d/")
+                              )
+                          (expand-file-name emacs-config-dir))
+                        )
       ;; Dynamic scoping to the rescue
       (let ((org-confirm-babel-evaluate nil))
         (org-babel-tangle))))
