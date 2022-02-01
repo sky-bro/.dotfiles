@@ -9,6 +9,7 @@
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
 
+# use windows key
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -43,7 +44,7 @@ bindsym $mod+Shift+q kill
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec "rofi -combi-modi window#drun -show combi -modi combi -show-icons"
-bindcode $mod+40 exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
+bindcode $mod+d exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -60,6 +61,8 @@ bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart du
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Ctrl+e exec start-emacs.sh
 bindsym $mod+Ctrl+w exec google-chrome
+# toggle transparency of current window
+bindsym $mod+Ctrl+space exec picom-trans -ct
 # Use pactl to adjust volume in PulseAudio.
 set $refresh_i3status killall -SIGUSR1 i3status
 bindsym XF86AudioRaiseVolume exec --no-startup-id volumeControl.sh up && $refresh_i3status
@@ -207,13 +210,8 @@ bindsym Mod1+Shift+a exec --no-startup-id flameshot gui
 ################# Autostart applications ##################
 ###########################################################
 
-# TODO: unknown
+# polkit is a toolkit for defining and handling authorizations
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec_always --no-startup-id ff-theme-util
-exec_always --no-startup-id fix_xcursor
-# exec_always --no-startup-id sbxkb
-# exec --no-startup-id start_conky_maia
-# exec --no-startup-id start_conky_green
 
 # wallpaper
 exec --no-startup-id ~/bin/wal-feh
@@ -245,6 +243,8 @@ exec --no-startup-id dex --autostart --environment i3
 # autoadb: execute a command whenever a device is adb-connected
 exec --no-startup-id autoadb scrcpy -s '{}' -Sw --window-borderless -t -K --prefer-text
 
+# start emacs server, connect with `emacsclient -nc`
+# or use `.dotfiles/bin/start-emacs.sh`
 exec --no-startup-id emacs --daemon
 
 # Start i3bar to display a workspace bar (plus the system information i3status
@@ -260,14 +260,14 @@ set $ugt_bg "#ff7066"
 
 bar {
     mode hide
-	i3bar_command i3bar
-	status_command i3status
-	status_command exec net-speed.sh
-	# status_command i3blocks
-	position top
-	tray_output primary
+    i3bar_command i3bar
+    status_command i3status
+    status_command exec net-speed.sh
+    # status_command i3blocks
+    position top
+    tray_output primary
 
-	colors {
+    colors {
         background #000000
         statusline #ffffff
         separator #666666
@@ -277,23 +277,12 @@ bar {
         inactive_workspace #333333 #222222 #888888
         urgent_workspace   #2f343a #900000 #ffffff
         binding_mode       #2f343a #900000 #ffffff
-
-# 		background $bg
-# 		statusline $ugt_txt
-# 		separator $ufc_bg
-#                           border  backgr. text
-# 		focused_workspace  $fc_bg $fc_bg $fc_txt
-# 		active_workspace $ufc_bg $ufc_bg $ufc_txt
-# 		inactive_workspace $ufc_bg $ufc_bg $ufc_txt
-# 		binding_mode       #16a085 #2C2C2C #F9FAF9
-# 		urgent_workspace   $ugt_bg $ugt_bg $ugt_txt
-	}
-
+    }
 }
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $fc_bg $fc_bg $fc_txt $ugt_bg
-# client.focused_inactive $ufc_bg $ufc_bg $ufc_txt $ufc_txt
+client.focused_inactive $ufc_bg $ufc_bg $ufc_txt $ufc_txt
 # client.unfocused $ufc_bg $ufc_bg $ufc_txt $ufc_txt
 # client.urgent           $ugt_bg $ugt_bg $ugt_txt $ugt_txt
 # client.background       $bg
@@ -307,7 +296,7 @@ bindsym $mod+m bar mode toggle
 
 
 for_window [class=".*"] border pixel 4
-for_window [title="歌词"] border pixel 0
+for_window [title="歌词"] border none
 for_window [class="scrcpy"] floating enable
 gaps inner 10
 gaps outer 0

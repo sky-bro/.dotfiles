@@ -1,0 +1,22 @@
+#+TITLE: Manual
+
+* start-proxy, stop-proxy, chk-proxy
+
+These commands are for quickly setting/clearing/checking proxy related environment variables: =. start-proxy [1081] [scheme] [host]=
+
+For example =. start-proxy 1081 socks5h 127.0.0.1= will set these environment variables:
+
+#+begin_src shell
+  http_proxy=socks5h://127.0.0.1:1081
+  https_proxy=socks5h://127.0.0.1:1081
+  ftp_proxy=socks5h://127.0.0.1:1081
+  all_proxy=socks5h://127.0.0.1:1081
+#+end_src
+
+=. stop-proxy= will clear/unset these variables.
+
+=chk-proxy= will print the value of these variables.
+
+* swap
+
+swap the names of two files/folders: =swap A/ B/=, =swap a.c b.c=.

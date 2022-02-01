@@ -23,11 +23,12 @@
 ;; https://www.reddit.com/r/emacs/comments/1rdstn/set_packageenableatstartup_to_nil_for_slightly/
 (setq package-enable-at-startup nil)
 
-(unless package-archive-contents
-  (package-refresh-contents))
+;; (unless package-archive-contents
+;;   (package-refresh-contents))
 
   ;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
+  (package-refresh-contents)
   (package-install 'use-package))
 
 (require 'use-package)
@@ -66,6 +67,10 @@
  truncate-lines nil
  truncate-partial-width-windows nil)
 
+(setq custom-file (locate-user-emacs-file "custom.el"))
+(when (file-exists-p custom-file)
+  (load custom-file))
+
 ;; Adjust garbage collection thresholds during startup, and thereafter
 (let ((normal-gc-cons-threshold (* 20 1024 1024))
       (init-gc-cons-threshold (* 128 1024 1024)))
@@ -82,86 +87,7 @@
 
 (add-hook 'after-init-hook #'k4i/display-startup-time)
 
-;; NOTE: If you want to move everything out of the ~/.emacs.d folder
-;; reliably, set `user-emacs-directory` before loading no-littering!
-;(setq user-emacs-directory "~/.cache/emacs")
-
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-
-(global-set-key (kbd "C-x C-b") 'ibuffer)
-
-;; Make ESC quit prompts
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
-(use-package undo-fu)
-(use-package evil
-  :init
-  ;; set these variables before evil-mode is loaded
-  (setq evil-want-integration t)
-  (setq evil-want-keybinding nil)
-  (setq evil-want-C-u-scroll t)
-  (setq evil-want-C-u-delete t)
-  (setq evil-want-C-i-jump nil)
-  (setq evil-undo-system 'undo-fu)
-  :config
-  (evil-mode 1)
-  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
-  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
-
-  ;; Use visual line motions even outside of visual-line-mode buffers
-  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
-  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
-
-  (evil-set-initial-state 'messages-buffer-mode 'normal)
-  (evil-set-initial-state 'dashboard-mode 'normal))
-
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-
-(use-package general
-  :after evil
-  :config
-  (general-create-definer my-space-leader
-    :keymaps '(normal visual)
-    :prefix "SPC")
-
-  (my-space-leader
-    "d" '(lambda () (interactive) (dired default-directory))
-    "f"  '(:ignore t :which-key "file prefix")
-    "fd" '(:ignore t :which-key "dotfiles prefix")
-    "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
-    "k" 'kill-this-buffer
-    "o"  '(:ignore t :which-key "org prefix")
-    "oa" 'org-agenda
-    "oc" 'org-capture
-    "r" 'resize-window
-    "t"  '(:ignore t :which-key "toggles")
-    "tt" '(counsel-load-theme :which-key "choose theme")
-    "tf" 'treemacs
-    "'" 'vterm-toggle-cd
-    "=" 'format-all-buffer)
-
-  (general-create-definer my-comma-leader
-    :keymaps '(normal visual)
-    :prefix ",")
-
-  (my-comma-leader
-    "k"  'kill-this-buffer))
-
-(use-package which-key
-  :init
-  (which-key-mode)
-  :diminish which-key-mode
-  :custom
-  (which-key-idle-delay 0.3)
-  :diminish which-key-mode)
+(use-package wgrep)
 
 (use-package ivy
   :after counsel
@@ -169,7 +95,7 @@
   :bind (("C-s" . swiper)
          ("C-M-j" . ivy-switch-buffer)
          :map ivy-minibuffer-map
-         ("TAB" . ivy-alt-done)
+         ("TAB" . ivy-partial)
          ("C-l" . ivy-alt-done)
          ("C-j" . ivy-next-line)
          ("C-k" . ivy-previous-line)
@@ -205,6 +131,121 @@
   ;; Uncomment the following line to have sorting remembered across sessions!
   ;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
+
+(use-package flyspell
+  :custom
+  (flyspell-issue-message-flag nil)
+  :config
+  (defun flyspell-on-for-buffer-type ()
+    "Enable Flyspell appropriately for the major mode of the current buffer.  Uses `flyspell-prog-mode' for modes derived from `prog-mode', so only strings and comments get checked.  All other buffers get `flyspell-mode' to check all text.  If flyspell is already enabled, does nothing."
+    (interactive)
+    (if (not (symbol-value flyspell-mode)) ; if not already on
+        (progn
+          (if (derived-mode-p 'prog-mode)
+              (progn
+                (message "Flyspell on (code)")
+                (flyspell-prog-mode))
+            ;; else
+            (progn
+              (message "Flyspell on (text)")
+              (flyspell-mode 1)))
+          ;; I tried putting (flyspell-buffer) here but it didn't seem to work
+          )))
+
+  (defun flyspell-toggle ()
+    "Turn Flyspell on if it is off, or off if it is on.  When turning on, it uses `flyspell-on-for-buffer-type' so code-vs-text is handled appropriately."
+    (interactive)
+    (if (symbol-value flyspell-mode)
+        (progn ; flyspell is on, turn it off
+          (message "Flyspell off")
+          (flyspell-mode -1))
+                                        ; else - flyspell is off, turn it on
+      (flyspell-on-for-buffer-type)))
+  (add-hook 'find-file-hook 'flyspell-on-for-buffer-type)
+  (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type))
+
+;; NOTE: If you want to move everything out of the ~/.emacs.d folder
+;; reliably, set `user-emacs-directory` before loading no-littering!
+;(setq user-emacs-directory "~/.cache/emacs")
+
+(use-package no-littering)
+
+;; no-littering doesn't set this by default so we must place
+;; auto save files in the same path as it uses for sessions
+(setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+;; Make ESC quit prompts
+(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+
+(use-package undo-fu)
+(use-package evil
+  :init
+  ;; set these variables before evil-mode is loaded
+  (setq evil-want-integration t)
+  (setq evil-want-keybinding nil)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-want-C-u-delete t)
+  (setq evil-want-C-i-jump t)
+  (setq evil-undo-system 'undo-fu)
+  :config
+  (evil-mode 1)
+  (define-key evil-insert-state-map (kbd "C-g") 'evil-normal-state)
+  (define-key evil-insert-state-map (kbd "C-h") 'evil-delete-backward-char-and-join)
+
+  ;; Use visual line motions even outside of visual-line-mode buffers
+  (evil-global-set-key 'motion "j" 'evil-next-visual-line)
+  (evil-global-set-key 'motion "k" 'evil-previous-visual-line)
+
+  (evil-set-initial-state 'messages-buffer-mode 'normal)
+  (evil-set-initial-state 'dashboard-mode 'normal))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+(use-package general
+  :after evil
+  :config
+  (general-create-definer my-space-leader
+    :keymaps '(normal visual)
+    :prefix "SPC")
+
+  (my-space-leader
+    "d" '((lambda () (interactive) (dired default-directory)) :which-key "dired default dir")
+    "f"  '(:ignore t :which-key "file")
+    "fb"  '((lambda () (interactive) (find-file (expand-file-name "~/git-repo/blog/blog-src/content-org/all-posts.en.org"))) :which-key "blogs")
+    "fd" '(:ignore t :which-key "dotfiles")
+    "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
+    "k" 'kill-this-buffer
+    "o"  '(:ignore t :which-key "org")
+    "oa" 'org-agenda
+    "oc" 'org-capture
+    "r" 'resize-window
+    "t"  '(:ignore t :which-key "toggles")
+    "tt" '(counsel-load-theme :which-key "choose theme")
+    "tf" 'treemacs
+    "ts" 'flyspell-toggle
+    "'" 'vterm-toggle-cd
+    "=" 'format-all-buffer)
+
+  (general-create-definer my-comma-leader
+    :keymaps '(normal visual)
+    :prefix ",")
+
+  (my-comma-leader
+    "k"  'kill-this-buffer))
+
+(use-package which-key
+  :init
+  (which-key-mode)
+  :diminish which-key-mode
+  :custom
+  (which-key-idle-delay 0.3)
+  :diminish which-key-mode)
 
 (use-package helpful
   :commands (helpful-callable helpful-variable helpful-command helpful-key)
@@ -384,7 +425,8 @@ When called with a prefix arg, resize the window by ARG lines."
   (org-image-actual-width (/ (nth 3 (assq 'geometry (frame-monitor-attributes))) 3))
   (org-startup-folded t)
   (org-directory (expand-file-name "Org" (getenv "HOME")))
-  (org-ellipsis " ▾")
+  ;; (org-ellipsis " ▾")
+  (org-ellipsis "⇙")
   (org-agenda-start-with-log-mode t)
   ;; (org-hide-emphasis-markers t)
   (org-log-done 'time)
@@ -656,7 +698,8 @@ When called with a prefix arg, resize the window by ARG lines."
    ("C-c n t" . org-roam-tag-add)
    ("C-c n a" . org-roam-alias-add)
    ("C-c n l" . org-roam-buffer-toggle)
-   ("C-M-i" . completion-at-point)))
+   ;; ("C-M-i" . completion-at-point)
+   ))
 
 (use-package org-roam-ui
   :after org-roam
@@ -825,6 +868,29 @@ When called with a prefix arg, resize the window by ARG lines."
   :config
   (pyvenv-mode 1))
 
+(use-package slime
+  :config
+  (setq inferior-lisp-program "sbcl")
+  (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+
+(use-package slime-company
+  :after (slime company)
+  :config
+  (setq slime-company-completion 'fuzzy
+        slime-company-after-completion 'slime-company-just-one-space))
+
+(use-package rust-mode
+  :hook (rust-mode . lsp-deffered))
+
+(use-package flycheck-rust
+  :config
+  (with-eval-after-load 'rust-mode
+    (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode)
+  :diminish cargo-minor-mode)
+
 (use-package vterm
   :commands vterm
   :config
@@ -854,10 +920,15 @@ When called with a prefix arg, resize the window by ARG lines."
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
-  :config
-  (evil-collection-define-key 'normal 'dired-mode-map
-    "h" 'dired-single-up-directory
-    "l" 'dired-single-buffer))
+  :general
+  (:states 'normal
+   :keymaps 'dired-mode-map
+   "c" '(nil :which-key "create")
+   "cc" 'dired-do-compress-to
+   "cf" 'dired-create-empty-file
+   "cd" 'dired-create-directory
+   "h" 'dired-single-up-directory
+   "l" 'dired-single-buffer))
 
 ;; use single buffer
 (use-package dired-single
@@ -890,15 +961,16 @@ When called with a prefix arg, resize the window by ARG lines."
   (evil-collection-define-key 'normal 'dired-mode-map
     "H" 'dired-hide-dotfiles-mode))
 
-(use-package lsp-treemacs
-  :after lsp)
-
 (use-package treemacs
   :custom
   (treemacs-follow-mode t)
   (treemacs-filewatch-mode t)
-  (treemacs-project-follow-mode t)
-  (treemacs-fringe-indicator-mode t))
+  (treemacs-width-is-initially-locked nil)
+  ;; (treemacs-project-follow-mode t)
+  )
+
+(use-package lsp-treemacs
+  :after lsp)
 
 (use-package treemacs-evil
   :after treemacs evil)

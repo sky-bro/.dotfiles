@@ -14,8 +14,6 @@
 
 set your package archives here, and enable use-package.
 
-I'm in China, so here I use [[https://mirrors.tuna.tsinghua.edu.cn/help/elpa/][tsinghua tuna]].
-
 #+begin_src emacs-lisp
   ;; Initialize package sources
   (require 'package)
@@ -48,11 +46,12 @@ I'm in China, so here I use [[https://mirrors.tuna.tsinghua.edu.cn/help/elpa/][t
   ;; https://www.reddit.com/r/emacs/comments/1rdstn/set_packageenableatstartup_to_nil_for_slightly/
   (setq package-enable-at-startup nil)
 
-  (unless package-archive-contents
-    (package-refresh-contents))
+  ;; (unless package-archive-contents
+  ;;   (package-refresh-contents))
 
     ;; Initialize use-package on non-Linux platforms
   (unless (package-installed-p 'use-package)
+    (package-refresh-contents)
     (package-install 'use-package))
 
   (require 'use-package)
@@ -96,6 +95,16 @@ I'm in China, so here I use [[https://mirrors.tuna.tsinghua.edu.cn/help/elpa/][t
    truncate-partial-width-windows nil)
 #+end_src
 
+** custom file
+
+save and update custom settings in a separate file
+
+#+begin_src emacs-lisp
+  (setq custom-file (locate-user-emacs-file "custom.el"))
+  (when (file-exists-p custom-file)
+    (load custom-file))
+#+end_src
+
 ** Startup Performance
 
 *** garbage collection
@@ -124,9 +133,118 @@ Adjust garbage collection threashold for startup and after, garbage collection h
   (add-hook 'after-init-hook #'k4i/display-startup-time)
 #+end_src
 
-** TODO search tools
+** search tools
 
 =("rg" "ag" "pt" "ack" "grep")=
+
+#+begin_src emacs-lisp
+  (use-package wgrep)
+#+end_src
+
+** Ivy and Counsel
+
+[[https://oremacs.com/swiper/][Ivy]] is an excellent completion framework for Emacs.  It provides a minimal yet powerful selection menu that appears when you open files, switch buffers, and for many other tasks in Emacs.  Counsel is a customized set of commands to replace `find-file` with `counsel-find-file`, etc which provide useful commands for each of the default completion commands.
+
+[[https://github.com/Yevgnen/ivy-rich][ivy-rich]] adds extra columns to a few of the Counsel commands to provide more information about each item.
+
+#+begin_src emacs-lisp
+  (use-package ivy
+    :after counsel
+    :diminish
+    :bind (("C-s" . swiper)
+           ("C-M-j" . ivy-switch-buffer)
+           :map ivy-minibuffer-map
+           ("TAB" . ivy-partial)
+           ("C-l" . ivy-alt-done)
+           ("C-j" . ivy-next-line)
+           ("C-k" . ivy-previous-line)
+           :map ivy-switch-buffer-map
+           ("C-k" . ivy-previous-line)
+           ("C-l" . ivy-done)
+           ("C-d" . ivy-switch-buffer-kill)
+           :map ivy-reverse-i-search-map
+           ("C-k" . ivy-previous-line)
+           ("C-d" . ivy-reverse-i-search-kill))
+    :custom (ivy-use-virtual-buffers t)
+    :config
+    (ivy-mode 1))
+
+  (use-package ivy-rich
+    :after ivy
+    :init
+    (ivy-rich-mode 1))
+
+  (use-package counsel
+    :bind (:map minibuffer-local-map
+           ("C-r" . 'counsel-minibuffer-history))
+    :custom
+    (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+    :config
+    (counsel-mode 1))
+#+end_src
+
+*** Improved Candidate Sorting with prescient.el
+
+prescient.el provides some helpful behavior for sorting Ivy completion candidates based on how recently or frequently you select them.  This can be especially helpful when using =M-x= to run commands that you don't have bound to a key but still need to access occasionally.
+
+This Prescient configuration is optimized for use in System Crafters videos and streams, check out the [[https://youtu.be/T9kygXveEz0][video on prescient.el]] for more details on how to configure it!
+
+#+begin_src emacs-lisp
+  (use-package ivy-prescient
+    :after counsel
+    :custom
+    (ivy-prescient-enable-filtering nil)
+    :config
+    ;; Uncomment the following line to have sorting remembered across sessions!
+    ;(prescient-persist-mode 1)
+    (ivy-prescient-mode 1))
+#+end_src
+
+* Spell Check
+
+Flyspell enables on-the-fly spell checking in Emacs by the means of a minor mode.
+
+install hunspell, aspell or ispell
+
+personal dictionary stored at =.hunspell_en_US=.
+
+#+begin_src shell
+  sudo pacman -Sy hunspell-en_us
+#+end_src
+
+#+begin_src emacs-lisp
+  (use-package flyspell
+    :custom
+    (flyspell-issue-message-flag nil)
+    :config
+    (defun flyspell-on-for-buffer-type ()
+      "Enable Flyspell appropriately for the major mode of the current buffer.  Uses `flyspell-prog-mode' for modes derived from `prog-mode', so only strings and comments get checked.  All other buffers get `flyspell-mode' to check all text.  If flyspell is already enabled, does nothing."
+      (interactive)
+      (if (not (symbol-value flyspell-mode)) ; if not already on
+          (progn
+            (if (derived-mode-p 'prog-mode)
+                (progn
+                  (message "Flyspell on (code)")
+                  (flyspell-prog-mode))
+              ;; else
+              (progn
+                (message "Flyspell on (text)")
+                (flyspell-mode 1)))
+            ;; I tried putting (flyspell-buffer) here but it didn't seem to work
+            )))
+
+    (defun flyspell-toggle ()
+      "Turn Flyspell on if it is off, or off if it is on.  When turning on, it uses `flyspell-on-for-buffer-type' so code-vs-text is handled appropriately."
+      (interactive)
+      (if (symbol-value flyspell-mode)
+          (progn ; flyspell is on, turn it off
+            (message "Flyspell off")
+            (flyspell-mode -1))
+                                          ; else - flyspell is off, turn it on
+        (flyspell-on-for-buffer-type)))
+    (add-hook 'find-file-hook 'flyspell-on-for-buffer-type)
+    (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type))
+#+end_src
 
 * Keep Folders Clean
 
@@ -168,7 +286,7 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
     (setq evil-want-keybinding nil)
     (setq evil-want-C-u-scroll t)
     (setq evil-want-C-u-delete t)
-    (setq evil-want-C-i-jump nil)
+    (setq evil-want-C-i-jump t)
     (setq evil-undo-system 'undo-fu)
     :config
     (evil-mode 1)
@@ -201,18 +319,20 @@ This configuration uses [[https://evil.readthedocs.io/en/latest/index.html][evil
       :prefix "SPC")
 
     (my-space-leader
-      "d" '(lambda () (interactive) (dired default-directory))
-      "f"  '(:ignore t :which-key "file prefix")
-      "fd" '(:ignore t :which-key "dotfiles prefix")
+      "d" '((lambda () (interactive) (dired default-directory)) :which-key "dired default dir")
+      "f"  '(:ignore t :which-key "file")
+      "fb"  '((lambda () (interactive) (find-file (expand-file-name "~/git-repo/blog/blog-src/content-org/all-posts.en.org"))) :which-key "blogs")
+      "fd" '(:ignore t :which-key "dotfiles")
       "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
       "k" 'kill-this-buffer
-      "o"  '(:ignore t :which-key "org prefix")
+      "o"  '(:ignore t :which-key "org")
       "oa" 'org-agenda
       "oc" 'org-capture
       "r" 'resize-window
       "t"  '(:ignore t :which-key "toggles")
       "tt" '(counsel-load-theme :which-key "choose theme")
       "tf" 'treemacs
+      "ts" 'flyspell-toggle
       "'" 'vterm-toggle-cd
       "=" 'format-all-buffer)
 
@@ -240,67 +360,6 @@ use =,= as major mode leader key
     :custom
     (which-key-idle-delay 0.3)
     :diminish which-key-mode)
-#+end_src
-
-** Ivy and Counsel
-
-[[https://oremacs.com/swiper/][Ivy]] is an excellent completion framework for Emacs.  It provides a minimal yet powerful selection menu that appears when you open files, switch buffers, and for many other tasks in Emacs.  Counsel is a customized set of commands to replace `find-file` with `counsel-find-file`, etc which provide useful commands for each of the default completion commands.
-
-[[https://github.com/Yevgnen/ivy-rich][ivy-rich]] adds extra columns to a few of the Counsel commands to provide more information about each item.
-
-#+begin_src emacs-lisp
-  (use-package ivy
-    :after counsel
-    :diminish
-    :bind (("C-s" . swiper)
-           ("C-M-j" . ivy-switch-buffer)
-           :map ivy-minibuffer-map
-           ("TAB" . ivy-alt-done)
-           ("C-l" . ivy-alt-done)
-           ("C-j" . ivy-next-line)
-           ("C-k" . ivy-previous-line)
-           :map ivy-switch-buffer-map
-           ("C-k" . ivy-previous-line)
-           ("C-l" . ivy-done)
-           ("C-d" . ivy-switch-buffer-kill)
-           :map ivy-reverse-i-search-map
-           ("C-k" . ivy-previous-line)
-           ("C-d" . ivy-reverse-i-search-kill))
-    :custom (ivy-use-virtual-buffers t)
-    :config
-    (ivy-mode 1))
-
-  (use-package ivy-rich
-    :after ivy
-    :init
-    (ivy-rich-mode 1))
-
-  (use-package counsel
-    :bind (:map minibuffer-local-map
-           ("C-r" . 'counsel-minibuffer-history))
-    :custom
-    (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
-    :config
-    (counsel-mode 1))
-#+end_src
-
-*** Improved Candidate Sorting with prescient.el
-
-prescient.el provides some helpful behavior for sorting Ivy completion candidates based on how recently or frequently you select them.  This can be especially helpful when using =M-x= to run commands that you don't have bound to a key but still need to access occasionally.
-
-This Prescient configuration is optimized for use in System Crafters videos and streams, check out the [[https://youtu.be/T9kygXveEz0][video on prescient.el]] for more details on how to configure it!
-
-#+begin_src emacs-lisp
-
-  (use-package ivy-prescient
-    :after counsel
-    :custom
-    (ivy-prescient-enable-filtering nil)
-    :config
-    ;; Uncomment the following line to have sorting remembered across sessions!
-    ;(prescient-persist-mode 1)
-    (ivy-prescient-mode 1))
-
 #+end_src
 
 ** Helpful Help Commands
@@ -571,7 +630,8 @@ The =k4i/org-font-setup= function configures various text faces to tweak the siz
     (org-image-actual-width (/ (nth 3 (assq 'geometry (frame-monitor-attributes))) 3))
     (org-startup-folded t)
     (org-directory (expand-file-name "Org" (getenv "HOME")))
-    (org-ellipsis " ▾")
+    ;; (org-ellipsis " ▾")
+    (org-ellipsis "⇙")
     (org-agenda-start-with-log-mode t)
     ;; (org-hide-emphasis-markers t)
     (org-log-done 'time)
@@ -933,7 +993,8 @@ The line =#+PROPERTY: header-args:emacs-lisp :tangle ./init.el= at the beginning
      ("C-c n t" . org-roam-tag-add)
      ("C-c n a" . org-roam-alias-add)
      ("C-c n l" . org-roam-buffer-toggle)
-     ("C-M-i" . completion-at-point)))
+     ;; ("C-M-i" . completion-at-point)
+     ))
 #+end_src
 
 *** ui
@@ -1225,6 +1286,46 @@ You can use the pyvenv package to use =virtualenv= environments in Emacs.  The =
 
 ** C/C++
 
+** lisp
+
+*** slime
+
+#+begin_src emacs-lisp
+  (use-package slime
+    :config
+    (setq inferior-lisp-program "sbcl")
+    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+#+end_src
+
+Use =M-x slime= to fire up and connect to an inferior Lisp.
+
+*** slime-company
+
+#+begin_src emacs-lisp
+  (use-package slime-company
+    :after (slime company)
+    :config
+    (setq slime-company-completion 'fuzzy
+          slime-company-after-completion 'slime-company-just-one-space))
+#+end_src
+
+** Rust
+
+#+begin_src emacs-lisp
+  (use-package rust-mode
+    :hook (rust-mode . lsp-deffered))
+
+  (use-package flycheck-rust
+    :config
+    (with-eval-after-load 'rust-mode
+      (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
+  (use-package cargo
+    :hook (rust-mode . cargo-minor-mode)
+    :diminish cargo-minor-mode)
+
+#+end_src
+
 * Terminal - vterm
 
 ** vterm
@@ -1269,78 +1370,21 @@ Make sure that you have the [[https://github.com/akermu/emacs-libvterm/#requirem
 
 Dired is a built-in file manager for Emacs.
 
-*** Key Bindings
-
-**** Navigation
-
-*Evil* (function)
-- =j= - next line
-- =k= - previous line
-- =h= (dired-single-up-directory) - go to parent directory
-- =^= (dired-up-directory) - go to parent directory (but *new buffer*)
-- =l= (dired-single-buffer) - Open file in current buffer (if not directory, then use new buffer created)
-- =RET= (dired-find-file) - Open file in "current" window (but *new buffer*)
-- =g o= (dired-view-file) - Open file but in a "preview" mode, close with =q=
-- =g O= - Open file in "other" window
-- =M-RET= - Open file in "other" window without focusing (previewing files)
-- =J= (dired-goto-file) - jump to file in buffer, or just use =C-s=
-- =g r= (revert-buffer) - Refresh the buffer with =revert-buffer= after changing configuration (and after filesystem changes!)
-
-**** Marking files
-
-- =m= - Marks a file
-- =u= - Unmarks a file
-- =U= - Unmarks all files in buffer
-- =* t= / =t= - Inverts marked files in buffer
-- =% m= - Mark files in buffer using regular expression
-- =*= - Lots of other auto-marking functions
-- =k= / =K= - "Kill" marked items (refresh buffer with =g= / =g r= to get them back)
-- Many operations can be done on a single file if there are no active marks!
-
-**** Copying and Renaming files
-
-- =C= - Copy marked files (or if no files are marked, the current file)
-- Copying single and multiple files
-- =U= - Unmark all files in buffer
-- =R= - Rename marked files, renaming multiple is a move!
-- =% R= - Rename based on regular expression: =^test= , =old-\&=
-
-*Power command*: =C-x C-q= (=dired-toggle-read-only=) - Makes all file names in the buffer editable directly to rename them!  Press =Z Z= to confirm renaming or =Z Q= to abort.
-
-**** Deleting files
-
-- =D= - Delete current file
-- =d= - Mark file for deletion
-- =x= - Execute deletion for marks
-- =delete-by-moving-to-trash= - Move to trash instead of deleting permanently
-
-**** Creating and extracting archives
-
-- =Z= - Compress or uncompress a file or folder to (=.tar.gz=)
-- =c= - Compress selection to a specific file
-- =dired-compress-files-alist= - Bind compression commands to file extension
-
-**** Other common operations
-
-- =T= - Touch (change timestamp)
-- =M= - Change file mode
-- =O= - Change file owner
-- =G= - Change file group
-- =S= - Create a symbolic link to this file
-- =L= - Load an Emacs Lisp file into Emacs
-
-*** Configuration
-
 #+begin_src emacs-lisp
   (use-package dired
     :ensure nil
     :commands (dired dired-jump)
     :bind (("C-x C-j" . dired-jump))
     :custom ((dired-listing-switches "-agho --group-directories-first"))
-    :config
-    (evil-collection-define-key 'normal 'dired-mode-map
-      "h" 'dired-single-up-directory
-      "l" 'dired-single-buffer))
+    :general
+    (:states 'normal
+     :keymaps 'dired-mode-map
+     "c" '(nil :which-key "create")
+     "cc" 'dired-do-compress-to
+     "cf" 'dired-create-empty-file
+     "cd" 'dired-create-directory
+     "h" 'dired-single-up-directory
+     "l" 'dired-single-buffer))
 
   ;; use single buffer
   (use-package dired-single
@@ -1374,7 +1418,77 @@ Dired is a built-in file manager for Emacs.
       "H" 'dired-hide-dotfiles-mode))
 #+end_src
 
+*** Navigation
+
+*Evil* (function)
+- =j= - next line
+- =k= - previous line
+- =h= (dired-single-up-directory) - go to parent directory
+- =^= (dired-up-directory) - go to parent directory (but *new buffer*)
+- =l= (dired-single-buffer) - Open file in current buffer (if not directory, then use new buffer created)
+- =RET= (dired-find-file) - Open file in "current" window (but *new buffer*)
+- =g o= (dired-view-file) - Open file but in a "preview" mode, close with =q=
+- =g O= - Open file in "other" window
+- =M-RET= - Open file in "other" window without focusing (previewing files)
+- =J= (dired-goto-file) - jump to file in buffer
+- =g r= (revert-buffer) - Refresh the buffer with =revert-buffer= after changing configuration (and after filesystem changes!)
+
+*** Marking files
+
+- =m= - Marks a file
+- =u= - Unmarks a file
+- =U= - Unmarks all files in buffer
+- =t= - Inverts marked files in buffer
+- =% m= - Mark files in buffer using regular expression
+- =*= - Lots of other auto-marking functions
+- =k= / =K= - "Kill" marked items (refresh buffer with =g= / =g r= to get them back)
+- Many operations can be done on a single file if there are no active marks!
+
+*** Copying and Renaming files
+
+- =C= - Copy marked files (or if no files are marked, the current file)
+- Copying single and multiple files
+- =U= - Unmark all files in buffer
+- =R= - Rename marked files, renaming multiple is a move!
+- =% R= - Rename based on regular expression: =^test= , =old-\&=
+
+*Power command*: =C-x C-q= (=dired-toggle-read-only=) - Makes all file names in the buffer editable directly to rename them!  Press =Z Z= to confirm renaming or =Z Q= to abort.
+
+*** Deleting files
+
+- =D= - Delete current file
+- =d= - Mark file for deletion
+- =x= - Execute deletion for marks
+- =delete-by-moving-to-trash= - Move to trash instead of deleting permanently
+
+*** Creating and extracting archives
+
+- =Z= - Compress or uncompress a file or folder to (=.tar.gz=)
+- =c= - Compress selection to a specific file
+- =dired-compress-files-alist= - Bind compression commands to file extension
+
+*** Other common operations
+
+- =T= - Touch (change timestamp)
+- =M= - Change file mode
+- =O= - Change file owner
+- =G= - Change file group
+- =S= - Create a symbolic link to this file
+- =L= - Load an Emacs Lisp file into Emacs
+
 ** Treemacs
+
+*** treemacs
+
+#+begin_src emacs-lisp
+  (use-package treemacs
+    :custom
+    (treemacs-follow-mode t)
+    (treemacs-filewatch-mode t)
+    (treemacs-width-is-initially-locked nil)
+    ;; (treemacs-project-follow-mode t)
+    )
+#+end_src
 
 *** lsp-treemacs
 
@@ -1393,23 +1507,23 @@ This package is built on the [[https://github.com/Alexander-Miller/treemacs][tre
     :after lsp)
 #+end_src
 
-*** treemacs
-
-#+begin_src emacs-lisp
-  (use-package treemacs
-    :custom
-    (treemacs-follow-mode t)
-    (treemacs-filewatch-mode t)
-    (treemacs-project-follow-mode t)
-    (treemacs-fringe-indicator-mode t))
-#+end_src
-
 *** treemacs-evil
 
 #+begin_src emacs-lisp
   (use-package treemacs-evil
     :after treemacs evil)
 #+end_src
+
+*** Key Bindings
+
+- =R= - rename
+- =m= - move
+- =cf= - create file
+- =cd= - create directory
+- =yf= - copy file
+- =ya= - copy absolute path
+- =yr= - copy relative path (relative to current treemacs root)
+- =yp= - copy treemacs root path (also project root)
 
 * Proxy
 
@@ -1484,4 +1598,14 @@ This package is built on the [[https://github.com/Alexander-Miller/treemacs][tre
     (if url-proxy-services
         (proxy-http-disable)
       (proxy-http-enable)))
+#+end_src
+
+** HTTP Proxy to Socks5
+
+Install [[https://github.com/qwj/python-proxy][python-proxy]].
+
+#+begin_src shell
+  pip3 install pproxy
+  # http://127.0.0.1:8080
+  pproxy -r socks5://127.0.0.1:1082 -vv
 #+end_src

@@ -4,6 +4,16 @@
 
 These are my dotfiles managed with stow, check [[https://k4i.top/posts/manage-my-dotfiles-with-stow/][this post]] for more details.
 
+* Quick start
+
+#+begin_src shell
+  cd ~
+  # git clone https://github.com/sky-bro/.dotfiles.git
+  git clone git@github.com:sky-bro/.dotfiles.git
+  cd .dotfiles
+  stow -v .
+#+end_src
+
 * apps I use
 
 - i3
