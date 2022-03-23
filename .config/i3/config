@@ -18,7 +18,7 @@ set $mod Mod4
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
-font pango:DejaVu Sans Mono 10
+font pango:DejaVu Sans Mono 12
 
 # The combination of xss-lock, nm-applet and pactl is a popular choice, so
 # they are included here as an example. Modify as you see fit.
@@ -26,6 +26,7 @@ font pango:DejaVu Sans Mono 10
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
+exec --no-startup-id conky
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -44,7 +45,7 @@ bindsym $mod+Shift+q kill
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec "rofi -combi-modi window#drun -show combi -modi combi -show-icons"
-bindcode $mod+d exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
+bindsym $mod+d exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
@@ -204,7 +205,9 @@ bindsym $mod+x exec --no-startup-id blurlock
 exec --no-startup-id xautolock -time 10 -locker blurlock
 
 # screenshot
-bindsym Mod1+Shift+a exec --no-startup-id flameshot gui
+bindsym $mod+Ctrl+a exec --no-startup-id flameshot gui
+# screenshot for scrcpy window
+bindsym Mod1+Shift+c exec --no-startup-id scrcpy-screenshot-copy.sh
 
 ###########################################################
 ################# Autostart applications ##################
@@ -241,11 +244,13 @@ exec_always --no-startup-id picom -b
 exec --no-startup-id dex --autostart --environment i3
 
 # autoadb: execute a command whenever a device is adb-connected
-exec --no-startup-id autoadb scrcpy -s '{}' -Sw --window-borderless -t -K --prefer-text
+exec --no-startup-id autoadb scrcpy -s '{}' -Sw --window-borderless -t -K --prefer-text --window-title '{}'
+# later get the device number from window title
+# xprop WM_NAME | cut -d '"' -f 2
 
 # start emacs server, connect with `emacsclient -nc`
 # or use `.dotfiles/bin/start-emacs.sh`
-exec --no-startup-id emacs --daemon
+# exec --no-startup-id emacs --daemon
 
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
@@ -264,7 +269,7 @@ bar {
     status_command i3status
     status_command exec net-speed.sh
     # status_command i3blocks
-    position top
+    position bottom
     tray_output primary
 
     colors {
@@ -298,7 +303,7 @@ bindsym $mod+m bar mode toggle
 for_window [class=".*"] border pixel 4
 for_window [title="歌词"] border none
 for_window [class="scrcpy"] floating enable
-gaps inner 10
+gaps inner 0
 gaps outer 0
 
 bindsym $mod+Shift+minus move scratchpad
