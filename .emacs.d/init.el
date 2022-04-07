@@ -50,7 +50,7 @@
  help-window-select t
  ;; only enable trailing whitespaces in some modes
  show-trailing-whitespace nil
- buffers-menu-max-size 30
+ buffers-menu-max-size 60
  case-fold-search t
  column-number-mode t
  ediff-split-window-function 'split-window-horizontally
@@ -94,6 +94,7 @@
   :diminish
   :bind (("C-s" . swiper)
          ("C-M-j" . ivy-switch-buffer)
+         ("C-M-S-j" . ivy-switch-tab)
          :map ivy-minibuffer-map
          ("TAB" . ivy-partial)
          ("C-l" . ivy-alt-done)
@@ -132,9 +133,35 @@
   ;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
+(setq initial-scratch-message
+      ";; Hello Hackers! Welcom to emacs!\n\n;; proxys\n(proxy-socks-toggle)\n(proxy-http-toggle)\n\n")
+
+(use-package pyim-basedict)
+
+(use-package pyim
+  :after pyim-basedict
+  :config
+  (pyim-basedict-enable)
+  (setq pyim-page-length 9)
+  (setq default-input-method "pyim")
+  (setq pyim-punctuation-translate-p '(no yes auto)))
+
+(defun k4i/save-word-to-dict ()
+  (interactive)
+  (let ((current-location (point))
+        (word (flyspell-get-word)))
+    (when (and (consp word) (yes-or-no-p (format "save word %S?" (car word))))
+      (flyspell-do-correct 'save nil (car word) current-location (cadr word) (caddr word) current-location)
+      (message "saved %S to dict" (car word))
+      )
+    )
+  )
+
 (use-package flyspell
   :custom
   (flyspell-issue-message-flag nil)
+  :bind
+  ("C-M-S-i" . k4i/save-word-to-dict)
   :config
   (defun flyspell-on-for-buffer-type ()
     "Enable Flyspell appropriately for the major mode of the current buffer.  Uses `flyspell-prog-mode' for modes derived from `prog-mode', so only strings and comments get checked.  All other buffers get `flyspell-mode' to check all text.  If flyspell is already enabled, does nothing."
@@ -220,6 +247,7 @@
     "fb"  '((lambda () (interactive) (find-file (expand-file-name "~/git-repo/blog/blog-src/content-org/all-posts.en.org"))) :which-key "blogs")
     "fd" '(:ignore t :which-key "dotfiles")
     "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
+    "fdw" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.config/i3/config"))) :which-key "window manager")
     "k" 'kill-this-buffer
     "o"  '(:ignore t :which-key "org")
     "oa" 'org-agenda
@@ -256,7 +284,16 @@
   ([remap describe-function] . counsel-describe-function)
   ([remap describe-command] . helpful-command)
   ([remap describe-variable] . counsel-describe-variable)
-  ([remap describe-key] . helpful-key))
+  ([remap describe-key] . helpful-key)
+  :config
+  ;; (add-to-list 'display-buffer-alist
+  ;;              `("\\*help"
+  ;;                (display-buffer-reuse-window display-buffer-in-side-window)
+  ;;                (reusable-frames . visible)
+  ;;                (side . right)
+  ;;                (window-width . 0.3)
+                 ;; ))
+  )
 
 (defvar enlarge-window-height-char ?k)
 (defvar shrink-window-height-char ?j)
@@ -291,9 +328,117 @@ When called with a prefix arg, resize the window by ARG lines."
                    (t nil))))
      (push response unread-command-events)))
 
+(use-package centaur-tabs
+  :hook (emacs-startup . centaur-tabs-mode)
+  :custom
+  (centaur-tabs-background-color "#f2e5bc")
+  (centaur-tabs-style "chamfer")
+  (centaur-tabs-height 32)
+  (centaur-tabs-height 32)
+  (centaur-tabs-set-icons t)
+  (centaur-tabs-set-modified-marker t)
+  (centaur-tabs-show-navigation-buttons t)
+  ;; (centaur-tabs-set-bar 'under)
+  (x-underline-at-descent-line t)
+  :config
+  (centaur-tabs-headline-match)
+  ;; (setq centaur-tabs-gray-out-icons 'buffer)
+  ;; (centaur-tabs-enable-buffer-reordering)
+  ;; (setq centaur-tabs-adjust-buffer-order t)
+  (setq uniquify-separator "/")
+  (setq uniquify-buffer-name-style 'forward)
+  (defun centaur-tabs-buffer-groups ()
+    "`centaur-tabs-buffer-groups' control buffers' group rules.
+
+ Group centaur-tabs with mode if buffer is derived from `eshell-mode' `emacs-lisp-mode' `dired-mode' `org-mode' `magit-mode'.
+ All buffer name start with * will group to \"Emacs\".
+ Other buffer group by `centaur-tabs-get-group-name' with project name."
+    (list
+     (cond
+      ;; ((not (eq (file-remote-p (buffer-file-name)) nil))
+      ;; "Remote")
+      ((derived-mode-p 'eshell-mode 'term-mode 'shell-mode 'vterm-mode)
+     "Term")
+      ((or (string-equal "*" (substring (buffer-name) 0 1))
+           (memq major-mode '(magit-process-mode
+                              magit-status-mode
+                              magit-diff-mode
+                              magit-log-mode
+                              magit-file-mode
+                              magit-blob-mode
+                              magit-blame-mode
+                              )))
+       "Emacs")
+      ((derived-mode-p 'prog-mode)
+       "Editing")
+      ((derived-mode-p 'dired-mode)
+       "Dired")
+      ((memq major-mode '(helpful-mode
+                          help-mode))
+       "Help")
+      ((memq major-mode '(org-mode
+                            org-agenda-clockreport-mode
+                            org-src-mode
+                            org-agenda-mode
+                            org-beamer-mode
+                            org-indent-mode
+                            org-bullets-mode
+                            org-cdlatex-mode
+                            org-agenda-log-mode
+                            diary-mode))
+         "OrgMode")
+      (t
+       (centaur-tabs-get-group-name (current-buffer))))))
+  :hook
+  (dashboard-mode . centaur-tabs-local-mode)
+  (term-mode . centaur-tabs-local-mode)
+  (calendar-mode . centaur-tabs-local-mode)
+  (org-agenda-mode . centaur-tabs-local-mode)
+  (helpful-mode . centaur-tabs-local-mode)
+  :bind
+  ("C-<prior>" . centaur-tabs-backward)
+  ("C-<next>" . centaur-tabs-forward)
+  ("C-c t s" . centaur-tabs-counsel-switch-group)
+  ("C-c t p" . centaur-tabs-group-by-projectile-project)
+  ("C-c t g" . centaur-tabs-group-buffer-groups)
+  (:map evil-normal-state-map
+        ("g t" . centaur-tabs-forward)
+        ("g T" . centaur-tabs-backward)))
+
+(defun ivy-switch-tab ()
+  (interactive)
+  (let ((buffer (ivy-read "Switch to tab: "
+                          (mapcar
+                           (lambda (b)
+                             (buffer-name (car b)))
+                           (centaur-tabs-tabs (centaur-tabs-current-tabset))
+                           ;; centaur-tabs--buffers
+                           ))))
+    (switch-to-buffer buffer)))
+
+(defvar k4i/align-right-modes '(inferior-python-mode
+                                slime-repl-mode
+                                compilation-mode
+                                helpful-mode
+                                comint-mode
+                                text-mode
+                                org-roam-mode))
+
+(add-to-list 'display-buffer-alist
+             `(,(lambda (buf act)
+                  (member (with-current-buffer buf major-mode) k4i/align-right-modes))
+               (display-buffer--maybe-same-window
+                display-buffer-reuse-window
+                display-buffer-reuse-mode-window
+                display-buffer-in-side-window)
+               (side . right)
+               (mode . ,k4i/align-right-modes)
+               (window-width . 0.3)
+               (quit-restore ('window 'window nil nil))))
+
 ;; adjust font size for your system
-(defvar k4i/default-font-size 200)
-(defvar k4i/default-variable-font-size 200)
+(defvar k4i/default-font-size 160)
+(defvar k4i/default-variable-font-size 160)
 
 ;; Make frame transparency overridable
 ;; (defvar k4i/frame-transparency '(100 . 90))
@@ -316,11 +461,13 @@ When called with a prefix arg, resize the window by ARG lines."
 (set-frame-parameter (selected-frame) 'fullscreen 'maximized)
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
+(setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
 (column-number-mode) ; show column number
 ;; Disable line numbers for some modes
 (dolist (mode '(org-mode-hook
                 term-mode-hook
+                vterm-mode-hook
                 shell-mode-hook
                 eshell-mode-hook
                 treemacs-mode-hook))
@@ -329,9 +476,17 @@ When called with a prefix arg, resize the window by ARG lines."
 (use-package beacon
   :custom
   (beacon-lighter "")
-  (beacon-size 20)
+  (beacon-size 30)
   :config
   (beacon-mode 1))
+
+;; (setq x-pointer-shape x-pointer-top-left-arrow)
+(setq x-pointer-shape x-pointer-icon)
+;; (setq x-pointer-sizing 240)
+;; (setq x-sensitive-text-pointer-shape x-pointer-X-cursor)
+(set-mouse-color "yellow")
+
+(mouse-avoidance-mode 'banish)
 
 (defun k4i/show-trailing-whitespace ()
   "Enable display of trailing whitespace in this buffer."
@@ -351,7 +506,7 @@ When called with a prefix arg, resize the window by ARG lines."
 (set-face-attribute 'default nil :font "DejaVu Sans Mono" :height k4i/default-font-size)
 
 ;; set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono" :height 0.9)
+(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono" :height 1.0)
 
 ;; Set the variable pitch face
 (set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.0 :weight 'regular)
@@ -364,11 +519,17 @@ When called with a prefix arg, resize the window by ARG lines."
 
 (add-hook 'after-init-hook 'show-paren-mode)
 
+(use-package rainbow-mode
+  :delight)
+
 (use-package command-log-mode
   :commands command-log-mode)
 
 (use-package doom-themes
-  :init (load-theme 'doom-gruvbox-light t))
+  :config
+  (load-theme 'doom-gruvbox-light t))
+
+;; (run-at-time "3.2" nil (lambda nil (load-theme 'doom-gruvbox-light t nil)))
 
 (use-package doom-modeline
   :custom
@@ -376,8 +537,21 @@ When called with a prefix arg, resize the window by ARG lines."
   :hook
   (after-init . doom-modeline-mode))
 
+(use-package ivy-posframe
+  :demand t
+  :after ivy
+  :custom
+  (ivy-posframe-display-functions-alist '(
+                                          (swiper . ivy-display-function-fallback)
+                                          (t . ivy-posframe-display-at-frame-center)
+                                          ))
+  :config
+  (ivy-posframe-mode))
+
 (use-package yasnippet
-  :hook ((prog-mode conf-mode text-mode snippet-mode) . yas-minor-mode))
+  :hook ((prog-mode conf-mode text-mode snippet-mode) . yas-minor-mode)
+  :config
+  (yas-reload-all))
 
 (use-package yasnippet-snippets
   :after (yasnippet))
@@ -401,7 +575,7 @@ When called with a prefix arg, resize the window by ARG lines."
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
-  ;; (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
+  (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
   (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
   (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
@@ -409,20 +583,22 @@ When called with a prefix arg, resize the window by ARG lines."
   (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
-  (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch))
+  ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
+  ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
+  )
 
 (defun k4i/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
-  (visual-line-mode 1))
+  (visual-line-mode 1)
+  (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
   :pin org
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
-  (org-image-actual-width (/ (nth 3 (assq 'geometry (frame-monitor-attributes))) 3))
+  ;; (org-image-actual-width (/ (nth 3 (assq 'geometry (frame-monitor-attributes))) 3))
   (org-startup-folded t)
   (org-directory (expand-file-name "Org" (getenv "HOME")))
   ;; (org-ellipsis " ▾")
@@ -446,9 +622,14 @@ When called with a prefix arg, resize the window by ARG lines."
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
 
-  ;; C-c C-t
+  ;; https://stackoverflow.com/questions/1218238/how-to-make-part-of-a-word-bold-in-org-mode
+  ;; (setcar org-emphasis-regexp-components " \t('\"{[:alpha:]")
+  ;; (setcar (nthcdr 1 org-emphasis-regexp-components) "[:alpha:]- \t.,:!?;'\")}\\")
+  ;; (org-set-emph-re 'org-emphasis-regexp-components org-emphasis-regexp-components)
+
+  ;; ;;
   (setq org-todo-keywords
-        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)")
+        '((sequence "TODO(t)" "NEXT(n)" "|" "DONE(d!)" "CANCELED(c)")
           (sequence "BACKLOG(b)" "PLAN(p)" "READY(r)" "ACTIVE(a)" "REVIEW(v)" "WAIT(w@/!)" "HOLD(h)" "|" "COMPLETED(c)" "CANC(k@)")))
 
   (setq org-refile-targets
@@ -538,8 +719,8 @@ When called with a prefix arg, resize the window by ARG lines."
   (org-download-image-dir "images")
   (org-dwnload-method 'directory)
   (org-download-heading-lvl nil)
-  (org-download-timestamp "%Y%m%d-%H%M%S_")
-  ;; (org-download-annotate-function (lambda (_link) ""))
+  ;; (org-download-timestamp "%Y%m%d-%H%M%S_")
+  (org-download-timestamp "")
   :bind
   ("C-M-y" .
    (lambda (&optional noask)
@@ -551,7 +732,23 @@ When called with a prefix arg, resize the window by ARG lines."
               nil)))
        (org-download-clipboard file))))
   :config
-  (require 'org-download))
+  (require 'org-download)
+  (setq org-download-annotate-function #'(lambda (_link) ""))
+  (advice-add 'org-download--dir-2 :filter-return #'(lambda (dirname)
+                                                      (when dirname (org-hugo-slug dirname)))))
+
+(use-package plantuml-mode
+  ;; :mode "\\.plu\\'"
+  :custom
+  (org-plantuml-jar-path (expand-file-name "~/app/plantuml/plantuml.jar"))
+  ;; jar, executable, server (experimental)
+  (plantuml-default-exec-mode 'jar)
+  :config
+  ;; https://plantuml.com/en/smetana02
+  ;; use smetana insteand of graphviz
+  (append plantuml-jar-args '("-Playout=smetana"))
+  ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
+  )
 
 (use-package ox-reveal
   :after ox
@@ -594,12 +791,36 @@ When called with a prefix arg, resize the window by ARG lines."
           ("bgcolor" "lightgray")))
   (add-to-list 'org-latex-packages-alist '("" "minted")))
 
+(use-package ebib
+  :ensure t
+  :config
+  (setq ebib-index-columns
+        (quote
+         (("timestamp" 12 t)
+          ("Entry Key" 20 t)
+          ("Author/Editor" 40 nil)
+          ("Year" 6 t)
+          ("Title" 50 t))))
+  (setq ebib-index-default-sort (quote ("timestamp" . descend)))
+  (setq ebib-index-default-sort (quote ("timestamp" . descend)))
+  (setq ebib-preload-bib-files (quote ("~/science_works/bibliography.bib")))
+  (setq ebib-timestamp-format "%Y.%m.%d")
+  (setq ebib-use-timestamp t))
+
+(defun k4i/org-confirm-babel-evaluate (lang body)
+  (not (or
+        (string= lang "plantuml")
+        )))
+
 (with-eval-after-load 'org
   (org-babel-do-load-languages
-      'org-babel-load-languages
-      '((emacs-lisp . t)
-      (python . t)))
-
+   'org-babel-load-languages
+   '(
+     (emacs-lisp . t)
+     (python . t)
+     (plantuml . t)
+     ))
+  (setq org-confirm-babel-evaluate #'k4i/org-confirm-babel-evaluate)
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
 
 ;; Automatically tangle our org config file in the emacs directory when we save it
@@ -689,6 +910,31 @@ When called with a prefix arg, resize the window by ARG lines."
   (org-roam-complete-everywhere t)
   :config
   (org-roam-setup)
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?"
+           :target (file+head "${slug}.org"
+                              "#+title: ${title}\n")
+           :unnarrowed t
+           )))
+
+  ;; changing title changes file name and refs automatically
+  (defun org-rename-to-new-title ()
+    (when-let*
+        ((old-file (buffer-file-name))
+         (is-roam-file (org-roam-file-p old-file))
+         (file-node (save-excursion
+                      (goto-char 1)
+                      (org-roam-node-at-point)))
+         (slug (org-roam-node-slug file-node))
+         (new-file (expand-file-name (concat slug ".org")))
+         (different-name? (not (string-equal old-file new-file))))
+      (rename-buffer new-file)
+      (rename-file old-file new-file)
+      (set-visited-file-name new-file)
+      (set-buffer-modified-p nil)))
+
+  (add-hook 'after-save-hook 'org-rename-to-new-title)
+
   :bind
   (("C-c n f" . org-roam-node-find)
    ("C-c n r" . org-roam-node-random)
@@ -719,12 +965,16 @@ When called with a prefix arg, resize the window by ARG lines."
               ("M-I" . symbol-overlay-remove-all)
               ("M-n" . symbol-overlay-jump-next)
               ("M-p" . symbol-overlay-jump-prev))
- :diminish)
+  :diminish)
+
+(add-hook 'prog-mode-hook '(lambda ()
+                             (setq truncate-lines t)))
 
 (use-package flycheck
   :init (global-flycheck-mode)
   :custom
-  (flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list))
+  (flycheck-display-errors-function #'flycheck-display-error-messages-unless-error-list)
+  )
 
 (use-package company
   :init (global-company-mode)
@@ -771,6 +1021,24 @@ When called with a prefix arg, resize the window by ARG lines."
   :hook
   (prog-mode . format-all-mode)
   (format-all-mode . format-all-ensure-formatter))
+
+(defun bury-compile-buffer-if-successful (buffer string)
+  "Bury a compilation buffer if succeeded without warnings "
+  (if (and
+       (string-match "compilation" (buffer-name buffer))
+       (string-match "finished" string)
+       (not
+        (with-current-buffer buffer
+          (goto-char (point-min))
+          (search-forward "warning" nil t))))
+      (run-with-timer 1 nil
+                      (lambda (buf)
+                        (bury-buffer buf)
+                        (switch-to-prev-buffer (get-buffer-window buf) 'kill)
+                        ;; (delete-windows-on buf)
+                        )
+                      buffer)))
+(add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
 (use-package projectile
   :diminish projectile-mode
@@ -836,21 +1104,39 @@ When called with a prefix arg, resize the window by ARG lines."
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
+  ;; dap-lldb can't get user input: https://github.com/emacs-lsp/dap-mode/issues/58
   (require 'dap-lldb)
+  ;; native debug: https://marketplace.visualstudio.com/items?itemName=webfreak.debug
+  ;; (require 'dap-gdb-lldb) ; then run dap-gdb-lldb-setup
+  ;; (require 'dap-codelldb)
   ;; set the debugger executable (c++), by default it looks for it under .emacs.d/..
-  (setq dap-lldb-debug-program '("lldb-vscode"))
+  ;; (setq dap-lldb-debug-program '("lldb-vscode"))
 
   ;; Bind `C-c l d` to `dap-hydra` for easy access
   (general-define-key
-    :keymaps 'lsp-mode-map
-    :prefix lsp-keymap-prefix
-    "d" '(dap-hydra t :wk "debugger")))
+   :keymaps 'lsp-mode-map
+   :prefix lsp-keymap-prefix
+   "d" '(dap-hydra t :wk "debugger")))
 
 (use-package typescript-mode
   :mode "\\.ts\\'"
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
+
+;; from: https://stackoverflow.com/a/3346308
+;; function decides whether .h file is C or C++ header, sets C++ by
+;; default because there's more chance of there being a .h without a
+;; .cc than a .h without a .c (ie. for C++ template files)
+(defun c-c++-header ()
+  "sets either c-mode or c++-mode, whichever is appropriate for
+header"
+  (interactive)
+  (let ((c-file (concat (substring (buffer-file-name) 0 -1) "c")))
+    (if (file-exists-p c-file)
+        (c-mode)
+      (c++-mode))))
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
 
 (use-package python-mode
   :ensure t
@@ -870,6 +1156,7 @@ When called with a prefix arg, resize the window by ARG lines."
 
 (use-package slime
   :config
+  (load (expand-file-name "~/quicklisp/slime-helper.el"))
   (setq inferior-lisp-program "sbcl")
   (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 
@@ -896,7 +1183,36 @@ When called with a prefix arg, resize the window by ARG lines."
   :config
   (setq term-prompt-regexp "^[^#$%>❯\n]*[#$%>❯] *")  ;; Set this to match your custom shell prompt
   ;;(setq vterm-shell "zsh")                       ;; Set this to customize the shell to launch
-  (setq vterm-max-scrollback 10000))
+  (setq vterm-max-scrollback 10000)
+  (define-key vterm-mode-map [return]                      #'vterm-send-return)
+
+  (setq vterm-keymap-exceptions nil)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-e")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-f")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-a")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-v")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-b")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-w")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-u")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-d")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-n")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-m")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-p")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-j")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-k")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-r")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-t")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-g")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-c")      #'vterm--self-insert)
+  (evil-define-key 'insert vterm-mode-map (kbd "C-SPC")    #'vterm--self-insert)
+  (evil-define-key 'normal vterm-mode-map (kbd "C-d")      #'vterm--self-insert)
+  (evil-define-key 'normal vterm-mode-map (kbd ",c")       #'multi-vterm)
+  (evil-define-key 'normal vterm-mode-map (kbd ",n")       #'multi-vterm-next)
+  (evil-define-key 'normal vterm-mode-map (kbd ",p")       #'multi-vterm-prev)
+  (evil-define-key 'normal vterm-mode-map (kbd "i")        #'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "o")        #'evil-insert-resume)
+  (evil-define-key 'normal vterm-mode-map (kbd "<return>") #'evil-insert-resume)
+  )
 
 (use-package vterm-toggle
   :custom
@@ -905,15 +1221,44 @@ When called with a prefix arg, resize the window by ARG lines."
   (vterm-toggle-show . evil-insert-state)
   :config
   (setq vterm-toggle-fullscreen-p nil)
+  (defun vmacs-term-mode-p(&optional args)
+    (derived-mode-p 'eshell-mode 'term-mode 'shell-mode 'vterm-mode))
+  (setq vterm-toggle--vterm-buffer-p-function 'vmacs-term-mode-p)
   (add-to-list 'display-buffer-alist
                '((lambda (bufname _)
                    (with-current-buffer bufname (equal major-mode 'vterm-mode)))
-                (display-buffer-reuse-window display-buffer-in-direction)
-                ;;display-buffer-in-direction/direction/dedicated is added in emacs27
-                (direction . bottom)
-                (dedicated . t) ;dedicated is supported in emacs27
-                (reusable-frames . visible)
-                (window-height . 0.3))))
+                 ;; (display-buffer-reuse-window display-buffer-in-side-window)
+                 (display-buffer-reuse-window display-buffer-in-direction)
+                 ;;display-buffer-in-direction/direction/dedicated is added in emacs27
+                 (direction . bottom)
+                 ;; (dedicated . t) ;dedicated is supported in emacs27
+                 (reusable-frames . visible)
+                 (window-height . 0.3))))
+
+(defun eshell-here ()
+  "Opens up a new shell in the directory associated with the
+    current buffer's file. The eshell is renamed to match that
+    directory to make multiple eshell windows easier."
+  (interactive)
+  (let* ((parent (if (buffer-file-name)
+                     (file-name-directory (buffer-file-name))
+                   default-directory))
+         (height (/ (window-total-height) 3))
+         (name   (car (last (split-string parent "/" t)))))
+    (split-window-vertically (- height))
+    (other-window 1)
+    (eshell "new")
+    (rename-buffer (concat "*eshell: " name "*"))
+
+    (insert (concat "ls"))
+    (eshell-send-input)))
+
+(global-set-key (kbd "C-!") 'eshell-here)
+
+(defun eshell/x ()
+  (insert "exit")
+  (eshell-send-input)
+  (delete-window))
 
 (use-package dired
   :ensure nil
@@ -944,6 +1289,8 @@ When called with a prefix arg, resize the window by ARG lines."
               ("<tab>" . dired-subtree-toggle)
               ("<C-tab>" . dired-subtree-cycle)
               ("<S-iso-lefttab>" . dired-subtree-remove)))
+
+(use-package dired-ranger)
 
 (use-package dired-open
   :commands (dired dired-jump)
@@ -990,8 +1337,8 @@ When called with a prefix arg, resize the window by ARG lines."
   (require 'socks)
   (setq url-gateway-method 'socks
         socks-noproxy '("localhost")
-        socks-server '("Default server" "127.0.0.1" 1081 5))
-  (setenv "all_proxy" "socks5://127.0.0.1:1081")
+        socks-server '("Default server" "127.0.0.1" 1082 5))
+  (setenv "all_proxy" "socks5://127.0.0.1:1082")
   (proxy-socks-show))
 
 (defun proxy-socks-disable ()
@@ -1012,7 +1359,7 @@ When called with a prefix arg, resize the window by ARG lines."
     (proxy-socks-enable)))
 
 ;; Configure network proxy
-(setq my-http-proxy "127.0.0.1:1080")
+(setq my-http-proxy "127.0.0.1:8080")
 (defun proxy-http-show ()
   "Show http/https proxy."
   (interactive)

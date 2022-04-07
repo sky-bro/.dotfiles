@@ -4,6 +4,19 @@
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
+# colors, a lot of colors!
+function clicolors() {
+    i=1
+    for color in {000..255}; do;
+        c=$c"$FG[$color]$color✔$reset_color  ";
+        if [ `expr $i % 8` -eq 0 ]; then
+            c=$c"\n"
+        fi
+        i=`expr $i + 1`
+    done;
+    echo $c | sed 's/%//g' | sed 's/{//g' | sed 's/}//g' | sed '$s/..$//';
+    c=''
+}
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
@@ -16,6 +29,7 @@ export ZSH="/home/sky/.oh-my-zsh"
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 ZSH_THEME="powerlevel10k/powerlevel10k"
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250,bg=232,bold,underline"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -107,11 +121,12 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias dotfiles='/usr/bin/git --git-dir=/home/sky/.dotfiles.git/ --work-tree=/home/sky'
-alias ec='emacsclient -nc'
+# n: do not wait server return
+# c: create new frame
+alias ec='emacsclient -n'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
-

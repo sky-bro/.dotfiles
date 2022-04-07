@@ -45,23 +45,22 @@ bindsym $mod+Shift+q kill
 # A more modern dmenu replacement is rofi:
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec "rofi -combi-modi window#drun -show combi -modi combi -show-icons"
-bindsym $mod+d exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
+# bindsym $mod+d exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
+bindsym $mod+d exec "rofi -show combi"
+bindsym Mod1+Tab exec "rofi -show window"
+bindsym $mod+Ctrl+p exec "rofi-pass"
+# bindsym $mod+Ctrl+x exec "xprop -id $(xprop -root _NET_ACTIVE_WINDOW | cut -d ' ' -f 5) WM_NAME >> ~/tmp.txt"
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 # There also is i3-dmenu-desktop which only displays applications shipping a
 # .desktop file. It is a wrapper around dmenu, so you need that installed.
 # bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-# exec --no-startup-id pulseaudio --start # && sleep 2 && volumeicon
-# exec --no-startup-id volumeicon
-# bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-# exec --no-startup-id pa-applet
+bindsym $mod+Ctrl+Return exec i3-run-or-focus.py "St" "st -e tmux new -A -s sky"
+# bindsym $mod+Shift+Return exec cd "$(xcwd)" && exec st -e "ranger"
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Ctrl+e exec start-emacs.sh
-bindsym $mod+Ctrl+w exec google-chrome
+bindsym $mod+Ctrl+w exec i3-run-or-focus.py "Google-chrome" google-chrome
+# bindsym $mod+Ctrl+b exec set-kbd.sh
 # toggle transparency of current window
 bindsym $mod+Ctrl+space exec picom-trans -ct
 # Use pactl to adjust volume in PulseAudio.
@@ -219,7 +218,7 @@ exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 # wallpaper
 exec --no-startup-id ~/bin/wal-feh
 
-exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom -b --experimental-backends
 # use dex to autostart programs in:
 #   /etc/xdg/autostart/*
 #   $HOME/.config/autostart/*
@@ -300,9 +299,9 @@ bindsym $mod+m bar mode toggle
 # bindsym $mod+m exec polybar-msg cmd toggle
 
 
-for_window [class=".*"] border pixel 4
-for_window [title="歌词"] border none
-for_window [class="scrcpy"] floating enable
+for_window [class=".*"] border pixel 5
+# for_window [title="歌词"] border none
+for_window [class="scrcpy"] floating enable sticky enable
 gaps inner 0
 gaps outer 0
 
