@@ -1,91 +1,68 @@
-;; Initialize package sources
-(require 'package)
+(let ((normal-gc-cons-threshold (* 20 1024 1024))
+      (init-gc-cons-threshold (* 128 1024 1024)))
+  (setq gc-cons-threshold init-gc-cons-threshold)
+  (add-hook 'emacs-startup-hook
+            `(lambda () (setq gc-cons-threshold ,normal-gc-cons-threshold))))
 
-(let (;; tsinghua
-      (archives '("http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"
-                  "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"
-                  "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
-      ;; ustc
-      (archives '("http://mirrors.ustc.edu.cn/elpa/melpa/"
-                  "http://mirrors.ustc.edu.cn/elpa/org/"
-                  "http://mirrors.ustc.edu.cn/elpa/gnu/"))
-      ;; official
-      ;; (archives '("https://melpa.org/packages/"
-      ;;             "http://orgmode.org/elpa/"
-      ;;             "https://elpa.gnu.org/packages/"))
-      )
-  (setq package-archives `(("melpa" . ,(nth 0 archives))
-                           ("org" . ,(nth 1 archives))
-                           ("gnu" . ,(nth 2 archives)))))
+(defun k4i/display-startup-time ()
+  (message "init completed in %.2f seconds with %d garbage collections."
+           (float-time (time-subtract after-init-time before-init-time))
+           gcs-done))
 
-(package-initialize)
+(add-hook 'after-init-hook #'k4i/display-startup-time)
 
-;; https://www.reddit.com/r/emacs/comments/1rdstn/set_packageenableatstartup_to_nil_for_slightly/
-(setq package-enable-at-startup nil)
+(when (>= emacs-major-version 24)
+  (progn
+    ;; load emacs 24's package system. Add MELPA repository.
+    (require 'package)
+    (let (;; tsinghua
+          (archives '("http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"
+                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"
+                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+          ;; ustc
+          ;; (archives '("http://mirrors.ustc.edu.cn/elpa/melpa/"
+          ;;             "http://mirrors.ustc.edu.cn/elpa/org/"
+          ;;             "http://mirrors.ustc.edu.cn/elpa/gnu/"))
+          ;; official
+          ;; (archives '("https://melpa.org/packages/"
+          ;;             "http://orgmode.org/elpa/"
+          ;;             "https://elpa.gnu.org/packages/"))
+          )
+      (setq package-archives `(("melpa" . ,(nth 0 archives))
+                               ("org" . ,(nth 1 archives))
+                               ("gnu" . ,(nth 2 archives)))))
+    )
 
-;; (unless package-archive-contents
-;;   (package-refresh-contents))
+  ;; does not eagerly load installed packages, just add their directories to `load-path` and evaluate their `autoloads`
+  ;; (when (< emacs-major-version 27) (package-initialize))
+  (package-initialize)
+  )
 
-  ;; Initialize use-package on non-Linux platforms
+(unless package-archive-contents
+  (package-refresh-contents))
+
+;; Initialize use-package on non-Linux platforms
 (unless (package-installed-p 'use-package)
-  (package-refresh-contents)
   (package-install 'use-package))
 
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
-;; (setq debug-on-error t)
-(add-to-list 'load-path (expand-file-name "lisp" user-emacs-directory))
-(add-hook 'after-init-hook 'electric-pair-mode)
-(add-hook 'after-init-hook 'electric-indent-mode)
-(add-hook 'after-init-hook 'global-auto-revert-mode)
-(use-package autorevert
-  :diminish)
-(setq global-auto-revert-non-file-buffers t
-      auto-revert-verbose nil)
+(use-package async
+  :config (setq async-bytecomp-package-mode 1))
 
-;; default values
-(setq-default
- help-window-select t
- ;; only enable trailing whitespaces in some modes
- show-trailing-whitespace nil
- buffers-menu-max-size 60
- case-fold-search t
- column-number-mode t
- ediff-split-window-function 'split-window-horizontally
- ediff-window-setup-function 'ediff-setup-windows-plain
- indent-tabs-mode nil
- create-lockfiles nil
- auto-save-default nil
- make-backup-files nil
- mouse-yank-at-point t
- save-interprogram-paste-before-kill t
- scroll-preserve-screen-position 'always
- set-mark-command-repeat-pop t
- tooltip-delay 1.5
- truncate-lines nil
- truncate-partial-width-windows nil)
+;; add .emacs.d/lisp to load-path
+(add-to-list 'load-path (locate-user-emacs-file "lisp"))
 
 (setq custom-file (locate-user-emacs-file "custom.el"))
 (when (file-exists-p custom-file)
   (load custom-file))
 
-;; Adjust garbage collection thresholds during startup, and thereafter
-(let ((normal-gc-cons-threshold (* 20 1024 1024))
-      (init-gc-cons-threshold (* 128 1024 1024)))
-  (setq gc-cons-threshold init-gc-cons-threshold)
-  (add-hook 'emacs-startup-hook
-            (lambda () (setq gc-cons-threshold (* 20 1024 1024)))))
+;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
+;; you can turn it on and off with toggle-debug-on-error
+;; (setq debug-on-error t)
 
-(defun k4i/display-startup-time ()
-  (message "init completed in %s with %d garbage collections."
-           (format "%.2f seconds"
-                   (float-time
-                    (time-subtract after-init-time before-init-time)))
-           gcs-done))
-
-(add-hook 'after-init-hook #'k4i/display-startup-time)
+(advice-add 'risky-local-variable-p :override #'ignore)
 
 (use-package wgrep)
 
@@ -113,38 +90,204 @@
 
 (use-package ivy-rich
   :after ivy
-  :init
+  :config
   (ivy-rich-mode 1))
 
-(use-package counsel
-  :bind (:map minibuffer-local-map
-         ("C-r" . 'counsel-minibuffer-history))
-  :custom
-  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
-  :config
-  (counsel-mode 1))
-
+;; ivy will show recently selected candidates first
 (use-package ivy-prescient
   :after counsel
   :custom
   (ivy-prescient-enable-filtering nil)
   :config
   ;; Uncomment the following line to have sorting remembered across sessions!
-  ;(prescient-persist-mode 1)
+                                        ;(prescient-persist-mode 1)
   (ivy-prescient-mode 1))
 
+(use-package counsel
+  :bind (:map minibuffer-local-map
+              ("C-r" . 'counsel-minibuffer-history))
+  :custom
+  (counsel-linux-app-format-function #'counsel-linux-app-format-function-name-only)
+  :config
+  (counsel-mode 1))
+
+(use-package ivy-posframe
+  :demand t
+  :after ivy
+  :custom
+  (ivy-posframe-display-functions-alist '(
+                                          (swiper . ivy-display-function-fallback)
+                                          (t . ivy-posframe-display-at-frame-center)
+                                          ))
+  :config
+  (ivy-posframe-mode))
+
+;; adjust font size for your system
+(defvar k4i/default-font-size 160)
+(defvar k4i/default-variable-font-size 160)
+
+(setq inhibit-startup-message t)
+
+(scroll-bar-mode -1) ; Disable visible scrollbar
+(tool-bar-mode -1) ; Disable the toolbar
+(tooltip-mode -1) ; Disable tooltips
+(set-fringe-mode 8) ; Give some breathing room
+(menu-bar-mode -1) ; Disable the menu bar
+;; Set up the visible bell
+(setq visible-bell t)
+(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
+
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+(column-number-mode) ; show column number
+;; Disable line numbers for some modes
+(dolist (mode '(org-mode-hook
+                term-mode-hook
+                vterm-mode-hook
+                shell-mode-hook
+                eshell-mode-hook
+                treemacs-mode-hook))
+    (add-hook mode (lambda () (display-line-numbers-mode 0))))
+
+(use-package autorevert
+  :hook
+  ;; reverts any buffer associated with a file when the file changes on disk
+  (after-init-hook . global-auto-revert-mode)
+  :custom
+  (global-auto-revert-non-file-buffers t)
+  (auto-revert-verbose t)
+  :diminish)
+
 (setq initial-scratch-message
-      ";; Hello Hackers! Welcom to emacs!\n\n;; proxys\n(proxy-socks-toggle)\n(proxy-http-toggle)\n\n")
+      ";; Hello Hackers! Welcom to emacs!\n\n(setq debug-on-error t)\n\n;; proxys\n(proxy-socks-toggle)\n(proxy-http-toggle)\n\n(package-refresh-contents)")
+
+;; default values
+(setq-default
+ help-window-select t
+ show-trailing-whitespace t
+ buffers-menu-max-size 60
+ ;; searches are case insensitive
+ case-fold-search t
+ ;; toggle column number in the mode line
+ column-number-mode t
+ ediff-split-window-function 'split-window-horizontally
+ ediff-window-setup-function 'ediff-setup-windows-plain
+ ;; indent use tabs or spaces
+ indent-tabs-mode nil
+ create-lockfiles nil
+ auto-save-default nil
+ make-backup-files nil
+ mouse-yank-at-point t
+ save-interprogram-paste-before-kill t
+ scroll-preserve-screen-position 'always
+ set-mark-command-repeat-pop t
+ tooltip-delay 1.0
+ truncate-lines nil
+ truncate-partial-width-windows nil)
+
+(use-package beacon
+  :custom
+  (beacon-lighter "")
+  (beacon-size 30)
+  :config
+  (beacon-mode 1))
+
+;; (setq x-pointer-shape x-pointer-top-left-arrow)
+(setq x-pointer-shape x-pointer-pencil)
+;; (setq x-pointer-sizing 240)
+;; (setq x-sensitive-text-pointer-shape x-pointer-X-cursor)
+;; (set-mouse-color "green")
+
+(mouse-avoidance-mode 'banish)
+
+(defun k4i/show-trailing-whitespace ()
+  "Enable display of trailing whitespace in this buffer."
+  (setq-local show-trailing-whitespace t))
+
+(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
+  (add-hook hook 'k4i/show-trailing-whitespace))
+
+(add-hook 'before-save-hook
+          'delete-trailing-whitespace)
+
+;; M-SPC
+(global-set-key [remap just-one-space] 'cycle-spacing)
+
+(use-package whitespace
+  :hook
+  (prog-mode . whitespace-mode)
+  :config
+  (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
+  (let ((foreground-color "gray80"))
+    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    )
+  (setq whitespace-display-mappings
+        ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
+        '((space-mark 32 [183] [46]) ; 32 SPACE, 183 MIDDLE DOT 「·」, 46 FULL STOP 「.」
+          (newline-mark 10 [8617 10]) ; 10 LINE FEED↩
+          (tab-mark 9 [9655 9] [92 9]) ; 9 TAB, 9655 WHITE RIGHT-POINTING TRIANGLE 「▷」
+          ))
+  )
+
+(use-package electric
+  :hook
+  ;; smart indent based on the major mode
+  (after-init-hook . electric-indent-mode))
+
+(set-face-attribute 'default nil :font "DejaVu Sans Mono" :height k4i/default-font-size)
+
+;; set the fixed pitch face
+(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono" :height 1.0)
+
+;; Set the variable pitch face
+(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.0 :weight 'regular)
+
+(use-package all-the-icons)
+
+(use-package rainbow-delimiters
+  :hook
+  (prog-mode . rainbow-delimiters-mode))
+
+(add-hook 'after-init-hook 'show-paren-mode)
+
+(use-package elec-pair
+  :hook
+  (after-init . electric-pair-mode))
+
+(use-package rainbow-mode
+  :hook
+  (css-mode . rainbow-mode)
+  :delight)
+
+(use-package doom-themes
+  :config
+  (load-theme 'doom-gruvbox-light t))
+
+;; (run-at-time "3.2" nil (lambda nil (load-theme 'doom-gruvbox-light t nil)))
+
+(use-package doom-modeline
+  :custom
+  (doom-modeline-height 15)
+  :hook
+  (after-init . doom-modeline-mode))
+
+(use-package command-log-mode
+  :commands command-log-mode)
 
 (use-package pyim-basedict)
 
 (use-package pyim
   :after pyim-basedict
+  :custom
+  (pyim-page-length 9)
   :config
   (pyim-basedict-enable)
-  (setq pyim-page-length 9)
   (setq default-input-method "pyim")
-  (setq pyim-punctuation-translate-p '(no yes auto)))
+  ;; use v to toggle previous punctuation
+  (setq-default pyim-punctuation-translate-p '(no yes auto)))
 
 (defun k4i/save-word-to-dict ()
   (interactive)
@@ -157,39 +300,40 @@
     )
   )
 
+(defun flyspell-on-for-buffer-type ()
+  "Enable Flyspell appropriately for the major mode of the current buffer.  Uses `flyspell-prog-mode' for modes derived from `prog-mode', so only strings and comments get checked.  All other buffers get `flyspell-mode' to check all text.  If flyspell is already enabled, does nothing."
+  (interactive)
+  (if (not (symbol-value flyspell-mode)) ; if not already on
+      (progn
+        (if (derived-mode-p 'prog-mode)
+            (progn
+              (message "Flyspell on (code)")
+              (flyspell-prog-mode))
+          ;; else
+          (progn
+            (message "Flyspell on (text)")
+            (flyspell-mode 1)))
+        ;; I tried putting (flyspell-buffer) here but it didn't seem to work
+        )))
+
+(defun flyspell-toggle ()
+  "Turn Flyspell on if it is off, or off if it is on.  When turning on, it uses `flyspell-on-for-buffer-type' so code-vs-text is handled appropriately."
+  (interactive)
+  (if (symbol-value flyspell-mode)
+      (progn ; flyspell is on, turn it off
+        (message "Flyspell off")
+        (flyspell-mode -1))
+    ;; else - flyspell is off, turn it on
+    (flyspell-on-for-buffer-type)))
+
 (use-package flyspell
   :custom
   (flyspell-issue-message-flag nil)
   :bind
   ("C-M-S-i" . k4i/save-word-to-dict)
-  :config
-  (defun flyspell-on-for-buffer-type ()
-    "Enable Flyspell appropriately for the major mode of the current buffer.  Uses `flyspell-prog-mode' for modes derived from `prog-mode', so only strings and comments get checked.  All other buffers get `flyspell-mode' to check all text.  If flyspell is already enabled, does nothing."
-    (interactive)
-    (if (not (symbol-value flyspell-mode)) ; if not already on
-        (progn
-          (if (derived-mode-p 'prog-mode)
-              (progn
-                (message "Flyspell on (code)")
-                (flyspell-prog-mode))
-            ;; else
-            (progn
-              (message "Flyspell on (text)")
-              (flyspell-mode 1)))
-          ;; I tried putting (flyspell-buffer) here but it didn't seem to work
-          )))
-
-  (defun flyspell-toggle ()
-    "Turn Flyspell on if it is off, or off if it is on.  When turning on, it uses `flyspell-on-for-buffer-type' so code-vs-text is handled appropriately."
-    (interactive)
-    (if (symbol-value flyspell-mode)
-        (progn ; flyspell is on, turn it off
-          (message "Flyspell off")
-          (flyspell-mode -1))
-                                        ; else - flyspell is off, turn it on
-      (flyspell-on-for-buffer-type)))
-  (add-hook 'find-file-hook 'flyspell-on-for-buffer-type)
-  (add-hook 'after-change-major-mode-hook 'flyspell-on-for-buffer-type))
+  :hook
+  ((find-file . flyspell-on-for-buffer-type)
+  (after-change-major-mode . flyspell-on-for-buffer-type)))
 
 ;; NOTE: If you want to move everything out of the ~/.emacs.d folder
 ;; reliably, set `user-emacs-directory` before loading no-littering!
@@ -329,7 +473,7 @@ When called with a prefix arg, resize the window by ARG lines."
      (push response unread-command-events)))
 
 (use-package centaur-tabs
-  :hook (emacs-startup . centaur-tabs-mode)
+  :hook emacs-startup
   :custom
   (centaur-tabs-background-color "#f2e5bc")
   (centaur-tabs-style "chamfer")
@@ -421,9 +565,15 @@ When called with a prefix arg, resize the window by ARG lines."
                                 compilation-mode
                                 helpful-mode
                                 comint-mode
-                                text-mode
                                 org-roam-mode))
 
+(defun update-current-window-parameter ()
+  "update window parameter of selected-window"
+  (interactive)
+  (set-window-parameter nil
+                        (intern (read-from-minibuffer "parameter: "))
+                        (read-from-minibuffer "value: ")))
+;; side-window
 (add-to-list 'display-buffer-alist
              `(,(lambda (buf act)
                   (member (with-current-buffer buf major-mode) k4i/align-right-modes))
@@ -436,117 +586,40 @@ When called with a prefix arg, resize the window by ARG lines."
                (window-width . 0.3)
                (quit-restore ('window 'window nil nil))))
 
-;; adjust font size for your system
-(defvar k4i/default-font-size 160)
-(defvar k4i/default-variable-font-size 160)
 
-;; Make frame transparency overridable
-;; (defvar k4i/frame-transparency '(100 . 90))
+;; input buffer
+(add-to-list 'display-buffer-alist
+             `(,(lambda (buf act)
+                  (when-let ((filename (with-current-buffer buf buffer-file-name)))
+                    (string-equal "in.txt" (file-name-nondirectory filename))))
+               (,(lambda (buf act)
+                   (when-let ((window (window-with-parameter 'for-input-window)))
+                     (set-window-buffer window buf)
+                     window)))
+               (quit-restore ('window 'window nil nil))))
 
-(setq inhibit-startup-message t)
+;; output buffer
+(add-to-list 'display-buffer-alist
+             `(,(lambda (buf act)
+                  (when-let ((filename (with-current-buffer buf buffer-file-name)))
+                    (string-equal "out.txt" (file-name-nondirectory filename))))
+               (,(lambda (buf act)
+                   (when-let ((window (window-with-parameter 'for-output-window)))
+                     (with-current-buffer buf (auto-revert-mode))
+                     (set-window-buffer window buf)
+                     window)))
+               (quit-restore ('window 'window nil nil))))
 
-(scroll-bar-mode -1) ; Disable visible scrollbar
-(tool-bar-mode -1) ; Disable the toolbar
-(tooltip-mode -1) ; Disable tooltips
-(set-fringe-mode 10) ; Give some breathing room
-
-(menu-bar-mode -1) ; Disable the menu bar
-
-;; Set up the visible bell
-(setq visible-bell t)
-
-;; Set frame transparency
-;; (set-frame-parameter (selected-frame) 'alpha k4i/frame-transparency)
-;; (add-to-list 'default-frame-alist `(alpha . ,k4i/frame-transparency))
-(set-frame-parameter (selected-frame) 'fullscreen 'maximized)
-(add-to-list 'default-frame-alist '(fullscreen . maximized))
-
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode t)
-(column-number-mode) ; show column number
-;; Disable line numbers for some modes
-(dolist (mode '(org-mode-hook
-                term-mode-hook
-                vterm-mode-hook
-                shell-mode-hook
-                eshell-mode-hook
-                treemacs-mode-hook))
-    (add-hook mode (lambda () (display-line-numbers-mode 0))))
-
-(use-package beacon
-  :custom
-  (beacon-lighter "")
-  (beacon-size 30)
+(use-package eyebrowse
+  :ensure t
   :config
-  (beacon-mode 1))
+  (eyebrowse-mode t))
 
-;; (setq x-pointer-shape x-pointer-top-left-arrow)
-(setq x-pointer-shape x-pointer-icon)
-;; (setq x-pointer-sizing 240)
-;; (setq x-sensitive-text-pointer-shape x-pointer-X-cursor)
-(set-mouse-color "yellow")
-
-(mouse-avoidance-mode 'banish)
-
-(defun k4i/show-trailing-whitespace ()
-  "Enable display of trailing whitespace in this buffer."
-  (setq-local show-trailing-whitespace t))
-
-(dolist (hook '(prog-mode-hook text-mode-hook conf-mode-hook))
-  (add-hook hook 'k4i/show-trailing-whitespace))
-
-(add-hook 'before-save-hook
-          'delete-trailing-whitespace)
-
-;; M-SPC
-(global-set-key [remap just-one-space] 'cycle-spacing)
-
-
-
-(set-face-attribute 'default nil :font "DejaVu Sans Mono" :height k4i/default-font-size)
-
-;; set the fixed pitch face
-(set-face-attribute 'fixed-pitch nil :font "DejaVu Sans Mono" :height 1.0)
-
-;; Set the variable pitch face
-(set-face-attribute 'variable-pitch nil :font "Cantarell" :height 1.0 :weight 'regular)
-
-(use-package all-the-icons)
-
-(use-package rainbow-delimiters
-  :hook
-  (prog-mode . rainbow-delimiters-mode))
-
-(add-hook 'after-init-hook 'show-paren-mode)
-
-(use-package rainbow-mode
-  :delight)
-
-(use-package command-log-mode
-  :commands command-log-mode)
-
-(use-package doom-themes
+(use-package burly
   :config
-  (load-theme 'doom-gruvbox-light t))
-
-;; (run-at-time "3.2" nil (lambda nil (load-theme 'doom-gruvbox-light t nil)))
-
-(use-package doom-modeline
-  :custom
-  (doom-modeline-height 15)
-  :hook
-  (after-init . doom-modeline-mode))
-
-(use-package ivy-posframe
-  :demand t
-  :after ivy
-  :custom
-  (ivy-posframe-display-functions-alist '(
-                                          (swiper . ivy-display-function-fallback)
-                                          (t . ivy-posframe-display-at-frame-center)
-                                          ))
-  :config
-  (ivy-posframe-mode))
+  (push (cons 'for-input-window 'writable) burly-window-persistent-parameters)
+  (push (cons 'for-output-window 'writable) burly-window-persistent-parameters)
+  )
 
 (use-package yasnippet
   :hook ((prog-mode conf-mode text-mode snippet-mode) . yas-minor-mode)
@@ -571,7 +644,7 @@ When called with a prefix arg, resize the window by ARG lines."
                   (org-level-6 . 1.1)
                   (org-level-7 . 1.1)
                   (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "Cantarell" :weight 'bold :height (cdr face)))
+    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
   (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
@@ -587,6 +660,35 @@ When called with a prefix arg, resize the window by ARG lines."
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
 
+(defun toggle-func-of-hook (hook func)
+  "add or remove func from hook"
+  (if (member #'org-export-to-pdf-on-save (symbol-value hook))
+      (progn
+        (remove-hook hook func)
+        (message "func %s disabled in hook %s" (symbol-name func) (symbol-name hook))
+        )
+    (progn
+      (add-hook hook func)
+      (message "func %s enabled in hook %s" (symbol-name func) (symbol-name hook))
+      )
+    )
+  )
+
+(defun toggle-org-export-to-pdf-on-save ()
+  "Export current Org file to PDF."
+  (interactive)
+  (defun org-export-to-pdf-on-save ()
+    (when (eq major-mode 'org-mode)
+      (let* ((org-file (buffer-file-name))
+             (pdf-file (concat (file-name-sans-extension org-file) ".pdf")))
+        (message "start exporting to pdf")
+        (org-latex-export-to-pdf t nil nil nil)
+        )
+      )
+    )
+  (toggle-func-of-hook 'after-save-hook 'org-export-to-pdf-on-save)
+  )
+
 (defun k4i/org-mode-setup ()
   (org-indent-mode)
   (variable-pitch-mode 1)
@@ -598,7 +700,10 @@ When called with a prefix arg, resize the window by ARG lines."
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
-  ;; (org-image-actual-width (/ (nth 3 (assq 'geometry (frame-monitor-attributes))) 3))
+  (org-pretty-entities t)
+  (org-image-actual-width 900
+                          ;; (/ (nth 3 (assq 'geometry (frame-monitor-attributes))) 3)
+                          )
   (org-startup-folded t)
   (org-directory (expand-file-name "Org" (getenv "HOME")))
   ;; (org-ellipsis " ▾")
@@ -618,6 +723,8 @@ When called with a prefix arg, resize the window by ARG lines."
      (:endgroup)
      ("idea" . ?i)))
   :config
+  ;; latex preview with =C-c C-x C-l=, increase font size.
+  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
@@ -638,7 +745,6 @@ When called with a prefix arg, resize the window by ARG lines."
 
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
-
   (k4i/org-font-setup))
 
 (use-package org-bullets
@@ -739,8 +845,10 @@ When called with a prefix arg, resize the window by ARG lines."
 
 (use-package plantuml-mode
   ;; :mode "\\.plu\\'"
+  :init
   :custom
   (org-plantuml-jar-path (expand-file-name "~/app/plantuml/plantuml.jar"))
+  (plantuml-jar-path (expand-file-name "~/app/plantuml/plantuml.jar"))
   ;; jar, executable, server (experimental)
   (plantuml-default-exec-mode 'jar)
   :config
@@ -765,13 +873,15 @@ When called with a prefix arg, resize the window by ARG lines."
   ;; latexmk runs pdflatex/xelatex (whatever is specified) multiple times
   ;; automatically to resolve the cross-references.
   (setq org-latex-pdf-process '("latexmk -xelatex -quiet -shell-escape -f %f"))
+  (setq org-latex-toc-command "\\tableofcontents \\clearpage")
+  (require 'ox-beamer)
   ;; (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
   (add-to-list 'org-latex-classes
                '("elegantpaper"
-                 "\\documentclass[lang=cn]{elegantpaper}
-               [NO-DEFAULT-PACKAGES]
-               [PACKAGES]
-               [EXTRA]"
+                 "\\documentclass[lang=en]{elegantpaper}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
@@ -779,7 +889,10 @@ When called with a prefix arg, resize the window by ARG lines."
                  ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
   (add-to-list 'org-latex-classes
                '("beamer"
-                 "\\documentclass[presentation]{beamer}"
+                 "\\documentclass[presentation]{beamer}
+                 [NO-DEFAULT-PACKAGES]
+                 [PACKAGES]
+                 [EXTRA]"
                  ("\\section{%s}" . "\\section*{%s}")
                  ("\\subsection{%s}" . "\\subsection*{%s}")
                  ("\\subsubsection{%s}" . "\\subsubsection*{%s}")))
@@ -789,7 +902,9 @@ When called with a prefix arg, resize the window by ARG lines."
           ("linenos" "false")
           ("breaklines" "true")
           ("bgcolor" "lightgray")))
-  (add-to-list 'org-latex-packages-alist '("" "minted")))
+  (add-to-list 'org-latex-packages-alist '("" "minted"))
+  (add-to-list 'org-latex-packages-alist '("" "svg"))
+  )
 
 (use-package ebib
   :ensure t
@@ -807,18 +922,19 @@ When called with a prefix arg, resize the window by ARG lines."
   (setq ebib-timestamp-format "%Y.%m.%d")
   (setq ebib-use-timestamp t))
 
+;; no need confirmation before evalution
 (defun k4i/org-confirm-babel-evaluate (lang body)
-  (not (or
-        (string= lang "plantuml")
-        )))
+  (not (member lang '("dot" "plantuml" "python" "shell" "emacs-lisp"))))
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
    'org-babel-load-languages
    '(
      (emacs-lisp . t)
+     (dot . t)
      (python . t)
      (plantuml . t)
+     (shell . t)
      ))
   (setq org-confirm-babel-evaluate #'k4i/org-confirm-babel-evaluate)
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
@@ -885,12 +1001,9 @@ When called with a prefix arg, resize the window by ARG lines."
 (with-eval-after-load 'org-capture
   (setq hugo-content-org-dir "~/git-repo/blog/blog-src/content-org")
   (add-to-list 'org-capture-templates
-               `("pe"                ;`org-capture' binding + h
+               `("pe"
                  "Hugo Post (en)"
                  entry
-                 ;; It is assumed that below file is present in `org-directory'
-                 ;; and that it has a "Blog Ideas" heading. It can even be a
-                 ;; symlink pointing to the actual location of all-posts.org!
                  (file ,(expand-file-name "all-posts.en.org" hugo-content-org-dir))
                  (function org-hugo-new-subtree-post-capture-template)))
   (add-to-list 'org-capture-templates
@@ -949,10 +1062,50 @@ When called with a prefix arg, resize the window by ARG lines."
 
 (use-package org-roam-ui
   :after org-roam
-  :custom
-  (org-roam-ui-sync-theme t)
-  (org-roam-ui-follow t)
-  (org-roam-ui-update-on-save t))
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+(use-package org-ref
+    :after org
+    :init
+    :config
+    (setq
+         ; Let ivy makes completion.
+         org-ref-completion-library 'org-ref-ivy-cite
+         ; Use Helm to get pdf filename.
+         org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
+         ; Use the bibtext file exported from Zotero.
+         ;; org-ref-default-bibliography (list (expand-file-name "library.bib" zotero-directory))
+         ;; org-ref-bibliography-notes (expand-file-name "bibnotes.org" org-roam-directory)
+         ; Use org-roam files as my reading notes.
+         ;; org-ref-notes-directory org-roam-directory
+         org-ref-notes-function 'orb-edit-notes
+         ; Add templates for my reading notes.
+         org-ref-note-title-format (concat
+                                    "* TODO %y - %t\n"
+                                    ":PROPERTIES:\n"
+                                    ":Custom_ID: %k\n"
+                                    ":NOTER_DOCUMENT: %F\n"
+                                    ":ROAM_KEY: cite:%k\n"
+                                    ":AUTHOR: %9a\n"
+                                    ":JOURNAL: %j\n"
+                                    ":YEAR: %y\n"
+                                    ":VOLUME: %v\n"
+                                    ":PAGES: %p\n"
+                                    ":DOI: %D\n"
+                                    ":URL: %U\n"
+                                    ":END:\n\n"
+                                    )
+    ))
+
+(use-package citeproc-org
+  :config
+  (citeproc-org-setup))
+
+(require 'oc-biblatex)
 
 (use-package subword
   :hook (prog-mode . subword-mode)
@@ -1011,16 +1164,25 @@ When called with a prefix arg, resize the window by ARG lines."
   (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline)
   :diminish company-mode)
 
-(use-package company-box
-  :hook (company-mode . company-box-mode))
+;; (use-package company-box
+;;   :hook (company-mode . company-box-mode))
 
 (use-package evil-nerd-commenter
   :bind ("C-/" . evilnc-comment-or-uncomment-lines))
 
 (use-package format-all
   :hook
-  (prog-mode . format-all-mode)
+  ;; (prog-mode . format-all-mode) ;; format on save
   (format-all-mode . format-all-ensure-formatter))
+
+(add-hook 'c++-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (format
+                  "clang++ -std=c++17 -g -I$HOME/include -o %s %s -DLOCAL_DEBUG "
+                  (file-name-sans-extension buffer-file-name)
+                  buffer-file-name
+                  ))))
 
 (defun bury-compile-buffer-if-successful (buffer string)
   "Bury a compilation buffer if succeeded without warnings "
@@ -1035,9 +1197,11 @@ When called with a prefix arg, resize the window by ARG lines."
                       (lambda (buf)
                         (bury-buffer buf)
                         (switch-to-prev-buffer (get-buffer-window buf) 'kill)
-                        ;; (delete-windows-on buf)
+                        (delete-windows-on buf)
+                        (message "compilation buffer buried")
                         )
-                      buffer)))
+                      buffer)
+    (message "do not bury compilation buffer")))
 (add-hook 'compilation-finish-functions 'bury-compile-buffer-if-successful)
 
 (use-package projectile
@@ -1067,13 +1231,29 @@ When called with a prefix arg, resize the window by ARG lines."
 (use-package forge
   :after magit)
 
+(use-package docker
+  :ensure t
+  :bind ("C-c d" . docker))
+
+(use-package dockerfile-mode
+  :config
+  (add-to-list 'auto-mode-alist '("Dockerfile\\'" . dockerfile-mode)))
+
 (defun k4i/lsp-mode-setup ()
   (setq lsp-headerline-breadcrumb-segments '(path-up-to-project file symbols))
   (lsp-headerline-breadcrumb-mode))
 
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
-  :hook (lsp-mode . k4i/lsp-mode-setup)
+  :custom
+  ;; https://www.reddit.com/r/emacs/comments/eme5zk/lspmode_clangd_memory_consumption_problem/
+  (lsp-clients-clangd-args '("--header-insertion-decorators=0" "--background-index=false" "--j=4"))
+  :hook
+  (lsp-mode . k4i/lsp-mode-setup)
+  (c++-mode . lsp-deferred)
+  (python-mode . lsp-deferred)
+  (php-mode . lsp-deferred)
+  (go-mode . lsp-deferred)
   :init
   (setq lsp-keymap-prefix "C-c l")  ;; Or 'C-l', 's-l'
   :config
@@ -1082,7 +1262,16 @@ When called with a prefix arg, resize the window by ARG lines."
 (use-package lsp-ui
   :hook (lsp-mode . lsp-ui-mode)
   :custom
-  (lsp-ui-doc-position 'bottom))
+  (lsp-ui-sideline-show-hover t)
+  (lsp-ui-sideline-show-code-actions t)
+  (lsp-ui-sideline-delay 0.1)
+  (lsp-ui-doc-position 'top)
+  (lsp-ui-doc-show-with-cursor t)
+  (lsp-ui-doc-delay 0.1)
+  (lsp-ui-peek-enable t)
+  (lsp-ui-peek-show-directory t)
+  (lsp-ui-imenu-auto-refresh t)
+  )
 
 (use-package lsp-ivy
   :after lsp)
@@ -1110,7 +1299,7 @@ When called with a prefix arg, resize the window by ARG lines."
   ;; (require 'dap-gdb-lldb) ; then run dap-gdb-lldb-setup
   ;; (require 'dap-codelldb)
   ;; set the debugger executable (c++), by default it looks for it under .emacs.d/..
-  ;; (setq dap-lldb-debug-program '("lldb-vscode"))
+  (setq dap-lldb-debug-program '("lldb-vscode"))
 
   ;; Bind `C-c l d` to `dap-hydra` for easy access
   (general-define-key
@@ -1123,6 +1312,8 @@ When called with a prefix arg, resize the window by ARG lines."
   :hook (typescript-mode . lsp-deferred)
   :config
   (setq typescript-indent-level 2))
+
+(use-package json-mode)
 
 ;; from: https://stackoverflow.com/a/3346308
 ;; function decides whether .h file is C or C++ header, sets C++ by
@@ -1138,9 +1329,11 @@ header"
       (c++-mode))))
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c-c++-header))
 
+(require 'cmake-mode)
+
 (use-package python-mode
   :ensure t
-  :hook (python-mode . lsp-deferred)
+  ;; :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
@@ -1153,6 +1346,12 @@ header"
   :after python-mode
   :config
   (pyvenv-mode 1))
+
+;; (use-package lsp-python-ms
+;;   :init (setq lsp-python-ms-auto-install-server t)
+;;   :hook (python-mode . (lambda ()
+;;                          (require 'lsp-python-ms)
+;;                          (lsp-deferred))))  ; or lsp-deferred
 
 (use-package slime
   :config
@@ -1177,6 +1376,45 @@ header"
 (use-package cargo
   :hook (rust-mode . cargo-minor-mode)
   :diminish cargo-minor-mode)
+
+(use-package go-mode
+  :custom
+  (gofmt-command "goimports")
+  :hook
+  (before-save . gofmt-before-save)
+  )
+
+(use-package company-go
+  :init
+  (with-eval-after-load 'company
+    (add-to-list 'company-backends 'company-go)))
+
+(use-package php-mode)
+
+(use-package toml-mode
+  :hook (toml-mode . lsp-deferred))
+
+(use-package yaml-mode)
+
+(use-package tex
+  :ensure auctex
+  :hook
+  (LaTeX-mode . prettify-symbols-mode)
+  :custom
+  (TeX-engine 'xetex)
+  )
+
+(use-package cdlatex
+  :hook ((LaTeX-mode  . turn-on-cdlatex)
+         (org-mode    . turn-on-org-cdlatex)
+         (cdlatex-tab . LaTeX-indent-line)))
+
+(use-package graphviz-dot-mode
+  :hook
+  (graphviz-dot-mode . (lambda () (set-input-method 'TeX)))
+  :mode "\\.dot\\'"
+  :config
+  (setq graphviz-dot-indent-width 4))
 
 (use-package vterm
   :commands vterm
@@ -1321,6 +1559,16 @@ header"
 
 (use-package treemacs-evil
   :after treemacs evil)
+
+(use-package tramp
+  :ensure nil
+  :defer t
+  :config
+  (setq tramp-default-user "root"
+        tramp-default-method "ssh")
+  (use-package counsel-tramp
+    :bind ("C-c t" . counsel-tramp))
+  (put 'temporary-file-directory 'standard-value '("/tmp")))
 
 (defun proxy-socks-show ()
   "Show SOCKS proxy."

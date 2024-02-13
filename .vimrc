@@ -3,11 +3,18 @@ set modelines=1
 " leader is comma
 let mapleader=","
 
-" Don't try to be vi compatible
-set nocompatible
+" Plugins {{{
+call plug#begin()
+
+Plug 'morhetz/gruvbox'
+
+call plug#end()
+" }}}
 
 " Colors {{{
-colorscheme industry
+set background=light
+let g:gruvbox_contrast_light='hard'
+colorscheme gruvbox
 
 " enable syntax processing
 syntax on

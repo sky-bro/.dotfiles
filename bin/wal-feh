@@ -2,11 +2,12 @@
 
 # We grab the wallpaper location from wal's cache so
 # that this works even when a directory is passed.
-image_path="${1:-"$(< "${HOME}/.cache/wal/wal")"}"
+image_path="${1:-"$(<"${HOME}/.cache/wal/wal")"}"
+
+# image file or color scheme file
 
 # -n tells `wal` to skip setting the wallpaper.
 # wal -n -i "$image_path"
 
 # use a custom wallpaper setter
 feh --no-fehbg --bg-fill "$image_path"
-

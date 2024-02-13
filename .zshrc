@@ -91,7 +91,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250,bg=232,bold,underline"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions)
+plugins=(git zsh-autosuggestions kubectl)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -123,10 +123,16 @@ source $ZSH/oh-my-zsh.sh
 alias dotfiles='/usr/bin/git --git-dir=/home/sky/.dotfiles.git/ --work-tree=/home/sky'
 # n: do not wait server return
 # c: create new frame
-alias ec='emacsclient -n'
+alias ec='emacsclient -nc'
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+
+source <(kubectl completion zsh)
+
+export PYENV_ROOT="$HOME/.pyenv"
+command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"

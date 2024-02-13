@@ -2,7 +2,7 @@
 
 * Introduction
 
-These are my dotfiles managed with stow, check [[https://k4i.top/posts/manage-my-dotfiles-with-stow/][this post]] for more details.
+These are my dotfiles managed with stow, check [[https://k4i.top/posts/manage-my-dotfiles-with-stow/][this post]] for more details on using this tool.
 
 * Quick start
 
@@ -14,14 +14,29 @@ These are my dotfiles managed with stow, check [[https://k4i.top/posts/manage-my
   stow -v .
 #+end_src
 
-* apps I use
+* what I use
 
-- i3
-- picom
-- emacs
-- vim
+- window manager:
+  - i3
+- app launcher
+  - rofi
+- password manager
+  - rofi-pass
+- emoji picker
+  - rofi-emoji
+- compositor
+  - picom
+- editor
+  - emacs
+  - vim
 - tmux
-- st
-- zsh
-- copyq
-- flameshot
+- terminal
+  - st
+- shell
+  - zsh
+- clipboard manager
+  - copyq
+- screenshot
+  - flameshot
+- desktop notification server
+  - dunst

@@ -12,6 +12,37 @@
 # use windows key
 set $mod Mod4
 
+set $up k
+set $down j
+set $left h
+set $right l
+
+focus_follows_mouse yes
+# reload the configuration file
+bindsym $mod+Shift+c reload
+# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
+bindsym $mod+Shift+r restart
+# exit i3 (logs you out of your X session)
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id i3exit suspend, mode "default"
+    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
+    bindsym e exec --no-startup-id i3exit logout, mode "default"
+    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
+    bindsym r exec --no-startup-id i3exit reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+    bindsym Ctrl+g mode "default"
+}
+
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
 # font pango:monospace 10
@@ -26,41 +57,38 @@ font pango:DejaVu Sans Mono 12
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
 exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-exec --no-startup-id conky
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-# start a terminal
-# i3-sensible-terminal
+################
+# Quick Launch #
+################
+
 # bindsym $mod+Return exec st
+# terminal
 bindsym $mod+Return exec cd "$(xcwd)" && exec st
+# file manager
 bindsym $mod+Shift+Return exec cd "$(xcwd)" && exec st -e "ranger"
-
-# kill focused window
-bindsym $mod+Shift+q kill
-
-# start dmenu (a program launcher)
-# bindsym $mod+d exec --no-startup-id dmenu_run
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# bindcode $mod+40 exec "rofi -combi-modi window#drun -show combi -modi combi -show-icons"
-# bindsym $mod+d exec "rofi -combi-modi drun -show combi -modi combi -show-icons"
+# app launcher: rofi
 bindsym $mod+d exec "rofi -show combi"
-bindsym Mod1+Tab exec "rofi -show window"
+# config in ~/.config/rofi-pass/config
+# https://github.com/carnager/rofi-pass
 bindsym $mod+Ctrl+p exec "rofi-pass"
-# bindsym $mod+Ctrl+x exec "xprop -id $(xprop -root _NET_ACTIVE_WINDOW | cut -d ' ' -f 5) WM_NAME >> ~/tmp.txt"
+# start virtual machines:
+# enter (run and open), alt+r (run or stop), alt+o (open)
+bindsym $mod+Ctrl+v exec "rofi-vmrun.sh"
 bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
-
 bindsym $mod+Ctrl+Return exec i3-run-or-focus.py "St" "st -e tmux new -A -s sky"
 # bindsym $mod+Shift+Return exec cd "$(xcwd)" && exec st -e "ranger"
 bindsym $mod+Ctrl+m exec pavucontrol
 bindsym $mod+Ctrl+e exec start-emacs.sh
 bindsym $mod+Ctrl+w exec i3-run-or-focus.py "Google-chrome" google-chrome
-# bindsym $mod+Ctrl+b exec set-kbd.sh
+# bindsym $mod+Ctrl+w exec i3-run-or-focus.py "firefox" firefox
+
+#################################
+#        Audio & Brightness     #
+#################################
 # toggle transparency of current window
 bindsym $mod+Ctrl+space exec picom-trans -ct
 # Use pactl to adjust volume in PulseAudio.
@@ -70,28 +98,24 @@ bindsym XF86AudioLowerVolume exec --no-startup-id volumeControl.sh down && $refr
 bindsym XF86AudioMute exec --no-startup-id volumeControl.sh mute && $refresh_i3status
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
-# bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10% && $refresh_i3status
-# bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10% && $refresh_i3status
-# bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle && $refresh_i3status
-# bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
-
-################################################################################################
-
-# Screen brightness controls
-# bindsym XF86MonBrightnessUp exec "xbacklight -inc 5; notify-send 'brightness up'"
-# bindsym XF86MonBrightnessDown exec "xbacklight -dec 5; notify-send 'brightness down'"
-
-set $up k
-set $down j
-set $left h
-set $right l
-
 # https://i3wm.org/docs/userguide.html#keybindings
 bindsym --release $mod+Ctrl+$up exec --no-startup-id xdotool key --clearmodifiers XF86AudioRaiseVolume
 bindsym --release $mod+Ctrl+$down exec --no-startup-id xdotool key --clearmodifiers XF86AudioLowerVolume
 
 bindsym --release $mod+Ctrl+$right exec --no-startup-id xdotool key --clearmodifiers XF86MonBrightnessUp
 bindsym --release $mod+Ctrl+$left exec --no-startup-id xdotool key --clearmodifiers XF86MonBrightnessDown
+
+#################################
+# Window & Workspace Management #
+#################################
+# kill focused window
+bindsym $mod+Shift+q kill
+# bindsym $mod+Shift+Ctrl+k exec kill-window.sh
+# switch between all windows (Alt + Tab)
+bindsym Mod1+Tab exec rofi-switch-window.sh
+# switch between last and current window
+exec_always app_starter.sh i3-swap-focus
+bindsym $mod+Tab exec pkill -USR1 -F "${XDG_RUNTIME_DIR}/swap_focus.pid"
 
 # change focus
 bindsym $mod+$left focus left
@@ -104,10 +128,12 @@ bindsym $mod+Shift+$left move left
 bindsym $mod+Shift+$down move down
 bindsym $mod+Shift+$up move up
 bindsym $mod+Shift+$right move right
+bindsym $mod+Shift+minus move scratchpad
+# toggle scratchpad show/hide
+bindsym $mod+minus scratchpad show
 
 # split in horizontal orientation
 bindsym $mod+Shift+v split h
-
 # split in vertical orientation
 bindsym $mod+v split v
 
@@ -167,30 +193,6 @@ bindsym $mod+Shift+8 move container to workspace number $ws8
 bindsym $mod+Shift+9 move container to workspace number $ws9
 # bindsym $mod+Shift+0 move container to workspace number $ws10
 
-# reload the configuration file
-bindsym $mod+Shift+c reload
-# restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
-bindsym $mod+Shift+r restart
-# exit i3 (logs you out of your X session)
-bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -B 'Yes, exit i3' 'i3-msg exit'"
-
-# Set shut down, restart and locking features
-bindsym $mod+0 mode "$mode_system"
-set $mode_system (l)ock, (e)xit, switch_(u)ser, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
-mode "$mode_system" {
-    bindsym l exec --no-startup-id i3exit lock, mode "default"
-    bindsym s exec --no-startup-id i3exit suspend, mode "default"
-    bindsym u exec --no-startup-id i3exit switch_user, mode "default"
-    bindsym e exec --no-startup-id i3exit logout, mode "default"
-    bindsym h exec --no-startup-id i3exit hibernate, mode "default"
-    bindsym r exec --no-startup-id i3exit reboot, mode "default"
-    bindsym Shift+s exec --no-startup-id i3exit shutdown, mode "default"
-
-    # exit system mode: "Enter" or "Escape"
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Ctrl+g mode "default"
-}
 
 # resize window (you can also use the mouse for that)
 set $resize_step 5
@@ -208,16 +210,18 @@ bindsym $mod+Ctrl+a exec --no-startup-id flameshot gui
 # screenshot for scrcpy window
 bindsym Mod1+Shift+c exec --no-startup-id scrcpy-screenshot-copy.sh
 
-###########################################################
-################# Autostart applications ##################
-###########################################################
-
+#########################
+# Services / Autostarts #
+#########################
 # polkit is a toolkit for defining and handling authorizations
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-
 # wallpaper
-exec --no-startup-id ~/bin/wal-feh
-
+exec_always --no-startup-id wal-feh
+# downloader
+exec_always app_starter.sh aria2c
+# desktop monitor
+exec_always app_starter.sh conky
+# window effect: transparency, shadow, animation
 exec_always --no-startup-id picom -b --experimental-backends
 # use dex to autostart programs in:
 #   /etc/xdg/autostart/*
@@ -239,11 +243,12 @@ exec_always --no-startup-id picom -b --experimental-backends
 #       xmodmap
 #       xkb
 #   input method:
-#       fcitx
+#       fcitx5
 exec --no-startup-id dex --autostart --environment i3
 
 # autoadb: execute a command whenever a device is adb-connected
 exec --no-startup-id autoadb scrcpy -s '{}' -Sw --window-borderless -t -K --prefer-text --window-title '{}'
+exec --no-startup-id adb-battery-warning.sh
 # later get the device number from window title
 # xprop WM_NAME | cut -d '"' -f 2
 
@@ -254,16 +259,19 @@ exec --no-startup-id autoadb scrcpy -s '{}' -Sw --window-borderless -t -K --pref
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 
+########################
+#        Theme         #
+########################
 set $bg "#9575cd"
-set $fc_txt "#000000"
-set $ufc_txt "#ffffff"
+set $ufc_txt "#3c3836"
+set $fc_txt "#ffffff"
 set $ugt_txt "#222133"
-set $fc_bg "#33bfff"
+set $fc_bg "#98971a"
 set $ufc_bg "#9575cd"
 set $ugt_bg "#ff7066"
 
 bar {
-    mode hide
+    mode dock # hide
     i3bar_command i3bar
     status_command i3status
     status_command exec net-speed.sh
@@ -272,9 +280,9 @@ bar {
     tray_output primary
 
     colors {
-        background #000000
-        statusline #ffffff
-        separator #666666
+        background #282828
+        statusline #ebdbb2
+        separator #333333
 
         focused_workspace  $fc_bg $fc_bg $fc_txt
         active_workspace   #333333 #5f676a #ffffff
@@ -286,8 +294,8 @@ bar {
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $fc_bg $fc_bg $fc_txt $ugt_bg
-client.focused_inactive $ufc_bg $ufc_bg $ufc_txt $ufc_txt
-# client.unfocused $ufc_bg $ufc_bg $ufc_txt $ufc_txt
+client.focused_inactive $ufc_bg $ufc_bg $fc_txt $fc_txt
+# client.unfocused        $ufc_bg $ufc_bg $ufc_txt $ufc_txt
 # client.urgent           $ugt_bg $ugt_bg $ugt_txt $ugt_txt
 # client.background       $bg
 
@@ -298,13 +306,8 @@ client.focused_inactive $ufc_bg $ufc_bg $ufc_txt $ufc_txt
 bindsym $mod+m bar mode toggle
 # bindsym $mod+m exec polybar-msg cmd toggle
 
-
-for_window [class=".*"] border pixel 5
+for_window [class=".*"] border pixel 3
 # for_window [title="歌词"] border none
 for_window [class="scrcpy"] floating enable sticky enable
 gaps inner 0
 gaps outer 0
-
-bindsym $mod+Shift+minus move scratchpad
-# toggle scratchpad show/hide
-bindsym $mod+minus scratchpad show

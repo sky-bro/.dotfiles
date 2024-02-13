@@ -1,6 +1,7 @@
 configuration {
-        // need to install: rofi-emoji
-	modi: [emoji, ssh, run, combi];
+        // need to install: rofi-emoji, rofi-calc
+        // C-c to cycle through these modes, starts from combi
+	modi: [calc, emoji, "audio:rofi-switch-audio-sink.sh", ssh, combi];
 /*	font: "mono 12";*/
 /*	location: 0;*/
 /*	yoffset: 0;*/
@@ -23,7 +24,7 @@ configuration {
 /*	drun-url-launcher: "xdg-open";*/
 /*	disable-history: false;*/
 /*	ignored-prefixes: "";*/
-/*	sort: false;*/
+	sort: true;
 	sorting-method: "fzf";
 /*	case-sensitive: false;*/
 /*	cycle: true;*/
@@ -33,8 +34,8 @@ configuration {
 /*	auto-select: false;*/
 /*	parse-hosts: false;*/
 /*	parse-known-hosts: true;*/
-	combi-modi: [window, drun];
-	matching: "normal";
+	combi-modi: [window, drun, audio];
+	matching: "fuzzy";
 /*	tokenize: true;*/
 /*	m: "-5";*/
 /*	filter: ;*/
