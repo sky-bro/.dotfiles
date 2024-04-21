@@ -98,6 +98,12 @@ bindsym XF86AudioLowerVolume exec --no-startup-id volumeControl.sh down && $refr
 bindsym XF86AudioMute exec --no-startup-id volumeControl.sh mute && $refresh_i3status
 # bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
 
+# Media player controls
+bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86AudioPause exec playerctl play-pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
 # https://i3wm.org/docs/userguide.html#keybindings
 bindsym --release $mod+Ctrl+$up exec --no-startup-id xdotool key --clearmodifiers XF86AudioRaiseVolume
 bindsym --release $mod+Ctrl+$down exec --no-startup-id xdotool key --clearmodifiers XF86AudioLowerVolume
@@ -222,7 +228,8 @@ exec_always app_starter.sh aria2c
 # desktop monitor
 exec_always app_starter.sh conky
 # window effect: transparency, shadow, animation
-exec_always --no-startup-id picom -b --experimental-backends
+#exec_always --no-startup-id picom -b --experimental-backends
+exec_always --no-startup-id compfy -b
 # use dex to autostart programs in:
 #   /etc/xdg/autostart/*
 #   $HOME/.config/autostart/*
@@ -263,11 +270,11 @@ exec --no-startup-id adb-battery-warning.sh
 #        Theme         #
 ########################
 set $bg "#9575cd"
-set $ufc_txt "#3c3836"
+set $ufc_txt "#ffffff"
 set $fc_txt "#ffffff"
 set $ugt_txt "#222133"
-set $fc_bg "#98971a"
-set $ufc_bg "#9575cd"
+set $fc_bg "#A2C523"
+set $ufc_bg "#004445"
 set $ugt_bg "#ff7066"
 
 bar {
@@ -295,7 +302,7 @@ bar {
 # class                 border  backgr. text    indicator child_border
 client.focused          $fc_bg $fc_bg $fc_txt $ugt_bg
 client.focused_inactive $ufc_bg $ufc_bg $fc_txt $fc_txt
-# client.unfocused        $ufc_bg $ufc_bg $ufc_txt $ufc_txt
+client.unfocused        $ufc_bg $ufc_bg $ufc_txt $ufc_txt
 # client.urgent           $ugt_bg $ugt_bg $ugt_txt $ugt_txt
 # client.background       $bg
 
@@ -306,7 +313,7 @@ client.focused_inactive $ufc_bg $ufc_bg $fc_txt $fc_txt
 bindsym $mod+m bar mode toggle
 # bindsym $mod+m exec polybar-msg cmd toggle
 
-for_window [class=".*"] border pixel 3
+for_window [class=".*"] border pixel 7
 # for_window [title="歌词"] border none
 for_window [class="scrcpy"] floating enable sticky enable
 gaps inner 0

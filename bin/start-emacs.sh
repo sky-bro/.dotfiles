@@ -11,8 +11,10 @@ function send_notification {
 emacsclient -nc || (
 	send_notification "STARTING EMACS SERVER" &&
 		(
-			emacs --daemon &&
-				send_notification "EMACS SERVER STARTED, ENJOY!" &&
-				emacsclient -nc || send_notification "EMACS START FAILED!!"
+			emacs &&
+				send_notification "EMACS SERVER STARTED, ENJOY!"
+			# emacs --daemon &&
+			#	send_notification "EMACS SERVER STARTED, ENJOY!" &&
+			#	emacsclient -nc || send_notification "EMACS START FAILED!!"
 		)
 )

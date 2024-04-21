@@ -33,6 +33,13 @@ Adjust garbage collection threashold for startup and after
   (add-hook 'after-init-hook #'k4i/display-startup-time)
 #+end_src
 
+** emacs server
+
+#+begin_src emacs-lisp
+  (require 'server)
+  (unless (server-running-p) (server-start))
+#+end_src
+
 * Packages
 
 ** package archives
@@ -121,6 +128,8 @@ save and update custom settings in a separate file
   (when (file-exists-p custom-file)
     (load custom-file))
 #+end_src
+
+* System Related
 
 * Misc
 
@@ -288,6 +297,23 @@ ivy-posframe use posframe to show ivy's candidate menu
    truncate-partial-width-windows nil)
 #+end_src
 
+** dashboard
+
+#+begin_src emacs-lisp
+  (use-package dashboard
+    :after all-the-icons
+    :config
+    (dashboard-setup-startup-hook)
+    (setq dashboard-center-content t)
+    (setq dashboard-vertically-center-content t)
+    (setq dashboard-navigation-cycle t)
+    (setq dashboard-heading-shorcut-format " [%s]")
+    (setq dashboard-icon-type 'all-the-icons)  ; use `all-the-icons' package
+    ;(setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+    (setq initial-buffer-choice (lambda () (dashboard-refresh-buffer)))
+    )
+#+end_src
+
 ** Cursor
 
 *** beacon
@@ -432,17 +458,19 @@ show-paren-mode
 
 ** Theme
 
+*** doom themes
+
 run =M-x counsel-load-theme= to choose between them easily.
 
 #+begin_src emacs-lisp
   (use-package doom-themes
     :config
-    (load-theme 'doom-gruvbox-light t))
-
-  ;; (run-at-time "3.2" nil (lambda nil (load-theme 'doom-gruvbox-light t nil)))
+    (load-theme 'doom-gruvbox-light t)
+    (doom-themes-visual-bell-config)
+    (doom-themes-org-config))
 #+end_src
 
-*** Better Modeline
+*** Better Mode line
 
 check out the [[https://github.com/seagle0128/doom-modeline#customize][configuration options]] for more things you can enable or disable.
 
@@ -1145,6 +1173,14 @@ The =k4i/org-font-setup= function configures various text faces to tweak the siz
 
 ** Drag and Drop using org-download
 
+[[https://github.com/abo-abo/org-download][org-download]] facilitates quickly inserting images into your org buffer.
+
+You can insert images by pasting from your clipboard with =org-download-clipboard=, or by dragging and dropping an image file.
+(To enable drag and drop files in ranger, refer to: [[https://github.com/ranger/ranger/wiki/Drag-and-Drop][ranger wiki: drag and drop)]]
+
+You can delete an image by calling =org-download-delete=
+
+
 #+begin_src emacs-lisp
   (use-package org-download
     :after org
@@ -1166,8 +1202,8 @@ The =k4i/org-font-setup= function configures various text faces to tweak the siz
                 nil)))
          (org-download-clipboard file))))
     :config
-    (require 'org-download)
     (setq org-download-annotate-function #'(lambda (_link) ""))
+    ;; second half of image directory from org header when org-download-heading is not nil
     (advice-add 'org-download--dir-2 :filter-return #'(lambda (dirname)
                                                         (when dirname (org-hugo-slug dirname)))))
 #+end_src
@@ -2357,6 +2393,29 @@ Dired is a built-in file manager for Emacs.
     )
 #+end_src
 
+*** treemacs-evil
+
+#+begin_src emacs-lisp
+  (use-package treemacs-evil
+    :after treemacs evil)
+#+end_src
+
+*** treemacs-projectile
+
+#+begin_src emacs-lisp
+  (use-package treemacs-projectile
+    :after (treemacs projectile)
+    :ensure t)
+#+end_src
+
+*** treemacs-magit
+
+#+begin_src emacs-lisp
+  (use-package treemacs-magit
+    :after (treemacs magit)
+    :ensure t)
+#+end_src
+
 *** lsp-treemacs
 
 [[https://github.com/emacs-lsp/lsp-treemacs][lsp-treemacs]] provides nice tree views for different aspects of your code like symbols in a file, references of a symbol, or diagnostic messages (errors and warnings) that are found in your code.
@@ -2372,13 +2431,6 @@ This package is built on the [[https://github.com/Alexander-Miller/treemacs][tre
 #+begin_src emacs-lisp
   (use-package lsp-treemacs
     :after lsp)
-#+end_src
-
-*** treemacs-evil
-
-#+begin_src emacs-lisp
-  (use-package treemacs-evil
-    :after treemacs evil)
 #+end_src
 
 *** Key Bindings

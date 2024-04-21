@@ -11,6 +11,9 @@
 
 (add-hook 'after-init-hook #'k4i/display-startup-time)
 
+(require 'server)
+(unless (server-running-p) (server-start))
+
 (when (>= emacs-major-version 24)
   (progn
     ;; load emacs 24's package system. Add MELPA repository.
@@ -186,6 +189,19 @@
  truncate-lines nil
  truncate-partial-width-windows nil)
 
+(use-package dashboard
+  :after all-the-icons
+  :config
+  (dashboard-setup-startup-hook)
+  (setq dashboard-center-content t)
+  (setq dashboard-vertically-center-content t)
+  (setq dashboard-navigation-cycle t)
+  (setq dashboard-heading-shorcut-format " [%s]")
+  (setq dashboard-icon-type 'all-the-icons)  ; use `all-the-icons' package
+  ;(setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
+  (setq initial-buffer-choice (lambda () (dashboard-refresh-buffer)))
+  )
+
 (use-package beacon
   :custom
   (beacon-lighter "")
@@ -264,9 +280,9 @@
 
 (use-package doom-themes
   :config
-  (load-theme 'doom-gruvbox-light t))
-
-;; (run-at-time "3.2" nil (lambda nil (load-theme 'doom-gruvbox-light t nil)))
+  (load-theme 'doom-gruvbox-light t)
+  (doom-themes-visual-bell-config)
+  (doom-themes-org-config))
 
 (use-package doom-modeline
   :custom
@@ -838,8 +854,8 @@ When called with a prefix arg, resize the window by ARG lines."
               nil)))
        (org-download-clipboard file))))
   :config
-  (require 'org-download)
   (setq org-download-annotate-function #'(lambda (_link) ""))
+  ;; second half of image directory from org header when org-download-heading is not nil
   (advice-add 'org-download--dir-2 :filter-return #'(lambda (dirname)
                                                       (when dirname (org-hugo-slug dirname)))))
 
@@ -1554,11 +1570,19 @@ header"
   ;; (treemacs-project-follow-mode t)
   )
 
-(use-package lsp-treemacs
-  :after lsp)
-
 (use-package treemacs-evil
   :after treemacs evil)
+
+(use-package treemacs-projectile
+  :after (treemacs projectile)
+  :ensure t)
+
+(use-package treemacs-magit
+  :after (treemacs magit)
+  :ensure t)
+
+(use-package lsp-treemacs
+  :after lsp)
 
 (use-package tramp
   :ensure nil
