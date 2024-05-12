@@ -1,0 +1,10 @@
+#+TITLE: I3 window manager
+
+* Introduction
+
+This is my i3 configuration, some configs are stolen from other Internet users, and I've commented the origin of most.
+
+* execute programs
+
+- exec :: run program when you first start i3
+- exec_always :: run program every time you restart i3

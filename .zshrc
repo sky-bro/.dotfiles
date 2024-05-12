@@ -91,7 +91,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=250,bg=232,bold,underline"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-autosuggestions kubectl)
+plugins=(git zsh-autosuggestions kubectl nvm)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -135,4 +135,9 @@ source <(kubectl completion zsh)
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 eval "$(pyenv init -)"
+
+export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

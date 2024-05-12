@@ -1216,7 +1216,11 @@ You can delete an image by calling =org-download-delete=
 
 download [[https://plantuml.com/download][plantuml.jar]] and put it somewhere, set the =org-plantuml-jar-path=. (you can also download with =M-x plantuml-download-jar<RET>=)
 
-also need to add plantuml to org-babel.
+
+#+title: soft link plantuml
+[[file:images/plantuml-jar.png]]
+
+also need to add plantuml to [[id:de881600-38bc-46ff-bda6-d9726342035d][org-babel]].
 
 #+begin_src emacs-lisp
   (use-package plantuml-mode
@@ -1234,6 +1238,8 @@ also need to add plantuml to org-babel.
     ;; (add-to-list 'org-src-lang-modes '("plantuml" . plantuml))
     )
 #+end_src
+
+export to txt diagram example
 
 #+begin_src plantuml :results verbatim
   Alice -> Bob: Hello From Alice
@@ -1254,6 +1260,8 @@ also need to add plantuml to org-babel.
      |Alice|            |Bob|
      `-----'            `---'
 #+end_example
+
+export to svg file example
 
 #+begin_src plantuml :file "./images/plantulm-example.svg"
   Alice -> Bob: Hello From Alice

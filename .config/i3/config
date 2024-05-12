@@ -116,7 +116,7 @@ bindsym --release $mod+Ctrl+$left exec --no-startup-id xdotool key --clearmodifi
 #################################
 # kill focused window
 bindsym $mod+Shift+q kill
-# bindsym $mod+Shift+Ctrl+k exec kill-window.sh
+bindsym $mod+Shift+Ctrl+k exec kill-window.sh
 # switch between all windows (Alt + Tab)
 bindsym Mod1+Tab exec rofi-switch-window.sh
 # switch between last and current window
