@@ -135,9 +135,9 @@ source <(kubectl completion zsh)
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-eval "$(pyenv init -)"
 
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

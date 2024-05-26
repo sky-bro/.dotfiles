@@ -131,6 +131,18 @@ save and update custom settings in a separate file
 
 * System Related
 
+** Environment Variables
+
+#+begin_src emacs-lisp
+  (use-package exec-path-from-shell
+    :config
+    (dolist (var '("SSH_AUTH_SOCK"))
+      (add-to-list 'exec-path-from-shell-variables var))
+    (when (or (daemonp) (memq window-system '(mac ns x)))
+      (exec-path-from-shell-initialize))
+    )
+#+end_src
+
 * Misc
 
 ** debugging config file
@@ -1274,6 +1286,8 @@ export to svg file example
 ** Org Export
 
 *** revealjs
+
+[[https://github.com/yjwen/org-reveal][github: org-reveal]]
 
 #+begin_src emacs-lisp
   (use-package ox-reveal

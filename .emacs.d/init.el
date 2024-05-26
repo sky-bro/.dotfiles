@@ -61,6 +61,14 @@
 (when (file-exists-p custom-file)
   (load custom-file))
 
+(use-package exec-path-from-shell
+  :config
+  (dolist (var '("SSH_AUTH_SOCK"))
+    (add-to-list 'exec-path-from-shell-variables var))
+  (when (or (daemonp) (memq window-system '(mac ns x)))
+    (exec-path-from-shell-initialize))
+  )
+
 ;; Produce backtraces when errors occur: can be helpful to diagnose startup issues
 ;; you can turn it on and off with toggle-debug-on-error
 ;; (setq debug-on-error t)
