@@ -1,7 +1,16 @@
 set modelines=1
+scriptencoding utf-8
+set encoding=utf-8
 
 " leader is comma
 let mapleader=","
+
+" automatically install vim-plug
+let data_dir = has('nvim') ? stdpath('data') . '/site' : '~/.vim'
+if empty(glob(data_dir . '/autoload/plug.vim'))
+  silent execute '!curl -fLo '.data_dir.'/autoload/plug.vim --create-dirs  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
 
 " Plugins {{{
 call plug#begin()
@@ -25,8 +34,8 @@ syntax on
 set cursorline
 
 " line numbers and distances
-set relativenumber 
-set number 
+set relativenumber
+set number
 
 " show command in bottom bar
 set showcmd
