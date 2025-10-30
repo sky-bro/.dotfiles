@@ -228,8 +228,7 @@ exec_always app_starter.sh aria2c
 # desktop monitor
 exec_always app_starter.sh conky
 # window effect: transparency, shadow, animation
-#exec_always --no-startup-id picom -b --experimental-backends
-exec_always --no-startup-id compfy -b
+#exec_always --no-startup-id picom -b
 # use dex to autostart programs in:
 #   /etc/xdg/autostart/*
 #   $HOME/.config/autostart/*

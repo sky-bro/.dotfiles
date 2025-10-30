@@ -14,6 +14,8 @@ These are my dotfiles managed with stow, check [[https://k4i.top/posts/manage-my
   stow -v .
 #+end_src
 
+stow will create symbolic link for the uppermost path it do not find in the target directory. So if you do not want to create symbolic for some folder, create the folder first
+
 * what I use
 
 - window manager:

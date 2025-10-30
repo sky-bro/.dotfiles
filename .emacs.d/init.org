@@ -1,0 +1,809 @@
+#+TITLE: My Emacs Configuration
+#+EXPORT_FILE_NAME: README
+#+STARTUP: overview
+
+* Introduction
+
+This is my modular Emacs configuration inspired by MatthewZMD's approach. The configuration is organized into separate modules in the elisp/ directory.
+
+* Startup Performance
+
+This section optimizes Emacs startup performance by adjusting garbage collection thresholds and displaying startup statistics.
+
+** Garbage Collection Optimization
+
+To improve startup performance, we increase the garbage collection threshold during initialization and reset it after startup.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-performance.el" src emacs-lisp :range-begin ";;;; Garbage Collection" :range-end ";;;; Startup Time Display"
+
+** Startup Time Display
+
+We display startup time statistics to help monitor performance.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-performance.el" src emacs-lisp :range-begin ";;;; Startup Time Display" :range-end ";;;; Security"
+
+** Security Settings
+
+Disable risky local variable warnings for better startup experience.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-performance.el" src emacs-lisp :range-begin ";;;; Security" :range-end "(provide 'init-performance)"
+
+* Server Configuration
+
+This section configures Emacs server to allow multiple clients to connect to a single Emacs instance.
+
+** Server Setup
+
+Start the Emacs server if it's not already running.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-server.el" src emacs-lisp :range-begin "(require 'server)" :range-end "(provide 'init-server)"
+
+* Package Management
+
+This section configures package management using package.el and use-package for better package handling.
+
+** Package Repository Setup
+
+Configure package archives to use Tsinghua University's ELPA mirror for faster downloads.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-package.el" src emacs-lisp :range-begin ";; PackageRepositorySetup" :range-end ";; -PackageRepositorySetup"
+
+** Package Initialization
+
+Initialize the package system and refresh contents if needed.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-package.el" src emacs-lisp :range-begin ";; PackageInitialization" :range-end ";; -PackageInitialization"
+
+** Use-Package Configuration
+
+Set up use-package for better package management and ensure packages are always installed.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-package.el" src emacs-lisp :range-begin ";; UsePackageConfiguration" :range-end ";; -UsePackageConfiguration"
+
+* Path and Custom File Configuration
+
+This section configures load paths and custom file handling for Emacs.
+
+** Load Path Configuration
+
+Add the lisp directory to Emacs load path.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-paths.el" src emacs-lisp :range-begin ";; LoadPathConfiguration" :range-end ";; -LoadPathConfiguration"
+
+** Custom File Setup
+
+Configure and load the custom.el file if it exists.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-paths.el" src emacs-lisp :range-begin ";; CustomFileSetup" :range-end ";; -CustomFileSetup"
+
+** Exec Path From Shell
+
+Set up exec-path-from-shell for proper environment variable handling.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-paths.el" src emacs-lisp :range-begin ";; ExecPathFromShell" :range-end ";; -ExecPathFromShell"
+
+* Chinese Input Method
+
+This section configures Chinese input methods and spell checking features.
+
+** Pyim Setup
+
+Configure the pyim Chinese input method with basedict.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-chinese.el" src emacs-lisp :range-begin ";; PyimSetup" :range-end ";; -PyimSetup"
+
+** Word Saving Function
+
+Add a function to save words to the dictionary.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-chinese.el" src emacs-lisp :range-begin ";; WordSavingFunction" :range-end ";; -WordSavingFunction"
+
+** Flyspell Configuration
+
+Configure flyspell for spell checking with custom functions and keybindings.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-chinese.el" src emacs-lisp :range-begin ";; FlyspellConfiguration" :range-end ";; -FlyspellConfiguration"
+
+* Completion and Search
+
+This section configures completion and search frameworks using Ivy, Counsel, and related packages.
+
+** Ivy Setup
+
+Configure Ivy for powerful completion and searching capabilities.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-completion.el" src emacs-lisp :range-begin ";; IvySetup" :range-end ";; -IvySetup"
+
+** Ivy Rich
+
+Enhance Ivy with richer completion information.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-completion.el" src emacs-lisp :range-begin ";; IvyRich" :range-end ";; -IvyRich"
+
+** Ivy Prescient
+
+Enable prescient sorting for Ivy to show recently selected candidates first.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-completion.el" src emacs-lisp :range-begin ";; IvyPrescient" :range-end ";; -IvyPrescient"
+
+** Counsel Setup
+
+Configure Counsel for enhanced minibuffer completion.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-completion.el" src emacs-lisp :range-begin ";; CounselSetup" :range-end ";; -CounselSetup"
+
+** Ivy Posframe
+
+Use posframe to display Ivy completion in a popup frame.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-completion.el" src emacs-lisp :range-begin ";; IvyPosframe" :range-end ";; -IvyPosframe"
+
+** Wgrep
+
+Enable editing grep results directly in the buffer.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-completion.el" src emacs-lisp :range-begin ";; Wgrep" :range-end ";; -Wgrep"
+
+* UI Configuration
+
+This section configures the user interface including fonts, themes, and visual elements.
+
+** Basic UI Configuration
+
+Configure basic UI elements like scrollbars, toolbars, and line numbers.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; BasicUIConfiguration" :range-end ";; -BasicUIConfiguration"
+
+** Scratch Buffer Message
+
+Set up the initial message for the scratch buffer.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; ScratchBufferMessage" :range-end ";; -ScratchBufferMessage"
+
+** Default Values
+
+Set default values for various Emacs settings.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; DefaultValues" :range-end ";; -DefaultValues"
+
+** Dashboard Configuration
+
+Configure the dashboard startup screen.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; DashboardConfiguration" :range-end ";; -DashboardConfiguration"
+
+** Beacon Configuration
+
+Set up the beacon mode for cursor visibility.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; BeaconConfiguration" :range-end ";; -BeaconConfiguration"
+
+** Mouse Configuration
+
+Configure mouse-related settings.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; MouseConfiguration" :range-end ";; -MouseConfiguration"
+
+** Whitespace Configuration
+
+Configure whitespace visualization and handling.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; WhitespaceConfiguration" :range-end ";; -WhitespaceConfiguration"
+
+** Electric Configuration
+
+Configure electric indent mode and font settings.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; ElectricConfiguration" :range-end ";; -ElectricConfiguration"
+
+** Rainbow Delimiters
+
+Enable rainbow delimiters for better code visualization.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; RainbowDelimiters" :range-end ";; -RainbowDelimiters"
+
+** Paren Mode
+
+Enable paren mode for better parenthesis matching.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; ParenMode" :range-end ";; -ParenMode"
+
+** Electric Pair Mode
+
+Enable electric pair mode for automatic parenthesis pairing.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; ElectricPairMode" :range-end ";; -ElectricPairMode"
+
+** Rainbow Mode
+
+Enable rainbow mode for CSS color visualization.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; RainbowMode" :range-end ";; -RainbowMode"
+
+** Theme Configuration
+
+Configure the Doom themes.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; ThemeConfiguration" :range-end ";; -ThemeConfiguration"
+
+** Modeline Configuration
+
+Configure the Doom modeline.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; ModelineConfiguration" :range-end ";; -ModelineConfiguration"
+
+** Command Log Mode
+
+Enable command log mode for tracking commands.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; CommandLogMode" :range-end ";; -CommandLogMode"
+
+** Centaur Tabs
+
+Configure the centaur tabs for buffer management.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-ui.el" src emacs-lisp :range-begin ";; CentaurTabs" :range-end ";; -CentaurTabs"
+
+* Evil Mode
+
+This section configures Evil mode for Vim-like keybindings in Emacs.
+
+** Evil Mode Setup
+
+Configure Evil mode with proper integration and keybindings.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-evil.el" src emacs-lisp :range-begin ";; EvilModeSetup" :range-end ";; -EvilModeSetup"
+
+** Evil Collection
+
+Enable Evil Collection for better Evil integration with various modes.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-evil.el" src emacs-lisp :range-begin ";; EvilCollection" :range-end ";; -EvilCollection"
+
+* Keybindings
+
+This section configures custom keybindings and general keyboard shortcuts.
+
+** General Setup
+
+Configure the general keybinding system with leader keys.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-keybindings.el" src emacs-lisp :range-begin ";; GeneralSetup" :range-end ";; -GeneralSetup"
+
+** Which Key
+
+Enable which-key for better keybinding discovery.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-keybindings.el" src emacs-lisp :range-begin ";; WhichKey" :range-end ";; -WhichKey"
+
+** Helpful Setup
+
+Configure helpful for better help functionality.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-keybindings.el" src emacs-lisp :range-begin ";; HelpfulSetup" :range-end ";; -HelpfulSetup"
+
+** Resize Window Function
+
+Add a function to interactively resize windows.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-keybindings.el" src emacs-lisp :range-begin ";; ResizeWindowFunction" :range-end ";; -ResizeWindowFunction"
+
+** Global Keybindings
+
+Set up global keybindings for common operations.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-keybindings.el" src emacs-lisp :range-begin ";; GlobalKeybindings" :range-end ";; -GlobalKeybindings"
+
+* Org Mode
+
+This section configures Org mode and related packages for note-taking, task management, and document authoring.
+
+** Org Font Setup
+
+Configure fonts and faces for Org mode headings and elements.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgFontSetup" :range-end ";; -OrgFontSetup"
+
+** Toggle Functions
+
+Add functions to toggle Org export functionality.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; ToggleFunctions" :range-end ";; -ToggleFunctions"
+
+** Org Mode Setup
+
+Configure basic Org mode settings and hooks.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgModeSetup" :range-end ";; -OrgModeSetup"
+
+** Org Bullets
+
+Enable org-bullets for better visual representation of bullet points.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgBullets" :range-end ";; -OrgBullets"
+
+** Visual Fill Column
+
+Configure visual fill column for better text wrapping in Org mode.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; VisualFillColumn" :range-end ";; -VisualFillColumn"
+
+** Org Keybindings
+
+Set up keybindings for Org mode navigation.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgKeybindings" :range-end ";; -OrgKeybindings"
+
+** Org Agenda Custom Commands
+
+Configure custom agenda views for task management.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgAgendaCustomCommands" :range-end ";; -OrgAgendaCustomCommands"
+
+** Org Habit
+
+Enable org-habit for habit tracking.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgHabit" :range-end ";; -OrgHabit"
+
+** Org Download
+
+Configure org-download for image handling in Org mode.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgDownload" :range-end ";; -OrgDownload"
+
+** Plantuml Mode
+
+Enable plantuml-mode for diagram generation.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; PlantumlMode" :range-end ";; -PlantumlMode"
+
+** Org Reveal
+
+Configure ox-reveal for presentation export.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgReveal" :range-end ";; -OrgReveal"
+
+** Org Hugo
+
+Enable ox-hugo for Hugo blog export.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgHugo" :range-end ";; -OrgHugo"
+
+** Org LaTeX Export
+
+Configure LaTeX export settings for PDF generation.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgLatexExport" :range-end ";; -OrgLatexExport"
+
+** Ebib
+
+Configure Ebib for bibliography management.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; Ebib" :range-end ";; -Ebib"
+
+** Org Babel
+
+Configure Org Babel for code execution in Org mode.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgBabel" :range-end ";; -OrgBabel"
+
+** Org Babel Tangle
+
+Enable automatic tangling of Org configuration files.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgBabelTangle" :range-end ";; -OrgBabelTangle"
+
+** Org Capture Templates
+
+Configure templates for Org capture functionality.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgCaptureTemplates" :range-end ";; -OrgCaptureTemplates"
+
+** Org Roam
+
+Configure Org Roam for networked note-taking.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgRoam" :range-end ";; -OrgRoam"
+
+** Org Roam UI
+
+Enable Org Roam UI for visualizing note connections.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgRoamUI" :range-end ";; -OrgRoamUI"
+
+** Org Ref
+
+Configure org-ref for citation management.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgRef" :range-end ";; -OrgRef"
+
+** Citeproc Org
+
+Enable citeproc-org for citation processing.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; CiteprocOrg" :range-end ";; -CiteprocOrg"
+
+** Org Biblatex
+
+Load org-biblatex for BibTeX support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OrgBiblatex" :range-end ";; -OrgBiblatex"
+
+** Ox GFM
+
+Configure ox-gfm for GitHub Flavored Markdown export.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-org.el" src emacs-lisp :range-begin ";; OxGfm" :range-end ";; -OxGfm"
+
+* Programming Support
+
+This section configures programming language support and development tools.
+
+** Basic Programming Setup
+
+Configure basic programming mode enhancements.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; BasicProgrammingSetup" :range-end ";; -BasicProgrammingSetup"
+
+** Flycheck
+
+Enable Flycheck for on-the-fly syntax checking.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Flycheck" :range-end ";; -Flycheck"
+
+** Company
+
+Configure Company for auto-completion.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Company" :range-end ";; -Company"
+
+** Evil Nerd Commenter
+
+Enable evil-nerd-commenter for easy commenting.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; EvilNerdCommenter" :range-end ";; -EvilNerdCommenter"
+
+** Format All
+
+Configure format-all for code formatting.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; FormatAll" :range-end ";; -FormatAll"
+
+** C++ Mode
+
+Configure C++ mode with custom compile command.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; CppMode" :range-end ";; -CppMode"
+
+** Compilation Buffer
+
+Set up compilation buffer handling.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; CompilationBuffer" :range-end ";; -CompilationBuffer"
+
+** Projectile
+
+Configure Projectile for project management.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Projectile" :range-end ";; -Projectile"
+
+** Counsel Projectile
+
+Enable counsel-projectile for enhanced project navigation.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; CounselProjectile" :range-end ";; -CounselProjectile"
+
+** Magit
+
+Configure Magit for Git integration.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Magit" :range-end ";; -Magit"
+
+** Forge
+
+Enable Forge for Git forge integration.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Forge" :range-end ";; -Forge"
+
+** Docker
+
+Configure Docker support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Docker" :range-end ";; -Docker"
+
+** LSP Mode
+
+Set up LSP mode for language server protocol support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; LspMode" :range-end ";; -LspMode"
+
+** LSP UI
+
+Configure LSP UI for enhanced LSP experience.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; LspUI" :range-end ";; -LspUI"
+
+** LSP Ivy
+
+Enable LSP Ivy integration.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; LspIvy" :range-end ";; -LspIvy"
+
+** DAP Mode
+
+Configure DAP mode for debugging support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; DapMode" :range-end ";; -DapMode"
+
+** TypeScript Mode
+
+Set up TypeScript mode.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; TypeScriptMode" :range-end ";; -TypeScriptMode"
+
+** JSON Mode
+
+Enable JSON mode support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; JsonMode" :range-end ";; -JsonMode"
+
+** C Header Mode
+
+Configure C header file handling.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; CHeaderMode" :range-end ";; -CHeaderMode"
+
+** CMake Mode
+
+Enable CMake mode support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; CMakeMode" :range-end ";; -CMakeMode"
+
+** Python Mode
+
+Configure Python mode with debugging support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; PythonMode" :range-end ";; -PythonMode"
+
+** Pyvenv
+
+Set up Python virtual environment support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Pyvenv" :range-end ";; -Pyvenv"
+
+** Slime
+
+Configure Slime for Lisp development.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Slime" :range-end ";; -Slime"
+
+** Slime Company
+
+Enable Slime Company integration.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; SlimeCompany" :range-end ";; -SlimeCompany"
+
+** Rust Mode
+
+Set up Rust mode with LSP support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; RustMode" :range-end ";; -RustMode"
+
+** Flycheck Rust
+
+Configure Rust-specific Flycheck support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; FlycheckRust" :range-end ";; -FlycheckRust"
+
+** Cargo
+
+Enable Cargo support for Rust projects.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Cargo" :range-end ";; -Cargo"
+
+** Go Mode
+
+Configure Go mode with formatting support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; GoMode" :range-end ";; -GoMode"
+
+** Company Go
+
+Enable Go-specific Company completion.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; CompanyGo" :range-end ";; -CompanyGo"
+
+** PHP Mode
+
+Set up PHP mode support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; PhpMode" :range-end ";; -PhpMode"
+
+** TOML Mode
+
+Enable TOML mode with LSP support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; TomlMode" :range-end ";; -TomlMode"
+
+** YAML Mode
+
+Configure YAML mode support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; YamlMode" :range-end ";; -YamlMode"
+
+** TeX Mode
+
+Set up TeX and LaTeX mode support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; TexMode" :range-end ";; -TexMode"
+
+** Cdlatex
+
+Enable Cdlatex for LaTeX support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; Cdlatex" :range-end ";; -Cdlatex"
+
+** Graphviz Dot Mode
+
+Configure Graphviz dot mode support.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-prog.el" src emacs-lisp :range-begin ";; GraphvizDotMode" :range-end ";; -GraphvizDotMode"
+
+* Shell and Terminal
+
+This section configures terminal, shell, and related configurations.
+
+** Vterm
+
+Configure vterm for terminal emulation.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; Vterm" :range-end ";; -Vterm"
+
+** Vterm Toggle
+
+Set up vterm-toggle for quick terminal access.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; VtermToggle" :range-end ";; -VtermToggle"
+
+** Eshell
+
+Configure eshell with custom functions.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; Eshell" :range-end ";; -Eshell"
+
+** Dired
+
+Set up Dired for directory browsing.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; Dired" :range-end ";; -Dired"
+
+** Dired Icons
+
+Enable icons in Dired mode.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; DiredIcons" :range-end ";; -DiredIcons"
+
+** Dired Subtree
+
+Configure dired-subtree for tree-like directory views.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; DiredSubtree" :range-end ";; -DiredSubtree"
+
+** Dired Ranger
+
+Enable dired-ranger for ranger-like file operations.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; DiredRanger" :range-end ";; -DiredRanger"
+
+** Dired Open
+
+Configure dired-open for opening files with external applications.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; DiredOpen" :range-end ";; -DiredOpen"
+
+** Dired Hide Dotfiles
+
+Enable dired-hide-dotfiles for toggling visibility of dotfiles.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; DiredHideDotfiles" :range-end ";; -DiredHideDotfiles"
+
+** Treemacs
+
+Configure Treemacs for project tree navigation.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; Treemacs" :range-end ";; -Treemacs"
+
+** Treemacs Evil
+
+Enable Treemacs Evil integration.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; TreemacsEvil" :range-end ";; -TreemacsEvil"
+
+** Treemacs Projectile
+
+Integrate Treemacs with Projectile.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; TreemacsProjectile" :range-end ";; -TreemacsProjectile"
+
+** Treemacs Magit
+
+Integrate Treemacs with Magit.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; TreemacsMagit" :range-end ";; -TreemacsMagit"
+
+** Treemacs LSP
+
+Enable Treemacs LSP integration.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; TreemacsLsp" :range-end ";; -TreemacsLsp"
+
+** Tramp
+
+Configure TRAMP for remote file access.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; Tramp" :range-end ";; -Tramp"
+
+** Proxy SOCKS
+
+Set up SOCKS proxy functions.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; ProxySocks" :range-end ";; -ProxySocks"
+
+** Proxy HTTP
+
+Configure HTTP proxy functions.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-shell.el" src emacs-lisp :range-begin ";; ProxyHttp" :range-end ";; -ProxyHttp"
+
+* Utilities
+
+This section configures utility functions and miscellaneous configurations.
+
+** No Littering
+
+Configure no-littering for better file organization.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; NoLittering" :range-end ";; -NoLittering"
+
+** Window Management
+
+Set up window management configurations.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; WindowManagement" :range-end ";; -WindowManagement"
+
+** Eyebrowse
+
+Enable eyebrowse for workspace management.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; Eyebrowse" :range-end ";; -Eyebrowse"
+
+** Burly
+
+Configure Burly for window layout management.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; Burly" :range-end ";; -Burly"
+
+** Yasnippet
+
+Set up Yasnippet for snippet expansion.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; Yasnippet" :range-end ";; -Yasnippet"
+
+** Undo Fu
+
+Enable undo-fu for enhanced undo functionality.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; UndoFu" :range-end ";; -UndoFu"
+
+** Claude Code IDE
+
+Configure Claude Code IDE integration.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; ClaudeCodeIDE" :range-end ";; -ClaudeCodeIDE"
+
+** Ivy Switch Tab
+
+Set up ivy-switch-tab function.
+
+#+INCLUDE: "~/.emacs.d/elisp/init-utils.el" src emacs-lisp :range-begin ";; IvySwitchTab" :range-end ";; -IvySwitchTab"

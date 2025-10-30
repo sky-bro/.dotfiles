@@ -1,0 +1,3 @@
+#!bin/bash
+
+! [[ -v INCLUDED_DOT_PROFILE ]] && [[ -f ~/.profile ]] && . ~/.profile
