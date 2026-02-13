@@ -128,9 +128,9 @@
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it

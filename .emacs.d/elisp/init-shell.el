@@ -93,7 +93,7 @@
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -166,13 +166,12 @@
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -182,7 +181,6 @@
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"

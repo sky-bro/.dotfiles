@@ -136,7 +136,32 @@
 (use-package magit
   :commands magit-status
   :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+  ;; Performance optimizations for responsiveness
+  (magit-refresh-verbose nil)
+  ;; Cache expensive operations
+  (magit-section-visibility-cache t)
+  (magit-section-show-child-count t)
+  ;; Limit number of commits shown initially to improve performance
+  (magit-log-arguments '("--graph" "--decorate" "--color" "--pretty=format:%h %ad | %s%d [%an]" "--date=iso" "-n256"))
+  ;; Reduce processing of hunk diffs by default
+  (magit-diff-refine-hunk nil)
+  ;; Slow down auto refresh to improve responsiveness
+  (magit-auto-refresh-mode nil)  ; Disable auto-refresh, update manually when needed
+  ;; Reduce refresh frequency of status buffer
+  (magit-status-headers-hook nil)  ; Reduce processing in status headers
+  :config
+  (add-hook 'magit-mode-hook
+            (lambda ()
+              ;; Reduce processing in magit buffers
+              (setq show-trailing-whitespace nil)
+              ;; Disable some features in magit for better performance
+              (when (bound-and-true-p global-hl-line-mode)
+                (hl-line-mode -1))
+              ;; Disable cursor blinking
+              (setq blink-cursor-mode nil)
+              ;; Reduce additional refresh triggers in magit mode
+              (remove-hook 'post-command-hook 'magit-refresh-post-command t))))
 ;; -Magit
 
 ;; Forge
@@ -149,7 +174,6 @@
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -170,7 +194,7 @@
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -211,10 +235,9 @@
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -232,6 +255,13 @@
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -262,49 +292,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -347,16 +377,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -366,6 +398,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))

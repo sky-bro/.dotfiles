@@ -19,7 +19,7 @@
     "fd" '(:ignore t :which-key "dotfiles")
     "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
     "fdw" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.config/i3/config"))) :which-key "window manager")
-    "k" 'kill-this-buffer
+    "k" 'kill-current-buffer
     "o"  '(:ignore t :which-key "org")
     "oa" 'org-agenda
     "oc" 'org-capture
@@ -36,7 +36,7 @@
     :prefix ",")
 
   (my-comma-leader
-    "k"  'kill-this-buffer))
+    "k"  'kill-current-buffer))
 ;; -GeneralSetup
 
 ;; WhichKey

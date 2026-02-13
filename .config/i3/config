@@ -300,7 +300,7 @@ bar {
 
 # class                 border  backgr. text    indicator child_border
 client.focused          $fc_bg $fc_bg $fc_txt $ugt_bg
-client.focused_inactive $ufc_bg $ufc_bg $fc_txt $fc_txt
+client.focused_inactive $ufc_bg $fc_bg $fc_txt $fc_txt
 client.unfocused        $ufc_bg $ufc_bg $ufc_txt $ufc_txt
 # client.urgent           $ugt_bg $ugt_bg $ugt_txt $ugt_txt
 # client.background       $bg

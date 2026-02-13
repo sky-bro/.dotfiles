@@ -52,21 +52,21 @@ set your package archives here, and enable use-package.
       ;; load emacs 24's package system. Add MELPA repository.
       (require 'package)
       (let (;; tsinghua
-            (archives '("http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"
-                        "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"
-                        "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+            ;; (archives '("http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"
+            ;;             "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"
+            ;;             "http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/"))
             ;; ustc
-            ;; (archives '("http://mirrors.ustc.edu.cn/elpa/melpa/"
-            ;;             "http://mirrors.ustc.edu.cn/elpa/org/"
-            ;;             "http://mirrors.ustc.edu.cn/elpa/gnu/"))
+            (archives '("https://mirrors.ustc.edu.cn/elpa/melpa/"
+                        "https://mirrors.ustc.edu.cn/elpa/gnu/"
+                        "https://mirrors.ustc.edu.cn/elpa/nongnu/"))
             ;; official
             ;; (archives '("https://melpa.org/packages/"
-            ;;             "http://orgmode.org/elpa/"
-            ;;             "https://elpa.gnu.org/packages/"))
+            ;;             "https://elpa.gnu.org/packages/"
+            ;;             "http://elpa.nongnu.org/nongnu"))
             )
         (setq package-archives `(("melpa" . ,(nth 0 archives))
-                                 ("org" . ,(nth 1 archives))
-                                 ("gnu" . ,(nth 2 archives)))))
+                                 ("gnu" . ,(nth 1 archives))
+                                 ("nongnu" . ,(nth 2 archives)))))
       )
 
     ;; does not eagerly load installed packages, just add their directories to `load-path` and evaluate their `autoloads`
@@ -1030,7 +1030,6 @@ The =k4i/org-font-setup= function configures various text faces to tweak the siz
     (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
   (use-package org
-    :pin org
     :commands (org-capture org-agenda)
     :hook (org-mode . k4i/org-mode-setup)
     :custom

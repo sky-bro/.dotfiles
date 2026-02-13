@@ -1,160 +1,160 @@
-- [Introduction](#org98a7a73)
-- [Startup Performance](#org03dfcd4)
-  - [Garbage Collection Optimization](#orga21bef8)
-  - [Startup Time Display](#org173a219)
-  - [Security Settings](#org2855c9c)
-- [Server Configuration](#org9abadc9)
-  - [Server Setup](#orge6e3296)
-- [Package Management](#org1440557)
-  - [Package Repository Setup](#org720d483)
-  - [Package Initialization](#org4c0ade2)
-  - [Use-Package Configuration](#org9b72c53)
-- [Path and Custom File Configuration](#org75a2181)
-  - [Load Path Configuration](#org669dd20)
-  - [Custom File Setup](#org3b2c6b0)
-  - [Exec Path From Shell](#orgc91b0ee)
-- [Chinese Input Method](#orgb4c251e)
-  - [Pyim Setup](#org4af9f5b)
-  - [Word Saving Function](#orgbd40e98)
-  - [Flyspell Configuration](#orga0e9577)
-- [Completion and Search](#org0897cef)
-  - [Ivy Setup](#org3a6f9a2)
-  - [Ivy Rich](#org03e343c)
-  - [Ivy Prescient](#org3ac8bd3)
-  - [Counsel Setup](#orgdb76ba0)
-  - [Ivy Posframe](#orgbc40b2b)
-  - [Wgrep](#org301369f)
-- [UI Configuration](#org7db9e0d)
-  - [Basic UI Configuration](#org372fc97)
-  - [Scratch Buffer Message](#org5a0d18d)
-  - [Default Values](#orgea98713)
-  - [Dashboard Configuration](#org81116a4)
-  - [Beacon Configuration](#org2cbf32f)
-  - [Mouse Configuration](#orgdc6eca3)
-  - [Whitespace Configuration](#orgb68636a)
-  - [Electric Configuration](#org2c23413)
-  - [Rainbow Delimiters](#org7407e4b)
-  - [Paren Mode](#org4ba4d2f)
-  - [Electric Pair Mode](#orgaae8c4d)
-  - [Rainbow Mode](#org18fbd0d)
-  - [Theme Configuration](#org342bc1b)
-  - [Modeline Configuration](#org45541eb)
-  - [Command Log Mode](#orgcaa9b08)
-  - [Centaur Tabs](#orgf81cc03)
-- [Evil Mode](#orgdc49198)
-  - [Evil Mode Setup](#org9cc186a)
-  - [Evil Collection](#org6504498)
-- [Keybindings](#org0dcb78d)
-  - [General Setup](#orgc1fb039)
-  - [Which Key](#orga93a015)
-  - [Helpful Setup](#orga5dcc14)
-  - [Resize Window Function](#orgdffc8b6)
-  - [Global Keybindings](#org664b147)
-- [Org Mode](#orga3b4aa1)
-  - [Org Font Setup](#org02ab8f3)
-  - [Toggle Functions](#orgc4230ab)
-  - [Org Mode Setup](#org8054c90)
-  - [Org Bullets](#org9e6f594)
-  - [Visual Fill Column](#orgf7c3fbb)
-  - [Org Keybindings](#org1c2d311)
-  - [Org Agenda Custom Commands](#org802772d)
-  - [Org Habit](#orge76848b)
-  - [Org Download](#org9189238)
-  - [Plantuml Mode](#orgbdac50d)
-  - [Org Reveal](#org627bb28)
-  - [Org Hugo](#org62ed3ac)
-  - [Org LaTeX Export](#orgeb153e2)
-  - [Ebib](#orgc3ad38e)
-  - [Org Babel](#orgd6b0fef)
-  - [Org Babel Tangle](#org69365ff)
-  - [Org Capture Templates](#orgc495682)
-  - [Org Roam](#org6d0337b)
-  - [Org Roam UI](#org3cfde8d)
-  - [Org Ref](#org8e640aa)
-  - [Citeproc Org](#org817ec50)
-  - [Org Biblatex](#orgcc500f6)
-  - [Ox GFM](#org16f91a1)
-- [Programming Support](#org182b0f0)
-  - [Basic Programming Setup](#orga379ac9)
-  - [Flycheck](#org981cb68)
-  - [Company](#org770dcad)
-  - [Evil Nerd Commenter](#orgc76dcba)
-  - [Format All](#orgfdbf4fd)
-  - [C++ Mode](#orge75679e)
-  - [Compilation Buffer](#org4dc1836)
-  - [Projectile](#org0e75922)
-  - [Counsel Projectile](#org0f46ced)
-  - [Magit](#org4213a87)
-  - [Forge](#orgcaee377)
-  - [Docker](#org702924c)
-  - [LSP Mode](#org436ef46)
-  - [LSP UI](#orgd9b645b)
-  - [LSP Ivy](#orgd933685)
-  - [DAP Mode](#org6713884)
-  - [TypeScript Mode](#org686d489)
-  - [JSON Mode](#orgfcad408)
-  - [C Header Mode](#org7515292)
-  - [CMake Mode](#org6d7cdb2)
-  - [Python Mode](#org8d734ae)
-  - [Pyvenv](#org9db7355)
-  - [Slime](#org900d77f)
-  - [Slime Company](#org55eba59)
-  - [Rust Mode](#orgad3726b)
-  - [Flycheck Rust](#org91dd3f6)
-  - [Cargo](#org5f52ffd)
-  - [Go Mode](#orgee28022)
-  - [Company Go](#org234fd64)
-  - [PHP Mode](#org7ebfed0)
-  - [TOML Mode](#org52a3212)
-  - [YAML Mode](#org3278997)
-  - [TeX Mode](#org24e82a7)
-  - [Cdlatex](#org9342785)
-  - [Graphviz Dot Mode](#orge64ff2c)
-- [Shell and Terminal](#org4a923f5)
-  - [Vterm](#org7f61435)
-  - [Vterm Toggle](#orgfc6045a)
-  - [Eshell](#org41d7f17)
-  - [Dired](#org500cd32)
-  - [Dired Icons](#org1aa3279)
-  - [Dired Subtree](#orgd2988b5)
-  - [Dired Ranger](#orgcedf97e)
-  - [Dired Open](#org61b0388)
-  - [Dired Hide Dotfiles](#orgcf4ecbf)
-  - [Treemacs](#orgbfc20d1)
-  - [Treemacs Evil](#org28cb09d)
-  - [Treemacs Projectile](#org02a5c0e)
-  - [Treemacs Magit](#org19ee297)
-  - [Treemacs LSP](#org1465caf)
-  - [Tramp](#org043db9f)
-  - [Proxy SOCKS](#org2b03c19)
-  - [Proxy HTTP](#orgf1788ba)
-- [Utilities](#orge9e2d03)
-  - [No Littering](#org64feb8c)
-  - [Window Management](#orgcb70078)
-  - [Eyebrowse](#orgf82fc41)
-  - [Burly](#orge4578d1)
-  - [Yasnippet](#org7cf9184)
-  - [Undo Fu](#org469e6f0)
-  - [Claude Code IDE](#org296603e)
-  - [Ivy Switch Tab](#orgad0f940)
+- [Introduction](#org930c796)
+- [Startup Performance](#org58a7fbe)
+  - [Garbage Collection Optimization](#org28423c1)
+  - [Startup Time Display](#org51e4085)
+  - [Security Settings](#orgbcbe108)
+- [Server Configuration](#orge826e2a)
+  - [Server Setup](#org32bb539)
+- [Package Management](#orga78f790)
+  - [Package Repository Setup](#orga46d9fc)
+  - [Package Initialization](#org62609e9)
+  - [Use-Package Configuration](#org16d67c0)
+- [Path and Custom File Configuration](#orgf480d45)
+  - [Load Path Configuration](#org5dc34f2)
+  - [Custom File Setup](#orga2a5a45)
+  - [Exec Path From Shell](#org6199c96)
+- [Chinese Input Method](#orgd83afa7)
+  - [Pyim Setup](#orga3bdffa)
+  - [Word Saving Function](#org06de884)
+  - [Flyspell Configuration](#org73532e9)
+- [Completion and Search](#org519710a)
+  - [Ivy Setup](#org3afd2f7)
+  - [Ivy Rich](#orgfa036f7)
+  - [Ivy Prescient](#org5e0a818)
+  - [Counsel Setup](#orgec590ad)
+  - [Ivy Posframe](#orgff196aa)
+  - [Wgrep](#orgb8d9039)
+- [UI Configuration](#org4c9a9d6)
+  - [Basic UI Configuration](#org65bc3b0)
+  - [Scratch Buffer Message](#orgecf7ce8)
+  - [Default Values](#org5facd10)
+  - [Dashboard Configuration](#org7af7a3d)
+  - [Beacon Configuration](#org7a41070)
+  - [Mouse Configuration](#org0ce0517)
+  - [Whitespace Configuration](#org44fa0e7)
+  - [Electric Configuration](#org67fe7fc)
+  - [Rainbow Delimiters](#org22fcacd)
+  - [Paren Mode](#org04d7fb5)
+  - [Electric Pair Mode](#orga0b53c8)
+  - [Rainbow Mode](#orge682dec)
+  - [Theme Configuration](#orgcc7fc69)
+  - [Modeline Configuration](#org9ac1747)
+  - [Command Log Mode](#orgff38b58)
+  - [Centaur Tabs](#org330eb4e)
+- [Evil Mode](#orgc2622a8)
+  - [Evil Mode Setup](#org10e6cbe)
+  - [Evil Collection](#org8ba0e10)
+- [Keybindings](#org8198ba0)
+  - [General Setup](#org80b3a39)
+  - [Which Key](#org643c3ae)
+  - [Helpful Setup](#org9efeb19)
+  - [Resize Window Function](#orgc164c0a)
+  - [Global Keybindings](#orgaec78a2)
+- [Org Mode](#org9a9c90f)
+  - [Org Font Setup](#org89bfeea)
+  - [Toggle Functions](#orgd13bfa9)
+  - [Org Mode Setup](#org0f9f5a5)
+  - [Org Bullets](#org6960a30)
+  - [Visual Fill Column](#orgb46152c)
+  - [Org Keybindings](#org979088d)
+  - [Org Agenda Custom Commands](#orge3f0d45)
+  - [Org Habit](#org7791b61)
+  - [Org Download](#org8541d6f)
+  - [Plantuml Mode](#org0ef03f7)
+  - [Org Reveal](#orgfb93caa)
+  - [Org Hugo](#org48d72fb)
+  - [Org LaTeX Export](#org7c82a16)
+  - [Ebib](#org6e934a6)
+  - [Org Babel](#orgc343337)
+  - [Org Babel Tangle](#org96d889d)
+  - [Org Capture Templates](#org4b46b5b)
+  - [Org Roam](#org16432e0)
+  - [Org Roam UI](#orgbf3ddb2)
+  - [Org Ref](#orge994b4a)
+  - [Citeproc Org](#orgb08db94)
+  - [Org Biblatex](#orgdc8ed3b)
+  - [Ox GFM](#org6338816)
+- [Programming Support](#org26fcd7c)
+  - [Basic Programming Setup](#orga146760)
+  - [Flycheck](#orga63d83b)
+  - [Company](#org82dba2e)
+  - [Evil Nerd Commenter](#orgb0392ab)
+  - [Format All](#orgd5f71bc)
+  - [C++ Mode](#org8a013bd)
+  - [Compilation Buffer](#org343f30d)
+  - [Projectile](#orgc1acc91)
+  - [Counsel Projectile](#org76dd90f)
+  - [Magit](#orgfd2ba65)
+  - [Forge](#org8479e85)
+  - [Docker](#orgb991504)
+  - [LSP Mode](#orged92452)
+  - [LSP UI](#org8ce2369)
+  - [LSP Ivy](#org90254b0)
+  - [DAP Mode](#org7ac1338)
+  - [TypeScript Mode](#orge31d03b)
+  - [JSON Mode](#org847f749)
+  - [C Header Mode](#org3a45eb2)
+  - [CMake Mode](#org6816fc0)
+  - [Python Mode](#org49ce3eb)
+  - [Pyvenv](#orgde36187)
+  - [Slime](#org12b7ce4)
+  - [Slime Company](#org7cd2513)
+  - [Rust Mode](#org6ea0688)
+  - [Flycheck Rust](#org13bcfe5)
+  - [Cargo](#org4714f95)
+  - [Go Mode](#org56b957e)
+  - [Company Go](#org7cc66fe)
+  - [PHP Mode](#orgd7129c9)
+  - [TOML Mode](#org5f41e45)
+  - [YAML Mode](#orga5d61ed)
+  - [TeX Mode](#org27ce1be)
+  - [Cdlatex](#orgbb825ff)
+  - [Graphviz Dot Mode](#orgdc6ab50)
+- [Shell and Terminal](#org9c446d0)
+  - [Vterm](#org41f4dbe)
+  - [Vterm Toggle](#org630479d)
+  - [Eshell](#orgd8b77e3)
+  - [Dired](#org3a0863f)
+  - [Dired Icons](#org60d1e88)
+  - [Dired Subtree](#org997d432)
+  - [Dired Ranger](#org3331418)
+  - [Dired Open](#orgdb597a3)
+  - [Dired Hide Dotfiles](#orgbacb100)
+  - [Treemacs](#org8980d6f)
+  - [Treemacs Evil](#orga589f6e)
+  - [Treemacs Projectile](#orged41483)
+  - [Treemacs Magit](#orgf64cdfd)
+  - [Treemacs LSP](#org7af03b0)
+  - [Tramp](#org124abb0)
+  - [Proxy SOCKS](#orgb0e6750)
+  - [Proxy HTTP](#orgab45b0e)
+- [Utilities](#org1095523)
+  - [No Littering](#org03f4b52)
+  - [Window Management](#org5b15d4d)
+  - [Eyebrowse](#orga1e9003)
+  - [Burly](#org8ec05d3)
+  - [Yasnippet](#org7f35a4f)
+  - [Undo Fu](#orga1c05fd)
+  - [Claude Code IDE](#org4ee0075)
+  - [Ivy Switch Tab](#org55e5e0b)
 
 
 
-<a id="org98a7a73"></a>
+<a id="org930c796"></a>
 
 # Introduction
 
 This is my modular Emacs configuration inspired by MatthewZMD's approach. The configuration is organized into separate modules in the elisp/ directory.
 
 
-<a id="org03dfcd4"></a>
+<a id="org58a7fbe"></a>
 
 # Startup Performance
 
 This section optimizes Emacs startup performance by adjusting garbage collection thresholds and displaying startup statistics.
 
 
-<a id="orga21bef8"></a>
+<a id="org28423c1"></a>
 
 ## Garbage Collection Optimization
 
@@ -231,7 +231,7 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 ```
 
 
-<a id="org173a219"></a>
+<a id="org51e4085"></a>
 
 ## Startup Time Display
 
@@ -308,7 +308,7 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 ```
 
 
-<a id="org2855c9c"></a>
+<a id="orgbcbe108"></a>
 
 ## Security Settings
 
@@ -385,14 +385,14 @@ If you experience freezing, decrease this.  If you experience stuttering, increa
 ```
 
 
-<a id="org9abadc9"></a>
+<a id="orge826e2a"></a>
 
 # Server Configuration
 
 This section configures Emacs server to allow multiple clients to connect to a single Emacs instance.
 
 
-<a id="orge6e3296"></a>
+<a id="org32bb539"></a>
 
 ## Server Setup
 
@@ -413,14 +413,14 @@ Start the Emacs server if it's not already running.
 ```
 
 
-<a id="org1440557"></a>
+<a id="orga78f790"></a>
 
 # Package Management
 
 This section configures package management using package.el and use-package for better package handling.
 
 
-<a id="org720d483"></a>
+<a id="orga46d9fc"></a>
 
 ## Package Repository Setup
 
@@ -428,52 +428,74 @@ Configure package archives to use Tsinghua University's ELPA mirror for faster d
 
 ```emacs-lisp
 ;;; init-package.el --- Package management configuration -*- lexical-binding: t -*-
+
 ;;; Commentary:
-;; Package management setup using package.el and use-package
+;; Package management setup using straight.el and use-package
 
 ;;; Code:
 
 ;; PackageRepositorySetup
 (when (>= emacs-major-version 24)
   (progn
-    ;; load emacs 24's package system. Add MELPA repository.
-    (require 'package)
+    ;; Configure package archives for straight.el to use
     (let (;; tsinghua
-          (archives '("http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"
-                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"
-                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+          ;; (archives '(\"http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/\"
+          ;;             \"http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/\"
+          ;;             \"http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/\"))
           ;; ustc
-          ;; (archives '("http://mirrors.ustc.edu.cn/elpa/melpa/"
-          ;;             "http://mirrors.ustc.edu.cn/elpa/org/"
-          ;;             "http://mirrors.ustc.edu.cn/elpa/gnu/"))
+          (archives '(\"https://mirrors.ustc.edu.cn/elpa/melpa/\"
+                      \"https://mirrors.ustc.edu.cn/elpa/gnu/\"
+                      \"https://mirrors.ustc.edu.cn/elpa/nongnu/\"))
           ;; official
-          ;; (archives '("https://melpa.org/packages/"
-          ;;             "http://orgmode.org/elpa/"
-          ;;             "https://elpa.gnu.org/packages/"))
+          ;; (archives '(\"https://melpa.org/packages/\"
+          ;;             \"https://elpa.gnu.org/packages/\"
+          ;;             \"http://elpa.nongnu.org/nongnu\"))
           )
-      (setq package-archives `(("melpa" . ,(nth 0 archives))
-                               ("org" . ,(nth 1 archives))
-                               ("gnu" . ,(nth 2 archives)))))
+      (setq package-archives `((\"melpa\" . ,(nth 0 archives))
+                               (\"gnu\" . ,(nth 1 archives))
+                               (\"nongnu\" . ,(nth 2 archives)))))
+    ;; Package.el is not being loaded since we're using straight.el exclusively
     )
 
   ;; does not eagerly load installed packages, just add their directories to `load-path` and evaluate their `autoloads`
   ;; (when (< emacs-major-version 27) (package-initialize))
-  (package-initialize)
+  ;; (package-initialize) ;; use straight.el, remove this
   )
+
 ;; -PackageRepositorySetup
 
-;; PackageInitialization
-(unless package-archive-contents
-  (package-refresh-contents))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+;; PackageInitialization
+;; (unless package-archive-contents
+;;   (package-refresh-contents))
+
+;; Initialize use-package - now done via straight.el below
 ;; -PackageInitialization
 
 ;; UsePackageConfiguration
+;; Bootstrap straight.el first
+(straight-use-package 'org)
+(straight-use-package 'use-package)
+
+(setq straight-use-package-by-default t)
+;; (setq use-package-always-ensure t)
+
 (require 'use-package)
-(setq use-package-always-ensure t)
 
 (use-package async
   :config (setq async-bytecomp-package-mode 1))
@@ -484,7 +506,7 @@ Configure package archives to use Tsinghua University's ELPA mirror for faster d
 ```
 
 
-<a id="org4c0ade2"></a>
+<a id="org62609e9"></a>
 
 ## Package Initialization
 
@@ -492,52 +514,74 @@ Initialize the package system and refresh contents if needed.
 
 ```emacs-lisp
 ;;; init-package.el --- Package management configuration -*- lexical-binding: t -*-
+
 ;;; Commentary:
-;; Package management setup using package.el and use-package
+;; Package management setup using straight.el and use-package
 
 ;;; Code:
 
 ;; PackageRepositorySetup
 (when (>= emacs-major-version 24)
   (progn
-    ;; load emacs 24's package system. Add MELPA repository.
-    (require 'package)
+    ;; Configure package archives for straight.el to use
     (let (;; tsinghua
-          (archives '("http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"
-                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"
-                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+          ;; (archives '(\"http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/\"
+          ;;             \"http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/\"
+          ;;             \"http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/\"))
           ;; ustc
-          ;; (archives '("http://mirrors.ustc.edu.cn/elpa/melpa/"
-          ;;             "http://mirrors.ustc.edu.cn/elpa/org/"
-          ;;             "http://mirrors.ustc.edu.cn/elpa/gnu/"))
+          (archives '(\"https://mirrors.ustc.edu.cn/elpa/melpa/\"
+                      \"https://mirrors.ustc.edu.cn/elpa/gnu/\"
+                      \"https://mirrors.ustc.edu.cn/elpa/nongnu/\"))
           ;; official
-          ;; (archives '("https://melpa.org/packages/"
-          ;;             "http://orgmode.org/elpa/"
-          ;;             "https://elpa.gnu.org/packages/"))
+          ;; (archives '(\"https://melpa.org/packages/\"
+          ;;             \"https://elpa.gnu.org/packages/\"
+          ;;             \"http://elpa.nongnu.org/nongnu\"))
           )
-      (setq package-archives `(("melpa" . ,(nth 0 archives))
-                               ("org" . ,(nth 1 archives))
-                               ("gnu" . ,(nth 2 archives)))))
+      (setq package-archives `((\"melpa\" . ,(nth 0 archives))
+                               (\"gnu\" . ,(nth 1 archives))
+                               (\"nongnu\" . ,(nth 2 archives)))))
+    ;; Package.el is not being loaded since we're using straight.el exclusively
     )
 
   ;; does not eagerly load installed packages, just add their directories to `load-path` and evaluate their `autoloads`
   ;; (when (< emacs-major-version 27) (package-initialize))
-  (package-initialize)
+  ;; (package-initialize) ;; use straight.el, remove this
   )
+
 ;; -PackageRepositorySetup
 
-;; PackageInitialization
-(unless package-archive-contents
-  (package-refresh-contents))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+;; PackageInitialization
+;; (unless package-archive-contents
+;;   (package-refresh-contents))
+
+;; Initialize use-package - now done via straight.el below
 ;; -PackageInitialization
 
 ;; UsePackageConfiguration
+;; Bootstrap straight.el first
+(straight-use-package 'org)
+(straight-use-package 'use-package)
+
+(setq straight-use-package-by-default t)
+;; (setq use-package-always-ensure t)
+
 (require 'use-package)
-(setq use-package-always-ensure t)
 
 (use-package async
   :config (setq async-bytecomp-package-mode 1))
@@ -548,7 +592,7 @@ Initialize the package system and refresh contents if needed.
 ```
 
 
-<a id="org9b72c53"></a>
+<a id="org16d67c0"></a>
 
 ## Use-Package Configuration
 
@@ -556,52 +600,74 @@ Set up use-package for better package management and ensure packages are always 
 
 ```emacs-lisp
 ;;; init-package.el --- Package management configuration -*- lexical-binding: t -*-
+
 ;;; Commentary:
-;; Package management setup using package.el and use-package
+;; Package management setup using straight.el and use-package
 
 ;;; Code:
 
 ;; PackageRepositorySetup
 (when (>= emacs-major-version 24)
   (progn
-    ;; load emacs 24's package system. Add MELPA repository.
-    (require 'package)
+    ;; Configure package archives for straight.el to use
     (let (;; tsinghua
-          (archives '("http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/"
-                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/org/"
-                      "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/"))
+          ;; (archives '(\"http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/\"
+          ;;             \"http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/\"
+          ;;             \"http://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/\"))
           ;; ustc
-          ;; (archives '("http://mirrors.ustc.edu.cn/elpa/melpa/"
-          ;;             "http://mirrors.ustc.edu.cn/elpa/org/"
-          ;;             "http://mirrors.ustc.edu.cn/elpa/gnu/"))
+          (archives '(\"https://mirrors.ustc.edu.cn/elpa/melpa/\"
+                      \"https://mirrors.ustc.edu.cn/elpa/gnu/\"
+                      \"https://mirrors.ustc.edu.cn/elpa/nongnu/\"))
           ;; official
-          ;; (archives '("https://melpa.org/packages/"
-          ;;             "http://orgmode.org/elpa/"
-          ;;             "https://elpa.gnu.org/packages/"))
+          ;; (archives '(\"https://melpa.org/packages/\"
+          ;;             \"https://elpa.gnu.org/packages/\"
+          ;;             \"http://elpa.nongnu.org/nongnu\"))
           )
-      (setq package-archives `(("melpa" . ,(nth 0 archives))
-                               ("org" . ,(nth 1 archives))
-                               ("gnu" . ,(nth 2 archives)))))
+      (setq package-archives `((\"melpa\" . ,(nth 0 archives))
+                               (\"gnu\" . ,(nth 1 archives))
+                               (\"nongnu\" . ,(nth 2 archives)))))
+    ;; Package.el is not being loaded since we're using straight.el exclusively
     )
 
   ;; does not eagerly load installed packages, just add their directories to `load-path` and evaluate their `autoloads`
   ;; (when (< emacs-major-version 27) (package-initialize))
-  (package-initialize)
+  ;; (package-initialize) ;; use straight.el, remove this
   )
+
 ;; -PackageRepositorySetup
 
-;; PackageInitialization
-(unless package-archive-contents
-  (package-refresh-contents))
+(defvar bootstrap-version)
+(let ((bootstrap-file
+       (expand-file-name
+        "straight/repos/straight.el/bootstrap.el"
+        (or (bound-and-true-p straight-base-dir)
+            user-emacs-directory)))
+      (bootstrap-version 7))
+  (unless (file-exists-p bootstrap-file)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
+         'silent 'inhibit-cookies)
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
+  (load bootstrap-file nil 'nomessage))
 
-;; Initialize use-package on non-Linux platforms
-(unless (package-installed-p 'use-package)
-  (package-install 'use-package))
+;; PackageInitialization
+;; (unless package-archive-contents
+;;   (package-refresh-contents))
+
+;; Initialize use-package - now done via straight.el below
 ;; -PackageInitialization
 
 ;; UsePackageConfiguration
+;; Bootstrap straight.el first
+(straight-use-package 'org)
+(straight-use-package 'use-package)
+
+(setq straight-use-package-by-default t)
+;; (setq use-package-always-ensure t)
+
 (require 'use-package)
-(setq use-package-always-ensure t)
 
 (use-package async
   :config (setq async-bytecomp-package-mode 1))
@@ -612,14 +678,14 @@ Set up use-package for better package management and ensure packages are always 
 ```
 
 
-<a id="org75a2181"></a>
+<a id="orgf480d45"></a>
 
 # Path and Custom File Configuration
 
 This section configures load paths and custom file handling for Emacs.
 
 
-<a id="org669dd20"></a>
+<a id="org5dc34f2"></a>
 
 ## Load Path Configuration
 
@@ -657,7 +723,7 @@ Add the lisp directory to Emacs load path.
 ```
 
 
-<a id="org3b2c6b0"></a>
+<a id="orga2a5a45"></a>
 
 ## Custom File Setup
 
@@ -695,7 +761,7 @@ Configure and load the custom.el file if it exists.
 ```
 
 
-<a id="orgc91b0ee"></a>
+<a id="org6199c96"></a>
 
 ## Exec Path From Shell
 
@@ -733,14 +799,14 @@ Set up exec-path-from-shell for proper environment variable handling.
 ```
 
 
-<a id="orgb4c251e"></a>
+<a id="orgd83afa7"></a>
 
 # Chinese Input Method
 
 This section configures Chinese input methods and spell checking features.
 
 
-<a id="org4af9f5b"></a>
+<a id="orga3bdffa"></a>
 
 ## Pyim Setup
 
@@ -822,7 +888,7 @@ Configure the pyim Chinese input method with basedict.
 ```
 
 
-<a id="orgbd40e98"></a>
+<a id="org06de884"></a>
 
 ## Word Saving Function
 
@@ -904,7 +970,7 @@ Add a function to save words to the dictionary.
 ```
 
 
-<a id="orga0e9577"></a>
+<a id="org73532e9"></a>
 
 ## Flyspell Configuration
 
@@ -986,14 +1052,14 @@ Configure flyspell for spell checking with custom functions and keybindings.
 ```
 
 
-<a id="org0897cef"></a>
+<a id="org519710a"></a>
 
 # Completion and Search
 
 This section configures completion and search frameworks using Ivy, Counsel, and related packages.
 
 
-<a id="org3a6f9a2"></a>
+<a id="org3afd2f7"></a>
 
 ## Ivy Setup
 
@@ -1081,7 +1147,7 @@ Configure Ivy for powerful completion and searching capabilities.
 ```
 
 
-<a id="org03e343c"></a>
+<a id="orgfa036f7"></a>
 
 ## Ivy Rich
 
@@ -1169,7 +1235,7 @@ Enhance Ivy with richer completion information.
 ```
 
 
-<a id="org3ac8bd3"></a>
+<a id="org5e0a818"></a>
 
 ## Ivy Prescient
 
@@ -1257,7 +1323,7 @@ Enable prescient sorting for Ivy to show recently selected candidates first.
 ```
 
 
-<a id="orgdb76ba0"></a>
+<a id="orgec590ad"></a>
 
 ## Counsel Setup
 
@@ -1345,7 +1411,7 @@ Configure Counsel for enhanced minibuffer completion.
 ```
 
 
-<a id="orgbc40b2b"></a>
+<a id="orgff196aa"></a>
 
 ## Ivy Posframe
 
@@ -1433,7 +1499,7 @@ Use posframe to display Ivy completion in a popup frame.
 ```
 
 
-<a id="org301369f"></a>
+<a id="orgb8d9039"></a>
 
 ## Wgrep
 
@@ -1521,14 +1587,14 @@ Enable editing grep results directly in the buffer.
 ```
 
 
-<a id="org7db9e0d"></a>
+<a id="org4c9a9d6"></a>
 
 # UI Configuration
 
 This section configures the user interface including fonts, themes, and visual elements.
 
 
-<a id="org372fc97"></a>
+<a id="org65bc3b0"></a>
 
 ## Basic UI Configuration
 
@@ -1665,9 +1731,9 @@ Configure basic UI elements like scrollbars, toolbars, and line numbers.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -1822,7 +1888,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org5a0d18d"></a>
+<a id="orgecf7ce8"></a>
 
 ## Scratch Buffer Message
 
@@ -1959,9 +2025,9 @@ Set up the initial message for the scratch buffer.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -2116,7 +2182,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="orgea98713"></a>
+<a id="org5facd10"></a>
 
 ## Default Values
 
@@ -2253,9 +2319,9 @@ Set default values for various Emacs settings.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -2410,7 +2476,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org81116a4"></a>
+<a id="org7af7a3d"></a>
 
 ## Dashboard Configuration
 
@@ -2547,9 +2613,9 @@ Configure the dashboard startup screen.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -2704,7 +2770,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org2cbf32f"></a>
+<a id="org7a41070"></a>
 
 ## Beacon Configuration
 
@@ -2841,9 +2907,9 @@ Set up the beacon mode for cursor visibility.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -2998,7 +3064,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="orgdc6eca3"></a>
+<a id="org0ce0517"></a>
 
 ## Mouse Configuration
 
@@ -3135,9 +3201,9 @@ Configure mouse-related settings.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -3292,7 +3358,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="orgb68636a"></a>
+<a id="org44fa0e7"></a>
 
 ## Whitespace Configuration
 
@@ -3429,9 +3495,9 @@ Configure whitespace visualization and handling.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -3586,7 +3652,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org2c23413"></a>
+<a id="org67fe7fc"></a>
 
 ## Electric Configuration
 
@@ -3723,9 +3789,9 @@ Configure electric indent mode and font settings.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -3880,7 +3946,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org7407e4b"></a>
+<a id="org22fcacd"></a>
 
 ## Rainbow Delimiters
 
@@ -4017,9 +4083,9 @@ Enable rainbow delimiters for better code visualization.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -4174,7 +4240,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org4ba4d2f"></a>
+<a id="org04d7fb5"></a>
 
 ## Paren Mode
 
@@ -4311,9 +4377,9 @@ Enable paren mode for better parenthesis matching.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -4468,7 +4534,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="orgaae8c4d"></a>
+<a id="orga0b53c8"></a>
 
 ## Electric Pair Mode
 
@@ -4605,9 +4671,9 @@ Enable electric pair mode for automatic parenthesis pairing.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -4762,7 +4828,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org18fbd0d"></a>
+<a id="orge682dec"></a>
 
 ## Rainbow Mode
 
@@ -4899,9 +4965,9 @@ Enable rainbow mode for CSS color visualization.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -5056,7 +5122,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org342bc1b"></a>
+<a id="orgcc7fc69"></a>
 
 ## Theme Configuration
 
@@ -5193,9 +5259,9 @@ Configure the Doom themes.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -5350,7 +5416,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="org45541eb"></a>
+<a id="org9ac1747"></a>
 
 ## Modeline Configuration
 
@@ -5487,9 +5553,9 @@ Configure the Doom modeline.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -5644,7 +5710,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="orgcaa9b08"></a>
+<a id="orgff38b58"></a>
 
 ## Command Log Mode
 
@@ -5781,9 +5847,9 @@ Enable command log mode for tracking commands.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -5938,7 +6004,7 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="orgf81cc03"></a>
+<a id="org330eb4e"></a>
 
 ## Centaur Tabs
 
@@ -6075,9 +6141,9 @@ Configure the centaur tabs for buffer management.
   :config
   (setq whitespace-style (quote (face spaces tabs newline space-mark tab-mark newline-mark)))
   (let ((foreground-color "gray80"))
-    (set-face-attribute 'whitespace-space nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-tab nil :background nil :foreground foreground-color)
-    (set-face-attribute 'whitespace-newline nil :background nil :foreground foreground-color)
+    (set-face-attribute 'whitespace-space nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-tab nil :background 'unspecified :foreground foreground-color)
+    (set-face-attribute 'whitespace-newline nil :background 'unspecified :foreground foreground-color)
     )
   (setq whitespace-display-mappings
         ;; all numbers are Unicode codepoint in decimal. try (insert-char 8617) to see it
@@ -6232,14 +6298,14 @@ Other buffer group by `centaur-tabs-get-group-name' with project name."
 ```
 
 
-<a id="orgdc49198"></a>
+<a id="orgc2622a8"></a>
 
 # Evil Mode
 
 This section configures Evil mode for Vim-like keybindings in Emacs.
 
 
-<a id="org9cc186a"></a>
+<a id="org10e6cbe"></a>
 
 ## Evil Mode Setup
 
@@ -6287,7 +6353,7 @@ Configure Evil mode with proper integration and keybindings.
 ```
 
 
-<a id="org6504498"></a>
+<a id="org8ba0e10"></a>
 
 ## Evil Collection
 
@@ -6335,14 +6401,14 @@ Enable Evil Collection for better Evil integration with various modes.
 ```
 
 
-<a id="org0dcb78d"></a>
+<a id="org8198ba0"></a>
 
 # Keybindings
 
 This section configures custom keybindings and general keyboard shortcuts.
 
 
-<a id="orgc1fb039"></a>
+<a id="org80b3a39"></a>
 
 ## General Setup
 
@@ -6370,7 +6436,7 @@ Configure the general keybinding system with leader keys.
     "fd" '(:ignore t :which-key "dotfiles")
     "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
     "fdw" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.config/i3/config"))) :which-key "window manager")
-    "k" 'kill-this-buffer
+    "k" 'kill-current-buffer
     "o"  '(:ignore t :which-key "org")
     "oa" 'org-agenda
     "oc" 'org-capture
@@ -6387,7 +6453,7 @@ Configure the general keybinding system with leader keys.
     :prefix ",")
 
   (my-comma-leader
-    "k"  'kill-this-buffer))
+    "k"  'kill-current-buffer))
 ;; -GeneralSetup
 
 ;; WhichKey
@@ -6469,7 +6535,7 @@ When called with a prefix arg, resize the window by ARG lines."
 ```
 
 
-<a id="orga93a015"></a>
+<a id="org643c3ae"></a>
 
 ## Which Key
 
@@ -6497,7 +6563,7 @@ Enable which-key for better keybinding discovery.
     "fd" '(:ignore t :which-key "dotfiles")
     "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
     "fdw" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.config/i3/config"))) :which-key "window manager")
-    "k" 'kill-this-buffer
+    "k" 'kill-current-buffer
     "o"  '(:ignore t :which-key "org")
     "oa" 'org-agenda
     "oc" 'org-capture
@@ -6514,7 +6580,7 @@ Enable which-key for better keybinding discovery.
     :prefix ",")
 
   (my-comma-leader
-    "k"  'kill-this-buffer))
+    "k"  'kill-current-buffer))
 ;; -GeneralSetup
 
 ;; WhichKey
@@ -6596,7 +6662,7 @@ When called with a prefix arg, resize the window by ARG lines."
 ```
 
 
-<a id="orga5dcc14"></a>
+<a id="org9efeb19"></a>
 
 ## Helpful Setup
 
@@ -6624,7 +6690,7 @@ Configure helpful for better help functionality.
     "fd" '(:ignore t :which-key "dotfiles")
     "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
     "fdw" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.config/i3/config"))) :which-key "window manager")
-    "k" 'kill-this-buffer
+    "k" 'kill-current-buffer
     "o"  '(:ignore t :which-key "org")
     "oa" 'org-agenda
     "oc" 'org-capture
@@ -6641,7 +6707,7 @@ Configure helpful for better help functionality.
     :prefix ",")
 
   (my-comma-leader
-    "k"  'kill-this-buffer))
+    "k"  'kill-current-buffer))
 ;; -GeneralSetup
 
 ;; WhichKey
@@ -6723,7 +6789,7 @@ When called with a prefix arg, resize the window by ARG lines."
 ```
 
 
-<a id="orgdffc8b6"></a>
+<a id="orgc164c0a"></a>
 
 ## Resize Window Function
 
@@ -6751,7 +6817,7 @@ Add a function to interactively resize windows.
     "fd" '(:ignore t :which-key "dotfiles")
     "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
     "fdw" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.config/i3/config"))) :which-key "window manager")
-    "k" 'kill-this-buffer
+    "k" 'kill-current-buffer
     "o"  '(:ignore t :which-key "org")
     "oa" 'org-agenda
     "oc" 'org-capture
@@ -6768,7 +6834,7 @@ Add a function to interactively resize windows.
     :prefix ",")
 
   (my-comma-leader
-    "k"  'kill-this-buffer))
+    "k"  'kill-current-buffer))
 ;; -GeneralSetup
 
 ;; WhichKey
@@ -6850,7 +6916,7 @@ When called with a prefix arg, resize the window by ARG lines."
 ```
 
 
-<a id="org664b147"></a>
+<a id="orgaec78a2"></a>
 
 ## Global Keybindings
 
@@ -6878,7 +6944,7 @@ Set up global keybindings for common operations.
     "fd" '(:ignore t :which-key "dotfiles")
     "fde" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.emacs.d/README.org"))) :which-key "emacs")
     "fdw" '((lambda () (interactive) (find-file (expand-file-name "~/.dotfiles/.config/i3/config"))) :which-key "window manager")
-    "k" 'kill-this-buffer
+    "k" 'kill-current-buffer
     "o"  '(:ignore t :which-key "org")
     "oa" 'org-agenda
     "oc" 'org-capture
@@ -6895,7 +6961,7 @@ Set up global keybindings for common operations.
     :prefix ",")
 
   (my-comma-leader
-    "k"  'kill-this-buffer))
+    "k"  'kill-current-buffer))
 ;; -GeneralSetup
 
 ;; WhichKey
@@ -6977,14 +7043,14 @@ When called with a prefix arg, resize the window by ARG lines."
 ```
 
 
-<a id="orga3b4aa1"></a>
+<a id="org9a9c90f"></a>
 
 # Org Mode
 
 This section configures Org mode and related packages for note-taking, task management, and document authoring.
 
 
-<a id="org02ab8f3"></a>
+<a id="org89bfeea"></a>
 
 ## Org Font Setup
 
@@ -6999,27 +7065,55 @@ Configure fonts and faces for Org mode headings and elements.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -7056,15 +7150,25 @@ Configure fonts and faces for Org mode headings and elements.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -7115,13 +7219,6 @@ Configure fonts and faces for Org mode headings and elements.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -7297,7 +7394,6 @@ Configure fonts and faces for Org mode headings and elements.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -7523,7 +7619,7 @@ Configure fonts and faces for Org mode headings and elements.
 ```
 
 
-<a id="orgc4230ab"></a>
+<a id="orgd13bfa9"></a>
 
 ## Toggle Functions
 
@@ -7538,27 +7634,55 @@ Add functions to toggle Org export functionality.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -7595,15 +7719,25 @@ Add functions to toggle Org export functionality.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -7654,13 +7788,6 @@ Add functions to toggle Org export functionality.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -7836,7 +7963,6 @@ Add functions to toggle Org export functionality.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -8062,7 +8188,7 @@ Add functions to toggle Org export functionality.
 ```
 
 
-<a id="org8054c90"></a>
+<a id="org0f9f5a5"></a>
 
 ## Org Mode Setup
 
@@ -8077,27 +8203,55 @@ Configure basic Org mode settings and hooks.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -8134,15 +8288,25 @@ Configure basic Org mode settings and hooks.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -8193,13 +8357,6 @@ Configure basic Org mode settings and hooks.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -8375,7 +8532,6 @@ Configure basic Org mode settings and hooks.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -8601,7 +8757,7 @@ Configure basic Org mode settings and hooks.
 ```
 
 
-<a id="org9e6f594"></a>
+<a id="org6960a30"></a>
 
 ## Org Bullets
 
@@ -8616,27 +8772,55 @@ Enable org-bullets for better visual representation of bullet points.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -8673,15 +8857,25 @@ Enable org-bullets for better visual representation of bullet points.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -8732,13 +8926,6 @@ Enable org-bullets for better visual representation of bullet points.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -8914,7 +9101,6 @@ Enable org-bullets for better visual representation of bullet points.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -9140,7 +9326,7 @@ Enable org-bullets for better visual representation of bullet points.
 ```
 
 
-<a id="orgf7c3fbb"></a>
+<a id="orgb46152c"></a>
 
 ## Visual Fill Column
 
@@ -9155,27 +9341,55 @@ Configure visual fill column for better text wrapping in Org mode.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -9212,15 +9426,25 @@ Configure visual fill column for better text wrapping in Org mode.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -9271,13 +9495,6 @@ Configure visual fill column for better text wrapping in Org mode.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -9453,7 +9670,6 @@ Configure visual fill column for better text wrapping in Org mode.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -9679,7 +9895,7 @@ Configure visual fill column for better text wrapping in Org mode.
 ```
 
 
-<a id="org1c2d311"></a>
+<a id="org979088d"></a>
 
 ## Org Keybindings
 
@@ -9694,27 +9910,55 @@ Set up keybindings for Org mode navigation.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -9751,15 +9995,25 @@ Set up keybindings for Org mode navigation.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -9810,13 +10064,6 @@ Set up keybindings for Org mode navigation.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -9992,7 +10239,6 @@ Set up keybindings for Org mode navigation.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -10218,7 +10464,7 @@ Set up keybindings for Org mode navigation.
 ```
 
 
-<a id="org802772d"></a>
+<a id="orge3f0d45"></a>
 
 ## Org Agenda Custom Commands
 
@@ -10233,27 +10479,55 @@ Configure custom agenda views for task management.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -10290,15 +10564,25 @@ Configure custom agenda views for task management.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -10349,13 +10633,6 @@ Configure custom agenda views for task management.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -10531,7 +10808,6 @@ Configure custom agenda views for task management.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -10757,7 +11033,7 @@ Configure custom agenda views for task management.
 ```
 
 
-<a id="orge76848b"></a>
+<a id="org7791b61"></a>
 
 ## Org Habit
 
@@ -10772,27 +11048,55 @@ Enable org-habit for habit tracking.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -10829,15 +11133,25 @@ Enable org-habit for habit tracking.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -10888,13 +11202,6 @@ Enable org-habit for habit tracking.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -11070,7 +11377,6 @@ Enable org-habit for habit tracking.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -11296,7 +11602,7 @@ Enable org-habit for habit tracking.
 ```
 
 
-<a id="org9189238"></a>
+<a id="org8541d6f"></a>
 
 ## Org Download
 
@@ -11311,27 +11617,55 @@ Configure org-download for image handling in Org mode.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -11368,15 +11702,25 @@ Configure org-download for image handling in Org mode.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -11427,13 +11771,6 @@ Configure org-download for image handling in Org mode.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -11609,7 +11946,6 @@ Configure org-download for image handling in Org mode.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -11835,7 +12171,7 @@ Configure org-download for image handling in Org mode.
 ```
 
 
-<a id="orgbdac50d"></a>
+<a id="org0ef03f7"></a>
 
 ## Plantuml Mode
 
@@ -11850,27 +12186,55 @@ Enable plantuml-mode for diagram generation.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -11907,15 +12271,25 @@ Enable plantuml-mode for diagram generation.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -11966,13 +12340,6 @@ Enable plantuml-mode for diagram generation.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -12148,7 +12515,6 @@ Enable plantuml-mode for diagram generation.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -12374,7 +12740,7 @@ Enable plantuml-mode for diagram generation.
 ```
 
 
-<a id="org627bb28"></a>
+<a id="orgfb93caa"></a>
 
 ## Org Reveal
 
@@ -12389,27 +12755,55 @@ Configure ox-reveal for presentation export.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -12446,15 +12840,25 @@ Configure ox-reveal for presentation export.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -12505,13 +12909,6 @@ Configure ox-reveal for presentation export.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -12687,7 +13084,6 @@ Configure ox-reveal for presentation export.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -12913,7 +13309,7 @@ Configure ox-reveal for presentation export.
 ```
 
 
-<a id="org62ed3ac"></a>
+<a id="org48d72fb"></a>
 
 ## Org Hugo
 
@@ -12928,27 +13324,55 @@ Enable ox-hugo for Hugo blog export.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -12985,15 +13409,25 @@ Enable ox-hugo for Hugo blog export.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -13044,13 +13478,6 @@ Enable ox-hugo for Hugo blog export.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -13226,7 +13653,6 @@ Enable ox-hugo for Hugo blog export.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -13452,7 +13878,7 @@ Enable ox-hugo for Hugo blog export.
 ```
 
 
-<a id="orgeb153e2"></a>
+<a id="org7c82a16"></a>
 
 ## Org LaTeX Export
 
@@ -13467,27 +13893,55 @@ Configure LaTeX export settings for PDF generation.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -13524,15 +13978,25 @@ Configure LaTeX export settings for PDF generation.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -13583,13 +14047,6 @@ Configure LaTeX export settings for PDF generation.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -13765,7 +14222,6 @@ Configure LaTeX export settings for PDF generation.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -13991,7 +14447,7 @@ Configure LaTeX export settings for PDF generation.
 ```
 
 
-<a id="orgc3ad38e"></a>
+<a id="org6e934a6"></a>
 
 ## Ebib
 
@@ -14006,27 +14462,55 @@ Configure Ebib for bibliography management.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -14063,15 +14547,25 @@ Configure Ebib for bibliography management.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -14122,13 +14616,6 @@ Configure Ebib for bibliography management.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -14304,7 +14791,6 @@ Configure Ebib for bibliography management.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -14530,7 +15016,7 @@ Configure Ebib for bibliography management.
 ```
 
 
-<a id="orgd6b0fef"></a>
+<a id="orgc343337"></a>
 
 ## Org Babel
 
@@ -14545,27 +15031,55 @@ Configure Org Babel for code execution in Org mode.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -14602,15 +15116,25 @@ Configure Org Babel for code execution in Org mode.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -14661,13 +15185,6 @@ Configure Org Babel for code execution in Org mode.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -14843,7 +15360,6 @@ Configure Org Babel for code execution in Org mode.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -15069,7 +15585,7 @@ Configure Org Babel for code execution in Org mode.
 ```
 
 
-<a id="org69365ff"></a>
+<a id="org96d889d"></a>
 
 ## Org Babel Tangle
 
@@ -15084,27 +15600,55 @@ Enable automatic tangling of Org configuration files.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -15141,15 +15685,25 @@ Enable automatic tangling of Org configuration files.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -15200,13 +15754,6 @@ Enable automatic tangling of Org configuration files.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -15382,7 +15929,6 @@ Enable automatic tangling of Org configuration files.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -15608,7 +16154,7 @@ Enable automatic tangling of Org configuration files.
 ```
 
 
-<a id="orgc495682"></a>
+<a id="org4b46b5b"></a>
 
 ## Org Capture Templates
 
@@ -15623,27 +16169,55 @@ Configure templates for Org capture functionality.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -15680,15 +16254,25 @@ Configure templates for Org capture functionality.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -15739,13 +16323,6 @@ Configure templates for Org capture functionality.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -15921,7 +16498,6 @@ Configure templates for Org capture functionality.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -16147,7 +16723,7 @@ Configure templates for Org capture functionality.
 ```
 
 
-<a id="org6d0337b"></a>
+<a id="org16432e0"></a>
 
 ## Org Roam
 
@@ -16162,27 +16738,55 @@ Configure Org Roam for networked note-taking.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -16219,15 +16823,25 @@ Configure Org Roam for networked note-taking.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -16278,13 +16892,6 @@ Configure Org Roam for networked note-taking.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -16460,7 +17067,6 @@ Configure Org Roam for networked note-taking.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -16686,7 +17292,7 @@ Configure Org Roam for networked note-taking.
 ```
 
 
-<a id="org3cfde8d"></a>
+<a id="orgbf3ddb2"></a>
 
 ## Org Roam UI
 
@@ -16701,27 +17307,55 @@ Enable Org Roam UI for visualizing note connections.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -16758,15 +17392,25 @@ Enable Org Roam UI for visualizing note connections.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -16817,13 +17461,6 @@ Enable Org Roam UI for visualizing note connections.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -16999,7 +17636,6 @@ Enable Org Roam UI for visualizing note connections.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -17225,7 +17861,7 @@ Enable Org Roam UI for visualizing note connections.
 ```
 
 
-<a id="org8e640aa"></a>
+<a id="orge994b4a"></a>
 
 ## Org Ref
 
@@ -17240,27 +17876,55 @@ Configure org-ref for citation management.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -17297,15 +17961,25 @@ Configure org-ref for citation management.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -17356,13 +18030,6 @@ Configure org-ref for citation management.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -17538,7 +18205,6 @@ Configure org-ref for citation management.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -17764,7 +18430,7 @@ Configure org-ref for citation management.
 ```
 
 
-<a id="org817ec50"></a>
+<a id="orgb08db94"></a>
 
 ## Citeproc Org
 
@@ -17779,27 +18445,55 @@ Enable citeproc-org for citation processing.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -17836,15 +18530,25 @@ Enable citeproc-org for citation processing.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -17895,13 +18599,6 @@ Enable citeproc-org for citation processing.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -18077,7 +18774,6 @@ Enable citeproc-org for citation processing.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -18303,7 +18999,7 @@ Enable citeproc-org for citation processing.
 ```
 
 
-<a id="orgcc500f6"></a>
+<a id="orgdc8ed3b"></a>
 
 ## Org Biblatex
 
@@ -18318,27 +19014,55 @@ Load org-biblatex for BibTeX support.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -18375,15 +19099,25 @@ Load org-biblatex for BibTeX support.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -18434,13 +19168,6 @@ Load org-biblatex for BibTeX support.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -18616,7 +19343,6 @@ Load org-biblatex for BibTeX support.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -18842,7 +19568,7 @@ Load org-biblatex for BibTeX support.
 ```
 
 
-<a id="org16f91a1"></a>
+<a id="org6338816"></a>
 
 ## Ox GFM
 
@@ -18857,27 +19583,55 @@ Configure ox-gfm for GitHub Flavored Markdown export.
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -18914,15 +19668,25 @@ Configure ox-gfm for GitHub Flavored Markdown export.
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -18973,13 +19737,6 @@ Configure ox-gfm for GitHub Flavored Markdown export.
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -19155,7 +19912,6 @@ Configure ox-gfm for GitHub Flavored Markdown export.
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote
@@ -19381,14 +20137,14 @@ Configure ox-gfm for GitHub Flavored Markdown export.
 ```
 
 
-<a id="org182b0f0"></a>
+<a id="org26fcd7c"></a>
 
 # Programming Support
 
 This section configures programming language support and development tools.
 
 
-<a id="orga379ac9"></a>
+<a id="orga146760"></a>
 
 ## Basic Programming Setup
 
@@ -19546,7 +20302,6 @@ Configure basic programming mode enhancements.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -19567,7 +20322,7 @@ Configure basic programming mode enhancements.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -19608,10 +20363,9 @@ Configure basic programming mode enhancements.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -19629,6 +20383,13 @@ Configure basic programming mode enhancements.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -19659,49 +20420,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -19744,16 +20505,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -19763,6 +20526,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -19782,7 +20546,7 @@ header"
 ```
 
 
-<a id="org981cb68"></a>
+<a id="orga63d83b"></a>
 
 ## Flycheck
 
@@ -19940,7 +20704,6 @@ Enable Flycheck for on-the-fly syntax checking.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -19961,7 +20724,7 @@ Enable Flycheck for on-the-fly syntax checking.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -20002,10 +20765,9 @@ Enable Flycheck for on-the-fly syntax checking.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -20023,6 +20785,13 @@ Enable Flycheck for on-the-fly syntax checking.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -20053,49 +20822,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -20138,16 +20907,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -20157,6 +20928,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -20176,7 +20948,7 @@ header"
 ```
 
 
-<a id="org770dcad"></a>
+<a id="org82dba2e"></a>
 
 ## Company
 
@@ -20334,7 +21106,6 @@ Configure Company for auto-completion.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -20355,7 +21126,7 @@ Configure Company for auto-completion.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -20396,10 +21167,9 @@ Configure Company for auto-completion.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -20417,6 +21187,13 @@ Configure Company for auto-completion.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -20447,49 +21224,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -20532,16 +21309,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -20551,6 +21330,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -20570,7 +21350,7 @@ header"
 ```
 
 
-<a id="orgc76dcba"></a>
+<a id="orgb0392ab"></a>
 
 ## Evil Nerd Commenter
 
@@ -20728,7 +21508,6 @@ Enable evil-nerd-commenter for easy commenting.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -20749,7 +21528,7 @@ Enable evil-nerd-commenter for easy commenting.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -20790,10 +21569,9 @@ Enable evil-nerd-commenter for easy commenting.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -20811,6 +21589,13 @@ Enable evil-nerd-commenter for easy commenting.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -20841,49 +21626,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -20926,16 +21711,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -20945,6 +21732,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -20964,7 +21752,7 @@ header"
 ```
 
 
-<a id="orgfdbf4fd"></a>
+<a id="orgd5f71bc"></a>
 
 ## Format All
 
@@ -21122,7 +21910,6 @@ Configure format-all for code formatting.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -21143,7 +21930,7 @@ Configure format-all for code formatting.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -21184,10 +21971,9 @@ Configure format-all for code formatting.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -21205,6 +21991,13 @@ Configure format-all for code formatting.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -21235,49 +22028,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -21320,16 +22113,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -21339,6 +22134,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -21358,7 +22154,7 @@ header"
 ```
 
 
-<a id="orge75679e"></a>
+<a id="org8a013bd"></a>
 
 ## C++ Mode
 
@@ -21516,7 +22312,6 @@ Configure C++ mode with custom compile command.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -21537,7 +22332,7 @@ Configure C++ mode with custom compile command.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -21578,10 +22373,9 @@ Configure C++ mode with custom compile command.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -21599,6 +22393,13 @@ Configure C++ mode with custom compile command.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -21629,49 +22430,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -21714,16 +22515,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -21733,6 +22536,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -21752,7 +22556,7 @@ header"
 ```
 
 
-<a id="org4dc1836"></a>
+<a id="org343f30d"></a>
 
 ## Compilation Buffer
 
@@ -21910,7 +22714,6 @@ Set up compilation buffer handling.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -21931,7 +22734,7 @@ Set up compilation buffer handling.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -21972,10 +22775,9 @@ Set up compilation buffer handling.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -21993,6 +22795,13 @@ Set up compilation buffer handling.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -22023,49 +22832,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -22108,16 +22917,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -22127,6 +22938,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -22146,7 +22958,7 @@ header"
 ```
 
 
-<a id="org0e75922"></a>
+<a id="orgc1acc91"></a>
 
 ## Projectile
 
@@ -22304,7 +23116,6 @@ Configure Projectile for project management.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -22325,7 +23136,7 @@ Configure Projectile for project management.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -22366,10 +23177,9 @@ Configure Projectile for project management.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -22387,6 +23197,13 @@ Configure Projectile for project management.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -22417,49 +23234,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -22502,16 +23319,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -22521,6 +23340,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -22540,7 +23360,7 @@ header"
 ```
 
 
-<a id="org0f46ced"></a>
+<a id="org76dd90f"></a>
 
 ## Counsel Projectile
 
@@ -22698,7 +23518,6 @@ Enable counsel-projectile for enhanced project navigation.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -22719,7 +23538,7 @@ Enable counsel-projectile for enhanced project navigation.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -22760,10 +23579,9 @@ Enable counsel-projectile for enhanced project navigation.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -22781,6 +23599,13 @@ Enable counsel-projectile for enhanced project navigation.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -22811,49 +23636,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -22896,16 +23721,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -22915,6 +23742,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -22934,7 +23762,7 @@ header"
 ```
 
 
-<a id="org4213a87"></a>
+<a id="orgfd2ba65"></a>
 
 ## Magit
 
@@ -23092,7 +23920,6 @@ Configure Magit for Git integration.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -23113,7 +23940,7 @@ Configure Magit for Git integration.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -23154,10 +23981,9 @@ Configure Magit for Git integration.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -23175,6 +24001,13 @@ Configure Magit for Git integration.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -23205,49 +24038,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -23290,16 +24123,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -23309,6 +24144,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -23328,7 +24164,7 @@ header"
 ```
 
 
-<a id="orgcaee377"></a>
+<a id="org8479e85"></a>
 
 ## Forge
 
@@ -23486,7 +24322,6 @@ Enable Forge for Git forge integration.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -23507,7 +24342,7 @@ Enable Forge for Git forge integration.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -23548,10 +24383,9 @@ Enable Forge for Git forge integration.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -23569,6 +24403,13 @@ Enable Forge for Git forge integration.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -23599,49 +24440,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -23684,16 +24525,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -23703,6 +24546,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -23722,7 +24566,7 @@ header"
 ```
 
 
-<a id="org702924c"></a>
+<a id="orgb991504"></a>
 
 ## Docker
 
@@ -23880,7 +24724,6 @@ Configure Docker support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -23901,7 +24744,7 @@ Configure Docker support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -23942,10 +24785,9 @@ Configure Docker support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -23963,6 +24805,13 @@ Configure Docker support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -23993,49 +24842,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -24078,16 +24927,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -24097,6 +24948,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -24116,7 +24968,7 @@ header"
 ```
 
 
-<a id="org436ef46"></a>
+<a id="orged92452"></a>
 
 ## LSP Mode
 
@@ -24274,7 +25126,6 @@ Set up LSP mode for language server protocol support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -24295,7 +25146,7 @@ Set up LSP mode for language server protocol support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -24336,10 +25187,9 @@ Set up LSP mode for language server protocol support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -24357,6 +25207,13 @@ Set up LSP mode for language server protocol support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -24387,49 +25244,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -24472,16 +25329,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -24491,6 +25350,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -24510,7 +25370,7 @@ header"
 ```
 
 
-<a id="orgd9b645b"></a>
+<a id="org8ce2369"></a>
 
 ## LSP UI
 
@@ -24668,7 +25528,6 @@ Configure LSP UI for enhanced LSP experience.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -24689,7 +25548,7 @@ Configure LSP UI for enhanced LSP experience.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -24730,10 +25589,9 @@ Configure LSP UI for enhanced LSP experience.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -24751,6 +25609,13 @@ Configure LSP UI for enhanced LSP experience.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -24781,49 +25646,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -24866,16 +25731,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -24885,6 +25752,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -24904,7 +25772,7 @@ header"
 ```
 
 
-<a id="orgd933685"></a>
+<a id="org90254b0"></a>
 
 ## LSP Ivy
 
@@ -25062,7 +25930,6 @@ Enable LSP Ivy integration.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -25083,7 +25950,7 @@ Enable LSP Ivy integration.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -25124,10 +25991,9 @@ Enable LSP Ivy integration.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -25145,6 +26011,13 @@ Enable LSP Ivy integration.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -25175,49 +26048,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -25260,16 +26133,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -25279,6 +26154,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -25298,7 +26174,7 @@ header"
 ```
 
 
-<a id="org6713884"></a>
+<a id="org7ac1338"></a>
 
 ## DAP Mode
 
@@ -25456,7 +26332,6 @@ Configure DAP mode for debugging support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -25477,7 +26352,7 @@ Configure DAP mode for debugging support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -25518,10 +26393,9 @@ Configure DAP mode for debugging support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -25539,6 +26413,13 @@ Configure DAP mode for debugging support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -25569,49 +26450,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -25654,16 +26535,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -25673,6 +26556,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -25692,7 +26576,7 @@ header"
 ```
 
 
-<a id="org686d489"></a>
+<a id="orge31d03b"></a>
 
 ## TypeScript Mode
 
@@ -25850,7 +26734,6 @@ Set up TypeScript mode.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -25871,7 +26754,7 @@ Set up TypeScript mode.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -25912,10 +26795,9 @@ Set up TypeScript mode.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -25933,6 +26815,13 @@ Set up TypeScript mode.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -25963,49 +26852,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -26048,16 +26937,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -26067,6 +26958,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -26086,7 +26978,7 @@ header"
 ```
 
 
-<a id="orgfcad408"></a>
+<a id="org847f749"></a>
 
 ## JSON Mode
 
@@ -26244,7 +27136,6 @@ Enable JSON mode support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -26265,7 +27156,7 @@ Enable JSON mode support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -26306,10 +27197,9 @@ Enable JSON mode support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -26327,6 +27217,13 @@ Enable JSON mode support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -26357,49 +27254,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -26442,16 +27339,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -26461,6 +27360,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -26480,7 +27380,7 @@ header"
 ```
 
 
-<a id="org7515292"></a>
+<a id="org3a45eb2"></a>
 
 ## C Header Mode
 
@@ -26638,7 +27538,6 @@ Configure C header file handling.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -26659,7 +27558,7 @@ Configure C header file handling.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -26700,10 +27599,9 @@ Configure C header file handling.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -26721,6 +27619,13 @@ Configure C header file handling.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -26751,49 +27656,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -26836,16 +27741,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -26855,6 +27762,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -26874,7 +27782,7 @@ header"
 ```
 
 
-<a id="org6d7cdb2"></a>
+<a id="org6816fc0"></a>
 
 ## CMake Mode
 
@@ -27032,7 +27940,6 @@ Enable CMake mode support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -27053,7 +27960,7 @@ Enable CMake mode support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -27094,10 +28001,9 @@ Enable CMake mode support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -27115,6 +28021,13 @@ Enable CMake mode support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -27145,49 +28058,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -27230,16 +28143,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -27249,6 +28164,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -27268,7 +28184,7 @@ header"
 ```
 
 
-<a id="org8d734ae"></a>
+<a id="org49ce3eb"></a>
 
 ## Python Mode
 
@@ -27426,7 +28342,6 @@ Configure Python mode with debugging support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -27447,7 +28362,7 @@ Configure Python mode with debugging support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -27488,10 +28403,9 @@ Configure Python mode with debugging support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -27509,6 +28423,13 @@ Configure Python mode with debugging support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -27539,49 +28460,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -27624,16 +28545,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -27643,6 +28566,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -27662,7 +28586,7 @@ header"
 ```
 
 
-<a id="org9db7355"></a>
+<a id="orgde36187"></a>
 
 ## Pyvenv
 
@@ -27820,7 +28744,6 @@ Set up Python virtual environment support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -27841,7 +28764,7 @@ Set up Python virtual environment support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -27882,10 +28805,9 @@ Set up Python virtual environment support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -27903,6 +28825,13 @@ Set up Python virtual environment support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -27933,49 +28862,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -28018,16 +28947,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -28037,6 +28968,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -28056,7 +28988,7 @@ header"
 ```
 
 
-<a id="org900d77f"></a>
+<a id="org12b7ce4"></a>
 
 ## Slime
 
@@ -28214,7 +29146,6 @@ Configure Slime for Lisp development.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -28235,7 +29166,7 @@ Configure Slime for Lisp development.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -28276,10 +29207,9 @@ Configure Slime for Lisp development.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -28297,6 +29227,13 @@ Configure Slime for Lisp development.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -28327,49 +29264,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -28412,16 +29349,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -28431,6 +29370,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -28450,7 +29390,7 @@ header"
 ```
 
 
-<a id="org55eba59"></a>
+<a id="org7cd2513"></a>
 
 ## Slime Company
 
@@ -28608,7 +29548,6 @@ Enable Slime Company integration.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -28629,7 +29568,7 @@ Enable Slime Company integration.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -28670,10 +29609,9 @@ Enable Slime Company integration.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -28691,6 +29629,13 @@ Enable Slime Company integration.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -28721,49 +29666,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -28806,16 +29751,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -28825,6 +29772,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -28844,7 +29792,7 @@ header"
 ```
 
 
-<a id="orgad3726b"></a>
+<a id="org6ea0688"></a>
 
 ## Rust Mode
 
@@ -29002,7 +29950,6 @@ Set up Rust mode with LSP support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -29023,7 +29970,7 @@ Set up Rust mode with LSP support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -29064,10 +30011,9 @@ Set up Rust mode with LSP support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -29085,6 +30031,13 @@ Set up Rust mode with LSP support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -29115,49 +30068,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -29200,16 +30153,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -29219,6 +30174,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -29238,7 +30194,7 @@ header"
 ```
 
 
-<a id="org91dd3f6"></a>
+<a id="org13bcfe5"></a>
 
 ## Flycheck Rust
 
@@ -29396,7 +30352,6 @@ Configure Rust-specific Flycheck support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -29417,7 +30372,7 @@ Configure Rust-specific Flycheck support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -29458,10 +30413,9 @@ Configure Rust-specific Flycheck support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -29479,6 +30433,13 @@ Configure Rust-specific Flycheck support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -29509,49 +30470,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -29594,16 +30555,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -29613,6 +30576,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -29632,7 +30596,7 @@ header"
 ```
 
 
-<a id="org5f52ffd"></a>
+<a id="org4714f95"></a>
 
 ## Cargo
 
@@ -29790,7 +30754,6 @@ Enable Cargo support for Rust projects.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -29811,7 +30774,7 @@ Enable Cargo support for Rust projects.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -29852,10 +30815,9 @@ Enable Cargo support for Rust projects.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -29873,6 +30835,13 @@ Enable Cargo support for Rust projects.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -29903,49 +30872,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -29988,16 +30957,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -30007,6 +30978,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -30026,7 +30998,7 @@ header"
 ```
 
 
-<a id="orgee28022"></a>
+<a id="org56b957e"></a>
 
 ## Go Mode
 
@@ -30184,7 +31156,6 @@ Configure Go mode with formatting support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -30205,7 +31176,7 @@ Configure Go mode with formatting support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -30246,10 +31217,9 @@ Configure Go mode with formatting support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -30267,6 +31237,13 @@ Configure Go mode with formatting support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -30297,49 +31274,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -30382,16 +31359,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -30401,6 +31380,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -30420,7 +31400,7 @@ header"
 ```
 
 
-<a id="org234fd64"></a>
+<a id="org7cc66fe"></a>
 
 ## Company Go
 
@@ -30578,7 +31558,6 @@ Enable Go-specific Company completion.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -30599,7 +31578,7 @@ Enable Go-specific Company completion.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -30640,10 +31619,9 @@ Enable Go-specific Company completion.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -30661,6 +31639,13 @@ Enable Go-specific Company completion.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -30691,49 +31676,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -30776,16 +31761,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -30795,6 +31782,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -30814,7 +31802,7 @@ header"
 ```
 
 
-<a id="org7ebfed0"></a>
+<a id="orgd7129c9"></a>
 
 ## PHP Mode
 
@@ -30972,7 +31960,6 @@ Set up PHP mode support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -30993,7 +31980,7 @@ Set up PHP mode support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -31034,10 +32021,9 @@ Set up PHP mode support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -31055,6 +32041,13 @@ Set up PHP mode support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -31085,49 +32078,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -31170,16 +32163,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -31189,6 +32184,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -31208,7 +32204,7 @@ header"
 ```
 
 
-<a id="org52a3212"></a>
+<a id="org5f41e45"></a>
 
 ## TOML Mode
 
@@ -31366,7 +32362,6 @@ Enable TOML mode with LSP support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -31387,7 +32382,7 @@ Enable TOML mode with LSP support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -31428,10 +32423,9 @@ Enable TOML mode with LSP support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -31449,6 +32443,13 @@ Enable TOML mode with LSP support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -31479,49 +32480,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -31564,16 +32565,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -31583,6 +32586,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -31602,7 +32606,7 @@ header"
 ```
 
 
-<a id="org3278997"></a>
+<a id="orga5d61ed"></a>
 
 ## YAML Mode
 
@@ -31760,7 +32764,6 @@ Configure YAML mode support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -31781,7 +32784,7 @@ Configure YAML mode support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -31822,10 +32825,9 @@ Configure YAML mode support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -31843,6 +32845,13 @@ Configure YAML mode support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -31873,49 +32882,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -31958,16 +32967,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -31977,6 +32988,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -31996,7 +33008,7 @@ header"
 ```
 
 
-<a id="org24e82a7"></a>
+<a id="org27ce1be"></a>
 
 ## TeX Mode
 
@@ -32154,7 +33166,6 @@ Set up TeX and LaTeX mode support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -32175,7 +33186,7 @@ Set up TeX and LaTeX mode support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -32216,10 +33227,9 @@ Set up TeX and LaTeX mode support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -32237,6 +33247,13 @@ Set up TeX and LaTeX mode support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -32267,49 +33284,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -32352,16 +33369,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -32371,6 +33390,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -32390,7 +33410,7 @@ header"
 ```
 
 
-<a id="org9342785"></a>
+<a id="orgbb825ff"></a>
 
 ## Cdlatex
 
@@ -32548,7 +33568,6 @@ Enable Cdlatex for LaTeX support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -32569,7 +33588,7 @@ Enable Cdlatex for LaTeX support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -32610,10 +33629,9 @@ Enable Cdlatex for LaTeX support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -32631,6 +33649,13 @@ Enable Cdlatex for LaTeX support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -32661,49 +33686,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -32746,16 +33771,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -32765,6 +33792,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -32784,7 +33812,7 @@ header"
 ```
 
 
-<a id="orge64ff2c"></a>
+<a id="orgdc6ab50"></a>
 
 ## Graphviz Dot Mode
 
@@ -32942,7 +33970,6 @@ Configure Graphviz dot mode support.
 
 ;; Docker
 (use-package docker
-  :ensure t
   :bind ("C-c d" . docker))
 
 (use-package dockerfile-mode
@@ -32963,7 +33990,7 @@ Configure Graphviz dot mode support.
   :hook
   (lsp-mode . k4i/lsp-mode-setup)
   (c++-mode . lsp-deferred)
-  (python-mode . lsp-deferred)
+  (python . lsp-deferred)
   (php-mode . lsp-deferred)
   (go-mode . lsp-deferred)
   :init
@@ -33004,10 +34031,9 @@ Configure Graphviz dot mode support.
   :commands dap-debug
   :config
   ;; Set up Node debugging
-  ;; (require 'dap-node)
+  (require 'dap-node)
+  (require 'dap-python)
   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
-
-  ;; (require 'dap-python)
 
   ;; C/C++
   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
@@ -33025,6 +34051,13 @@ Configure Graphviz dot mode support.
    :prefix lsp-keymap-prefix
    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
+
+;; Python debugging for DAP
+;; (use-package dap-python
+;;   :after (dap-mode python)
+;;   :config
+;;   (require 'dap-python))
+;; -DapPython
 
 ;; TypeScriptMode
 (use-package typescript-mode
@@ -33055,49 +34088,49 @@ header"
 ;; -CHeaderMode
 
 ;; CMakeMode
-(require 'cmake-mode)
+(use-package cmake-mode
+  :mode ("CMakeLists.txt\\'" . cmake-mode)
+  :straight t)
 ;; -CMakeMode
 
 ;; PythonMode
-(use-package python-mode
-  :ensure t
-  ;; :hook (python-mode . lsp-deferred)
+(use-package python
+  :mode ("\\.py\\'" . python-mode)
+  :hook (python-mode . lsp-deferred)
   :custom
   ;; NOTE: Set these if Python 3 is called "python3" on your system!
   ;; (python-shell-interpreter "python3")
   ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy)
-  :config
-  (require 'dap-python))
+  (dap-python-debugger 'debugpy))
 ;; -PythonMode
 
 ;; Pyvenv
 (use-package pyvenv
-  :after python-mode
+  :after python
   :config
   (pyvenv-mode 1))
 ;; -Pyvenv
 
 ;; Slime
-(use-package slime
-  :init
-  (progn
-    (require 'slime-autoloads)
-    (add-hook 'slime-mode-hook
-              (lambda ()
-                (unless (slime-connected-p)
-                  (save-excursion (slime))))))
-  :config
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup '(slime-fancy slime-company slime-cl-indent)))
+;; (use-package slime
+;;   :init
+;;   (progn
+;;     (require 'slime-autoloads)
+;;     (add-hook 'slime-mode-hook
+;;               (lambda ()
+;;                 (unless (slime-connected-p)
+;;                   (save-excursion (slime))))))
+;;   :config
+;;     (setq inferior-lisp-program "sbcl")
+;;     (slime-setup '(slime-fancy slime-company slime-cl-indent)))
 ;; -Slime
 
 ;; SlimeCompany
-(use-package slime-company
-  :after (slime company)
-  :config
-  (setq slime-company-completion 'fuzzy
-        slime-company-after-completion 'slime-company-just-one-space))
+;; (use-package slime-company
+;;   :after (slime company)
+;;   :config
+;;   (setq slime-company-completion 'fuzzy
+;;         slime-company-after-completion 'slime-company-just-one-space))
 ;; -SlimeCompany
 
 ;; RustMode
@@ -33140,16 +34173,18 @@ header"
 
 ;; TomlMode
 (use-package toml-mode
+  :straight t
   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
-(use-package yaml-mode)
+(use-package yaml-mode
+  :straight t)
 ;; -YamlMode
 
 ;; TexMode
 (use-package tex
-  :ensure auctex
+  :straight auctex
   :hook
   (LaTeX-mode . prettify-symbols-mode)
   :custom
@@ -33159,6 +34194,7 @@ header"
 
 ;; Cdlatex
 (use-package cdlatex
+  ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
          (org-mode    . turn-on-org-cdlatex)
          (cdlatex-tab . LaTeX-indent-line)))
@@ -33178,14 +34214,14 @@ header"
 ```
 
 
-<a id="org4a923f5"></a>
+<a id="org9c446d0"></a>
 
 # Shell and Terminal
 
 This section configures terminal, shell, and related configurations.
 
 
-<a id="org7f61435"></a>
+<a id="org41f4dbe"></a>
 
 ## Vterm
 
@@ -33287,7 +34323,7 @@ Configure vterm for terminal emulation.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -33360,13 +34396,12 @@ Configure vterm for terminal emulation.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -33376,7 +34411,6 @@ Configure vterm for terminal emulation.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -33460,7 +34494,7 @@ Configure vterm for terminal emulation.
 ```
 
 
-<a id="orgfc6045a"></a>
+<a id="org630479d"></a>
 
 ## Vterm Toggle
 
@@ -33562,7 +34596,7 @@ Set up vterm-toggle for quick terminal access.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -33635,13 +34669,12 @@ Set up vterm-toggle for quick terminal access.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -33651,7 +34684,6 @@ Set up vterm-toggle for quick terminal access.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -33735,7 +34767,7 @@ Set up vterm-toggle for quick terminal access.
 ```
 
 
-<a id="org41d7f17"></a>
+<a id="orgd8b77e3"></a>
 
 ## Eshell
 
@@ -33837,7 +34869,7 @@ Configure eshell with custom functions.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -33910,13 +34942,12 @@ Configure eshell with custom functions.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -33926,7 +34957,6 @@ Configure eshell with custom functions.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -34010,7 +35040,7 @@ Configure eshell with custom functions.
 ```
 
 
-<a id="org500cd32"></a>
+<a id="org3a0863f"></a>
 
 ## Dired
 
@@ -34112,7 +35142,7 @@ Set up Dired for directory browsing.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -34185,13 +35215,12 @@ Set up Dired for directory browsing.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -34201,7 +35230,6 @@ Set up Dired for directory browsing.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -34285,7 +35313,7 @@ Set up Dired for directory browsing.
 ```
 
 
-<a id="org1aa3279"></a>
+<a id="org60d1e88"></a>
 
 ## Dired Icons
 
@@ -34387,7 +35415,7 @@ Enable icons in Dired mode.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -34460,13 +35488,12 @@ Enable icons in Dired mode.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -34476,7 +35503,6 @@ Enable icons in Dired mode.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -34560,7 +35586,7 @@ Enable icons in Dired mode.
 ```
 
 
-<a id="orgd2988b5"></a>
+<a id="org997d432"></a>
 
 ## Dired Subtree
 
@@ -34662,7 +35688,7 @@ Configure dired-subtree for tree-like directory views.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -34735,13 +35761,12 @@ Configure dired-subtree for tree-like directory views.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -34751,7 +35776,6 @@ Configure dired-subtree for tree-like directory views.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -34835,7 +35859,7 @@ Configure dired-subtree for tree-like directory views.
 ```
 
 
-<a id="orgcedf97e"></a>
+<a id="org3331418"></a>
 
 ## Dired Ranger
 
@@ -34937,7 +35961,7 @@ Enable dired-ranger for ranger-like file operations.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -35010,13 +36034,12 @@ Enable dired-ranger for ranger-like file operations.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -35026,7 +36049,6 @@ Enable dired-ranger for ranger-like file operations.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -35110,7 +36132,7 @@ Enable dired-ranger for ranger-like file operations.
 ```
 
 
-<a id="org61b0388"></a>
+<a id="orgdb597a3"></a>
 
 ## Dired Open
 
@@ -35212,7 +36234,7 @@ Configure dired-open for opening files with external applications.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -35285,13 +36307,12 @@ Configure dired-open for opening files with external applications.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -35301,7 +36322,6 @@ Configure dired-open for opening files with external applications.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -35385,7 +36405,7 @@ Configure dired-open for opening files with external applications.
 ```
 
 
-<a id="orgcf4ecbf"></a>
+<a id="orgbacb100"></a>
 
 ## Dired Hide Dotfiles
 
@@ -35487,7 +36507,7 @@ Enable dired-hide-dotfiles for toggling visibility of dotfiles.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -35560,13 +36580,12 @@ Enable dired-hide-dotfiles for toggling visibility of dotfiles.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -35576,7 +36595,6 @@ Enable dired-hide-dotfiles for toggling visibility of dotfiles.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -35660,7 +36678,7 @@ Enable dired-hide-dotfiles for toggling visibility of dotfiles.
 ```
 
 
-<a id="orgbfc20d1"></a>
+<a id="org8980d6f"></a>
 
 ## Treemacs
 
@@ -35762,7 +36780,7 @@ Configure Treemacs for project tree navigation.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -35835,13 +36853,12 @@ Configure Treemacs for project tree navigation.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -35851,7 +36868,6 @@ Configure Treemacs for project tree navigation.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -35935,7 +36951,7 @@ Configure Treemacs for project tree navigation.
 ```
 
 
-<a id="org28cb09d"></a>
+<a id="orga589f6e"></a>
 
 ## Treemacs Evil
 
@@ -36037,7 +37053,7 @@ Enable Treemacs Evil integration.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -36110,13 +37126,12 @@ Enable Treemacs Evil integration.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -36126,7 +37141,6 @@ Enable Treemacs Evil integration.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -36210,7 +37224,7 @@ Enable Treemacs Evil integration.
 ```
 
 
-<a id="org02a5c0e"></a>
+<a id="orged41483"></a>
 
 ## Treemacs Projectile
 
@@ -36312,7 +37326,7 @@ Integrate Treemacs with Projectile.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -36385,13 +37399,12 @@ Integrate Treemacs with Projectile.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -36401,7 +37414,6 @@ Integrate Treemacs with Projectile.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -36485,7 +37497,7 @@ Integrate Treemacs with Projectile.
 ```
 
 
-<a id="org19ee297"></a>
+<a id="orgf64cdfd"></a>
 
 ## Treemacs Magit
 
@@ -36587,7 +37599,7 @@ Integrate Treemacs with Magit.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -36660,13 +37672,12 @@ Integrate Treemacs with Magit.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -36676,7 +37687,6 @@ Integrate Treemacs with Magit.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -36760,7 +37770,7 @@ Integrate Treemacs with Magit.
 ```
 
 
-<a id="org1465caf"></a>
+<a id="org7af03b0"></a>
 
 ## Treemacs LSP
 
@@ -36862,7 +37872,7 @@ Enable Treemacs LSP integration.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -36935,13 +37945,12 @@ Enable Treemacs LSP integration.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -36951,7 +37960,6 @@ Enable Treemacs LSP integration.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -37035,7 +38043,7 @@ Enable Treemacs LSP integration.
 ```
 
 
-<a id="org043db9f"></a>
+<a id="org124abb0"></a>
 
 ## Tramp
 
@@ -37137,7 +38145,7 @@ Configure TRAMP for remote file access.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -37210,13 +38218,12 @@ Configure TRAMP for remote file access.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -37226,7 +38233,6 @@ Configure TRAMP for remote file access.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -37310,7 +38316,7 @@ Configure TRAMP for remote file access.
 ```
 
 
-<a id="org2b03c19"></a>
+<a id="orgb0e6750"></a>
 
 ## Proxy SOCKS
 
@@ -37412,7 +38418,7 @@ Set up SOCKS proxy functions.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -37485,13 +38491,12 @@ Set up SOCKS proxy functions.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -37501,7 +38506,6 @@ Set up SOCKS proxy functions.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -37585,7 +38589,7 @@ Set up SOCKS proxy functions.
 ```
 
 
-<a id="orgf1788ba"></a>
+<a id="orgab45b0e"></a>
 
 ## Proxy HTTP
 
@@ -37687,7 +38691,7 @@ Configure HTTP proxy functions.
 
 ;; Dired
 (use-package dired
-  :ensure nil
+  :straight (:type built-in)
   :commands (dired dired-jump)
   :bind (("C-x C-j" . dired-jump))
   :custom ((dired-listing-switches "-agho --group-directories-first"))
@@ -37760,13 +38764,12 @@ Configure HTTP proxy functions.
 ;; TreemacsProjectile
 (use-package treemacs-projectile
   :after (treemacs projectile)
-  :ensure t)
+  )
 ;; -TreemacsProjectile
 
 ;; TreemacsMagit
 (use-package treemacs-magit
-  :after (treemacs magit)
-  :ensure t)
+  :after (treemacs magit))
 ;; -TreemacsMagit
 
 ;; TreemacsLsp
@@ -37776,7 +38779,6 @@ Configure HTTP proxy functions.
 
 ;; Tramp
 (use-package tramp
-  :ensure nil
   :defer t
   :config
   (setq tramp-default-user "root"
@@ -37860,14 +38862,14 @@ Configure HTTP proxy functions.
 ```
 
 
-<a id="orge9e2d03"></a>
+<a id="org1095523"></a>
 
 # Utilities
 
 This section configures utility functions and miscellaneous configurations.
 
 
-<a id="org64feb8c"></a>
+<a id="org03f4b52"></a>
 
 ## No Littering
 
@@ -37881,12 +38883,12 @@ Configure no-littering for better file organization.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -37943,7 +38945,7 @@ Configure no-littering for better file organization.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -37971,11 +38973,11 @@ Configure no-littering for better file organization.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab
@@ -37996,7 +38998,7 @@ Configure no-littering for better file organization.
 ```
 
 
-<a id="orgcb70078"></a>
+<a id="org5b15d4d"></a>
 
 ## Window Management
 
@@ -38010,12 +39012,12 @@ Set up window management configurations.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -38072,7 +39074,7 @@ Set up window management configurations.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -38100,11 +39102,11 @@ Set up window management configurations.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab
@@ -38125,7 +39127,7 @@ Set up window management configurations.
 ```
 
 
-<a id="orgf82fc41"></a>
+<a id="orga1e9003"></a>
 
 ## Eyebrowse
 
@@ -38139,12 +39141,12 @@ Enable eyebrowse for workspace management.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -38201,7 +39203,7 @@ Enable eyebrowse for workspace management.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -38229,11 +39231,11 @@ Enable eyebrowse for workspace management.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab
@@ -38254,7 +39256,7 @@ Enable eyebrowse for workspace management.
 ```
 
 
-<a id="orge4578d1"></a>
+<a id="org8ec05d3"></a>
 
 ## Burly
 
@@ -38268,12 +39270,12 @@ Configure Burly for window layout management.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -38330,7 +39332,7 @@ Configure Burly for window layout management.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -38358,11 +39360,11 @@ Configure Burly for window layout management.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab
@@ -38383,7 +39385,7 @@ Configure Burly for window layout management.
 ```
 
 
-<a id="org7cf9184"></a>
+<a id="org7f35a4f"></a>
 
 ## Yasnippet
 
@@ -38397,12 +39399,12 @@ Set up Yasnippet for snippet expansion.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -38459,7 +39461,7 @@ Set up Yasnippet for snippet expansion.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -38487,11 +39489,11 @@ Set up Yasnippet for snippet expansion.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab
@@ -38512,7 +39514,7 @@ Set up Yasnippet for snippet expansion.
 ```
 
 
-<a id="org469e6f0"></a>
+<a id="orga1c05fd"></a>
 
 ## Undo Fu
 
@@ -38526,12 +39528,12 @@ Enable undo-fu for enhanced undo functionality.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -38588,7 +39590,7 @@ Enable undo-fu for enhanced undo functionality.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -38616,11 +39618,11 @@ Enable undo-fu for enhanced undo functionality.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab
@@ -38641,7 +39643,7 @@ Enable undo-fu for enhanced undo functionality.
 ```
 
 
-<a id="org296603e"></a>
+<a id="org4ee0075"></a>
 
 ## Claude Code IDE
 
@@ -38655,12 +39657,12 @@ Configure Claude Code IDE integration.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -38717,7 +39719,7 @@ Configure Claude Code IDE integration.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -38745,11 +39747,11 @@ Configure Claude Code IDE integration.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab
@@ -38770,7 +39772,7 @@ Configure Claude Code IDE integration.
 ```
 
 
-<a id="orgad0f940"></a>
+<a id="org55e5e0b"></a>
 
 ## Ivy Switch Tab
 
@@ -38784,12 +39786,12 @@ Set up ivy-switch-tab function.
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -38846,7 +39848,7 @@ Set up ivy-switch-tab function.
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -38874,11 +39876,11 @@ Set up ivy-switch-tab function.
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab

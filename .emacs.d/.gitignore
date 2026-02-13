@@ -1,0 +1,66 @@
+# Compiled elisp files
+*.elc
+
+# Auto-save files
+var/
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+
+# Backup files
+*~
+.\#*
+\#*\#
+
+# Lock files
+*.lock
+
+# Eln-cache (Emacs 28+)
+eln-cache/
+.cache
+
+# Elpa packages
+elpa/
+
+# Package quickstart
+package-quickstart.el
+package-quickstart.elc
+
+# Custom file (if you have one)
+custom.el
+
+# Recent files
+recentf
+
+# Projectile bookmarks
+projectile-bookmarks.eld
+
+# Org-roam database
+org-roam.db
+
+# Transient history
+transient/
+
+# Straight.el packages
+straight/
+
+# User-specific files that might contain local configuration
+*local.el
+*user.el
+
+# Shell command output files
+*.sh~.el
+
+# Personal/local configuration
+**/local/
+personal/**/
+
+# Temporary files
+*.tmp
+tmp/
+temp/
+
+# OS generated files
+.DS_Store
+Thumbs.db

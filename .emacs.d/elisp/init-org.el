@@ -6,27 +6,55 @@
 
 ;; OrgFontSetup
 (defun k4i/org-font-setup ()
-  ;; Set faces for heading levels
-  (dolist (face '((org-level-1 . 1.2)
-                  (org-level-2 . 1.1)
-                  (org-level-3 . 1.05)
-                  (org-level-4 . 1.0)
+  ;; Set faces for heading levels - use a proportional font with different colors for better visual hierarchy with variable-pitch-mode
+  (dolist (face '((org-level-1 . 1.3)
+                  (org-level-2 . 1.25)
+                  (org-level-3 . 1.2)
+                  (org-level-4 . 1.15)
                   (org-level-5 . 1.1)
-                  (org-level-6 . 1.1)
-                  (org-level-7 . 1.1)
-                  (org-level-8 . 1.1)))
-    (set-face-attribute (car face) nil :font "DejaVu Sans Mono" :weight 'bold :height (cdr face)))
+                  (org-level-6 . 1.05)
+                  (org-level-7 . 1.0)
+                  (org-level-8 . 1.0)))
+    (let ((face-name (car face))
+          (height (cdr face)))
+      (set-face-attribute face-name nil
+                          :font "Cantarell"
+                          :weight 'bold
+                          :height height
+                          ;; Add different foreground colors for each level to create visual depth
+                          ;; Using colors from the gruvbox palette that work well with the light theme
+                          :foreground (cond
+                                       ((eq face-name 'org-level-1) "#CC241D")    ; Red
+                                       ((eq face-name 'org-level-2) "#98971A")    ; Green
+                                       ((eq face-name 'org-level-3) "#D79921")    ; Yellow
+                                       ((eq face-name 'org-level-4) "#458588")    ; Blue
+                                       ((eq face-name 'org-level-5) "#B16286")    ; Purple
+                                       ((eq face-name 'org-level-6) "#689D6A")    ; Aqua
+                                       ((eq face-name 'org-level-7) "#D65D0E")    ; Orange
+                                       ((eq face-name 'org-level-8) "#928374"))))) ; Gray
 
   ;; Ensure that anything that should be fixed-pitch in Org files appears that way
-  (set-face-attribute 'org-block nil    :foreground nil :inherit 'fixed-pitch)
+  (set-face-attribute 'org-block nil    :foreground 'unspecified :inherit 'fixed-pitch)
   (set-face-attribute 'org-table nil    :inherit 'fixed-pitch)
   (set-face-attribute 'org-formula nil  :inherit 'fixed-pitch)
-  (set-face-attribute 'org-code nil     :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-table nil    :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-verbatim nil :inherit '(shadow fixed-pitch))
-  (set-face-attribute 'org-special-keyword nil :inherit '(font-lock-comment-face fixed-pitch))
-  (set-face-attribute 'org-meta-line nil :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for org-code that works with gruvbox light
+  (set-face-attribute 'org-code nil     :foreground "#98971A" :inherit '(shadow fixed-pitch))
+  ;; Better color for verbatim text that works with gruvbox light
+  (set-face-attribute 'org-verbatim nil :foreground "#458588" :inherit '(shadow fixed-pitch))
+  ;; Better color for special keywords that works with gruvbox light
+  (set-face-attribute 'org-special-keyword nil :foreground "#D65D0E" :inherit '(font-lock-comment-face fixed-pitch))
+  ;; Better color for meta lines that works with gruvbox light
+  (set-face-attribute 'org-meta-line nil :foreground "#B16286" :inherit '(font-lock-comment-face fixed-pitch))
   (set-face-attribute 'org-checkbox nil  :inherit 'fixed-pitch)
+  ;; Additional org mode face customizations for better gruvbox theme integration
+  (set-face-attribute 'org-link nil :foreground "#458588" :underline t)
+  (set-face-attribute 'org-quote nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-verse nil :slant 'italic :foreground "#928374")
+  (set-face-attribute 'org-document-title nil :height 1.4 :weight 'bold :foreground "#B16286")
+  (set-face-attribute 'org-document-info nil :foreground "#83A598")
+  (set-face-attribute 'org-document-info-keyword nil :foreground "#928374")
+  (set-face-attribute 'org-todo nil :foreground "#CC241D" :weight 'bold)
+  (set-face-attribute 'org-done nil :foreground "#98971A" :weight 'bold)
   ;; (set-face-attribute 'line-number nil :inherit 'fixed-pitch)
   ;; (set-face-attribute 'line-number-current-line nil :inherit 'fixed-pitch)
   )
@@ -63,15 +91,25 @@
   )
 ;; -ToggleFunctions
 
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
+
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
-  (org-indent-mode)
+  ;; Use org-bullets instead of org-indent-mode for visual appearance
+  ;; If you want indentation, org-bullets will provide it together with symbols
   (variable-pitch-mode 1)
   (visual-line-mode 1)
+  (org-bullets-mode 1)
+  ;; Ensure our custom font settings are applied even when variable-pitch-mode is active
+  (add-hook 'variable-pitch-mode-on-hook 'k4i/org-font-setup nil t)
   (setq-local electric-pair-inhibit-predicate `(lambda (c) (if (char-equal c ?<) t (,electric-pair-inhibit-predicate c)))))
 
 (use-package org
-  :pin org
+  :straight (:type built-in)
   :commands (org-capture org-agenda)
   :hook (org-mode . k4i/org-mode-setup)
   :custom
@@ -122,13 +160,6 @@
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
-
-;; OrgBullets
-(use-package org-bullets
-  :hook (org-mode . org-bullets-mode)
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -304,7 +335,6 @@
 
 ;; Ebib
 (use-package ebib
-  :ensure t
   :config
   (setq ebib-index-columns
         (quote

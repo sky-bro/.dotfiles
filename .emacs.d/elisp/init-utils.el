@@ -5,12 +5,12 @@
 ;;; Code:
 
 ;; NoLittering
-(use-package no-littering)
-
-;; no-littering doesn't set this by default so we must place
-;; auto save files in the same path as it uses for sessions
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+(use-package no-littering
+  :demand t
+  :config
+  ;; This code runs ONLY after no-littering is loaded
+  (setq auto-save-file-name-transforms
+        `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 ;; -NoLittering
 
 ;; WindowManagement
@@ -67,7 +67,7 @@
 
 ;; Eyebrowse
 (use-package eyebrowse
-  :ensure t
+  :straight (eyebrowse :type git :host github :repo "wasamasa/eyebrowse")
   :config
   (eyebrowse-mode t))
 ;; -Eyebrowse
@@ -95,11 +95,11 @@
 ;; -UndoFu
 
 ;; ClaudeCodeIDE
-(use-package claude-code-ide
-  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
-  :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
-  :config
-  (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
+;; (use-package claude-code-ide
+;;   :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+;;   :bind ("C-c C-'" . claude-code-ide-menu) ; Set your favorite keybinding
+;;   :config
+;;   (claude-code-ide-emacs-tools-setup)) ; Optionally enable Emacs MCP tools
 ;; -ClaudeCodeIDE
 
 ;; IvySwitchTab

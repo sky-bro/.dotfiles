@@ -30,7 +30,7 @@
 ;; -DisableUnnecessaryInterface
 
 ;; Package initialize occurs automatically in Emacs 27+
-(setq package-quickstart t)
+;;(setq package-quickstart t)
 
 (provide 'early-init)
 ;;; early-init.el ends here
