@@ -115,5 +115,23 @@
     (switch-to-buffer buffer)))
 ;; -IvySwitchTab
 
+;; OrgRoamRebuildHelper
+(defun k4i/rebuild-org-roam-packages ()
+  "Helper function to clear org-roam related compilation caches."
+  (interactive)
+  (when (y-or-n-p "This will clear org-roam and org-roam-ui compiled caches. Are you sure? ")
+    (let ((build-dir (expand-file-name "straight/build" user-emacs-directory)))
+      ;; Clear compiled files
+      (when (file-directory-p (expand-file-name "org-roam" build-dir))
+        (shell-command (format "rm -f %s/org-roam/*.elc" build-dir)))
+      (when (file-directory-p (expand-file-name "org-roam-ui" build-dir))
+        (shell-command (format "rm -f %s/org-roam-ui/*.elc" build-dir)))
+      (let ((eln-cache-dir (expand-file-name "eln-cache" user-emacs-directory)))
+        (when (file-directory-p eln-cache-dir)
+          (shell-command (format "find %s -name '*org-roam*' -delete" eln-cache-dir))))
+      (message "Org-roam compilation caches cleared. You may need to restart Emacs."))))
+
+;; -OrgRoamRebuildHelper
+
 (provide 'init-utils)
 ;;; init-utils.el ends here

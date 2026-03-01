@@ -61,10 +61,10 @@
     (if (eq command 'prefix)
         (when-let ((prefix (funcall fun 'prefix)))
           (unless (memq (char-before (- (point) (length prefix))) '(?. ?> ?\\())
-            prefix))
-      (funcall fun command arg)))
-  (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline)
-  :diminish company-mode))
+                        prefix))
+          (funcall fun command arg)))
+    (advice-add #'company-yasnippet :around #'my-company-yasnippet-disable-inline)
+    :diminish company-mode))
 ;; -Company
 
 ;; EvilNerdCommenter
@@ -172,6 +172,15 @@
   :after magit)
 ;; -Forge
 
+;; treesit
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt) ;; Prompt to install if missing
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all) ;; Use TS modes for all supported languages
+  (global-treesit-auto-mode))
+;; -treesit
+
 ;; Docker
 (use-package docker
   :bind ("C-c d" . docker))
@@ -224,36 +233,54 @@
   :after lsp)
 ;; -LspIvy
 
-;; DapMode
-(use-package dap-mode
-  :after lsp-mode
-  ;; Uncomment the config below if you want all UI panes to be hidden by default!
-  ;; :custom
-  ;; (lsp-enable-dap-auto-configure nil)
-  ;; :config
-  ;; (dap-ui-mode 1)
-  :commands dap-debug
+;; Dape
+(use-package dape
+  :straight t
+  ;; :preface
+  ;; By default, dape shares the same keybindings as GUD (gdb)
+  ;; If you want VS Code-style keys (F5, F10, F11), uncomment this:
+  ;; (setq dape-key-prefix nil)
+
   :config
-  ;; Set up Node debugging
-  (require 'dap-node)
-  (require 'dap-python)
-  ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
+  ;; Global config for dape
+  (setq dape-buffer-window-arrangement 'right) ;; Show debug info on the right
+  (setq dape-inlay-hints t) ;; Show variable values inline (like VS Code)
+  (setq dape-cwd-fn 'projectile-project-root) ;; Use projectile root if available
 
-  ;; C/C++
-  ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
-  ;; dap-lldb can't get user input: https://github.com/emacs-lsp/dap-mode/issues/58
-  ;; (require 'dap-lldb)
-  ;; native debug: https://marketplace.visualstudio.com/items?itemName=webfreak.debug
-  ;; (require 'dap-gdb-lldb) ; then run dap-gdb-lldb-setup
-  ;; (require 'dap-codelldb)
-  ;; set the debugger executable (c++), by default it looks for it under .emacs.d/..
-  (setq dap-lldb-debug-program '("lldb-vscode"))
+  ;; Hook to save buffers before debugging starts
+  (add-hook 'dape-start-hook (lambda () (save-some-buffers t t))))
+;; -Dape
 
-  ;; Bind `C-c l d` to `dap-hydra` for easy access
-  (general-define-key
-   :keymaps 'lsp-mode-map
-   :prefix lsp-keymap-prefix
-   "d" '(dap-hydra t :wk "debugger")))
+;; DapMode
+;; (use-package dap-mode
+;;   :after lsp-mode
+;;   ;; Uncomment the config below if you want all UI panes to be hidden by default!
+;;   ;; :custom
+;;   ;; (lsp-enable-dap-auto-configure nil)
+;;   :commands dap-debug
+;;   :config
+;;   (dap-mode 1)
+;;   (dap-ui-mode 1)
+;;   (require 'dap-node)
+;;   (require 'dap-python)
+;;   ;; (dap-node-setup) ;; Automatically installs Node debug adapter if needed
+
+;;   ;; C/C++
+;;   ;; lldb is a debugger that supports: C, C++, Objective-C, Swift
+;;   ;; dap-lldb can't get user input: https://github.com/emacs-lsp/dap-mode/issues/58
+;;   ;; (require 'dap-lldb)
+;;   ;; native debug: https://marketplace.visualstudio.com/items?itemName=webfreak.debug
+;;   ;; (require 'dap-gdb-lldb) ; then run dap-gdb-lldb-setup
+;;   ;; (require 'dap-codelldb)
+;;   ;; set the debugger executable (c++), by default it looks for it under .emacs.d/..
+;;   (setq dap-lldb-debug-program '("lldb-vscode"))
+;;   (setq dap-python-debugger 'debugpy)
+
+;;   ;; Bind `C-c l d` to `dap-hydra` for easy access
+;;   (general-define-key
+;;    :keymaps 'lsp-mode-map
+;;    :prefix lsp-keymap-prefix
+;;    "d" '(dap-hydra t :wk "debugger")))
 ;; -DapMode
 
 ;; Python debugging for DAP
@@ -299,21 +326,30 @@ header"
 
 ;; PythonMode
 (use-package python
-  :mode ("\\.py\\'" . python-mode)
-  :hook (python-mode . lsp-deferred)
-  :custom
-  ;; NOTE: Set these if Python 3 is called "python3" on your system!
-  ;; (python-shell-interpreter "python3")
-  ;; (dap-python-executable "python3")
-  (dap-python-debugger 'debugpy))
+  :mode ("\\.py\\'" . python-ts-mode)
+  :hook (
+         (python-ts-mode . eglot-ensure) ;; auto-start lsp
+         (python-ts-mode . flymake-mode) ;; built-in error checking
+         ))
 ;; -PythonMode
 
-;; Pyvenv
-(use-package pyvenv
-  :after python
+;; Ruff
+;; for formatting & linting
+(use-package apheleia
   :config
-  (pyvenv-mode 1))
-;; -Pyvenv
+  (apheleia-global-mode -1)
+  :hook
+  (
+   (python-ts-mode . apheleia-mode)
+   )
+  )
+;; -Ruff
+
+;; envrc
+(use-package envrc
+  :config
+  (envrc-global-mode))
+;; -envrc
 
 ;; Slime
 ;; (use-package slime
@@ -376,9 +412,9 @@ header"
 ;; -PhpMode
 
 ;; TomlMode
-(use-package toml-mode
-  :straight t
-  :hook (toml-mode . lsp-deferred))
+;; (use-package toml-mode
+;;   :straight t
+;;   :hook (toml-mode . lsp-deferred))
 ;; -TomlMode
 
 ;; YamlMode
@@ -400,8 +436,8 @@ header"
 (use-package cdlatex
   ;;:straight (:host github :repo "abo-abo/cdlatex")
   :hook ((LaTeX-mode  . turn-on-cdlatex)
-         (org-mode    . turn-on-org-cdlatex)
-         (cdlatex-tab . LaTeX-indent-line)))
+         (org-mode    . turn-on-org-cdlatex))
+  )
 ;; -Cdlatex
 
 ;; GraphvizDotMode

@@ -19,7 +19,12 @@ function clicolors() {
 }
 
 # If you come from bash you might have to change your $PATH.
-export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:$HOME/go/bin:$HOME/.cargo/bin:/usr/local/bin:$PATH
+
+# TeX Live 2025 paths
+export PATH="/usr/local/texlive/2025/bin/x86_64-linux:$PATH"
+export MANPATH="/usr/local/texlive/2025/texmf-dist/doc/man:$MANPATH"
+export INFOPATH="/usr/local/texlive/2025/texmf-dist/doc/info:$INFOPATH"
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/sky/.oh-my-zsh"
@@ -131,8 +136,9 @@ alias ec='emacsclient -nc'
 
 source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
-command -v pyenv >/dev/null && source <(kubectl completion zsh)
+command -v kubectl >/dev/null && source <(kubectl completion zsh)
 
 export PYENV_ROOT="$HOME/.pyenv"
 command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
@@ -140,10 +146,9 @@ command -v pyenv >/dev/null && eval "$(pyenv init -)"
 
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
 export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
@@ -163,5 +168,3 @@ if [ -f "/home/sky/miniforge3/etc/profile.d/mamba.sh" ]; then
     . "/home/sky/miniforge3/etc/profile.d/mamba.sh"
 fi
 # <<< conda initialize <<<
-
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

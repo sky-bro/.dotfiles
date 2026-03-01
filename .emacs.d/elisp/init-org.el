@@ -91,12 +91,6 @@
   )
 ;; -ToggleFunctions
 
-;; OrgBullets
-(use-package org-bullets
-  :custom
-  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
-;; -OrgBullets
-
 ;; OrgModeSetup
 (defun k4i/org-mode-setup ()
   ;; Use org-bullets instead of org-indent-mode for visual appearance
@@ -114,7 +108,7 @@
   :hook (org-mode . k4i/org-mode-setup)
   :custom
   (org-pretty-entities t)
-  (org-image-actual-width 900
+  (setq org-image-actual-width nil
                           ;; (/ (nth 3 (assq 'geometry (frame-monitor-attributes))) 3)
                           )
   (org-startup-folded t)
@@ -137,7 +131,10 @@
      ("idea" . ?i)))
   :config
   ;; latex preview with =C-c C-x C-l=, increase font size.
-  (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+  ;; (setq org-format-latex-options (plist-put org-format-latex-options :scale 2.0))
+  ;; Use dvisvgm as default for Math LaTeX preview since it generally works better
+  (setq org-preview-latex-default-process 'xelatex)
+  (setq org-latex-create-formula-image-program 'xelatex)
   (font-lock-add-keywords 'org-mode
                           '(("^ *\\([-]\\) "
                              (0 (prog1 () (compose-region (match-beginning 1) (match-end 1) "•"))))))
@@ -154,12 +151,18 @@
 
   (setq org-refile-targets
         '((( "Archive.org" :maxlevel . 1)
-          ( "Tasks.org" :maxlevel . 1))))
+           ( "Tasks.org" :maxlevel . 1))))
 
   ;; Save Org buffers after refiling!
   (advice-add 'org-refile :after 'org-save-all-org-buffers)
   (k4i/org-font-setup))
 ;; -OrgModeSetup
+
+;; OrgBullets
+(use-package org-bullets
+  :custom
+  (org-bullets-bullet-list '("◉" "○" "●" "○" "●" "○" "●")))
+;; -OrgBullets
 
 ;; VisualFillColumn
 (defun k4i/org-mode-visual-fill ()
@@ -298,7 +301,7 @@
   ;; http://orgmode.org/worg/org-faq.html#using-xelatex-for-pdf-export
   ;; latexmk runs pdflatex/xelatex (whatever is specified) multiple times
   ;; automatically to resolve the cross-references.
-  (setq org-latex-pdf-process '("latexmk -xelatex -quiet -shell-escape -f %f"))
+  (setq org-latex-pdf-process '("latexmk -xelatex -quiet -shell-escape -outdir=%o -f %f"))
   (setq org-latex-toc-command "\\tableofcontents \\clearpage")
   (require 'ox-beamer)
   ;; (setq org-latex-pdf-process '("pdflatex -shell-escape -interaction nonstopmode -output-directory %o %f"))
@@ -352,7 +355,7 @@
 ;; OrgBabel
 ;; no need confirmation before evalution
 (defun k4i/org-confirm-babel-evaluate (lang body)
-  (not (member lang '("dot" "plantuml" "python" "shell" "emacs-lisp"))))
+  (not (member lang '("latex" "dot" "plantuml" "python" "shell" "emacs-lisp"))))
 
 (with-eval-after-load 'org
   (org-babel-do-load-languages
@@ -360,12 +363,30 @@
    '(
      (emacs-lisp . t)
      (dot . t)
+     (latex . t)
      (python . t)
      (plantuml . t)
      (shell . t)
      ))
+  ;; (setq org-babel-latex-preamble
+  ;;       (lambda (_)
+  ;;         "\\documentclass[tikz]{standalone}"))
+  (setq org-babel-latex-pdf-svg-process "pdf2svg %f %O")
+  (setq org-babel-default-header-args:latex
+        '((:results . "file graphics")
+          (:exports . "results")
+          ))
+  (add-to-list 'org-latex-packages-alist '("" "tikz" t))
+
   (setq org-confirm-babel-evaluate #'k4i/org-confirm-babel-evaluate)
   (push '("conf-unix" . conf-unix) org-src-lang-modes))
+
+(with-eval-after-load 'ob-latex
+  ;; 3. COMPLETELY REPLACE the default LaTeX preamble for code blocks
+  (setq org-babel-latex-preamble
+        (lambda (_)
+          "\\documentclass[tikz,border=2pt]{standalone}\n\\usetikzlibrary{calc,positioning,arrows.meta,shapes.geometric}"))
+  )
 ;; -OrgBabel
 
 ;; OrgBabelTangle
@@ -456,6 +477,8 @@
   (org-roam-directory (expand-file-name "Org-Roam" org-directory))
   (org-roam-complete-everywhere t)
   :config
+  (require 'ucs-normalize)
+  (require 'org-roam-utils)
   (org-roam-setup)
   (setq org-roam-capture-templates
         '(("d" "default" plain "%?"
@@ -499,45 +522,54 @@
 (use-package org-roam-ui
   :after org-roam
   :config
+  (require 'org-roam-bibtex) ; For orb-edit-note function
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
         org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t))
+        org-roam-ui-open-on-start nil))  ; Changed to nil for better performance
 ;; -OrgRoamUI
+
+;; OrgRoamBibtex
+(use-package org-roam-bibtex
+  :after org-roam
+  :hook (org-mode . org-roam-bibtex-mode)
+  :config
+  ;; Ensure proper setup for orb-edit-note
+  (require 'org-ref nil t))
 
 ;; OrgRef
 (use-package org-ref
-    :after org
-    :init
-    :config
-    (setq
-         ; Let ivy makes completion.
-         org-ref-completion-library 'org-ref-ivy-cite
-         ; Use Helm to get pdf filename.
-         org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
-         ; Use the bibtext file exported from Zotero.
-         ;; org-ref-default-bibliography (list (expand-file-name "library.bib" zotero-directory))
-         ;; org-ref-bibliography-notes (expand-file-name "bibnotes.org" org-roam-directory)
-         ; Use org-roam files as my reading notes.
-         ;; org-ref-notes-directory org-roam-directory
-         org-ref-notes-function 'orb-edit-notes
-         ; Add templates for my reading notes.
-         org-ref-note-title-format (concat
-                                    "* TODO %y - %t\n"
-                                    ":PROPERTIES:\n"
-                                    ":Custom_ID: %k\n"
-                                    ":NOTER_DOCUMENT: %F\n"
-                                    ":ROAM_KEY: cite:%k\n"
-                                    ":AUTHOR: %9a\n"
-                                    ":JOURNAL: %j\n"
-                                    ":YEAR: %y\n"
-                                    ":VOLUME: %v\n"
-                                    ":PAGES: %p\n"
-                                    ":DOI: %D\n"
-                                    ":URL: %U\n"
-                                    ":END:\n\n"
-                                    )
-    ))
+  :after org
+  :init
+  :config
+  (setq
+                                        ; Let ivy makes completion.
+   org-ref-completion-library 'org-ref-ivy-cite
+                                        ; Use Helm to get pdf filename.
+   org-ref-get-pdf-filename-function 'org-ref-get-pdf-filename-helm-bibtex
+                                        ; Use the bibtext file exported from Zotero.
+   ;; org-ref-default-bibliography (list (expand-file-name "library.bib" zotero-directory))
+   ;; org-ref-bibliography-notes (expand-file-name "bibnotes.org" org-roam-directory)
+                                        ; Use org-roam files as my reading notes.
+   ;; org-ref-notes-directory org-roam-directory
+   org-ref-notes-function 'orb-edit-notes
+                                        ; Add templates for my reading notes.
+   org-ref-note-title-format (concat
+                              "* TODO %y - %t\n"
+                              ":PROPERTIES:\n"
+                              ":Custom_ID: %k\n"
+                              ":NOTER_DOCUMENT: %F\n"
+                              ":ROAM_KEY: cite:%k\n"
+                              ":AUTHOR: %9a\n"
+                              ":JOURNAL: %j\n"
+                              ":YEAR: %y\n"
+                              ":VOLUME: %v\n"
+                              ":PAGES: %p\n"
+                              ":DOI: %D\n"
+                              ":URL: %U\n"
+                              ":END:\n\n"
+                              )
+   ))
 ;; -OrgRef
 
 ;; CiteprocOrg

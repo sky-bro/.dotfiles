@@ -228,7 +228,7 @@ exec_always app_starter.sh aria2c
 # desktop monitor
 exec_always app_starter.sh conky
 # window effect: transparency, shadow, animation
-#exec_always --no-startup-id picom -b
+# exec_always --no-startup-id picom -b
 # use dex to autostart programs in:
 #   /etc/xdg/autostart/*
 #   $HOME/.config/autostart/*
@@ -253,7 +253,7 @@ exec_always app_starter.sh conky
 exec --no-startup-id dex --autostart --environment i3
 
 # autoadb: execute a command whenever a device is adb-connected
-exec --no-startup-id autoadb scrcpy -s '{}' -Sw --window-borderless -t -K --prefer-text --window-title '{}'
+exec --no-startup-id autoadb scrcpy -s '{}' -Sw --window-borderless -t -K --window-title '{}'
 exec --no-startup-id adb-battery-warning.sh
 # later get the device number from window title
 # xprop WM_NAME | cut -d '"' -f 2
