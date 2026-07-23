@@ -1,44 +1,77 @@
-#+TITLE: k4i's .dotfiles
+#+TITLE: k4i's dotfiles
 
-* Introduction
+* Overview
 
-These are my dotfiles managed with stow, check [[https://k4i.top/posts/manage-my-dotfiles-with-stow/][this post]] for more details on using this tool.
+This repository contains my Linux and macOS configuration. Linux desktop files
+(i3, rofi, picom, Xresources, and others) are retained, while macOS setup uses
+an explicit profile so the two environments are not accidentally mixed.
 
-* Quick start
+Private GPG keys are never stored here. Only GnuPG configuration and public key
+identifiers are tracked.
+
+* macOS quick start
+
+The setup script is intentionally a dry run by default:
 
 #+begin_src shell
-  cd ~
-  # git clone https://github.com/sky-bro/.dotfiles.git
-  git clone git@github.com:sky-bro/.dotfiles.git
-  cd .dotfiles
-  stow -v .
+  git clone git@github.com:sky-bro/.dotfiles.git ~/.dotfiles
+  cd ~/.dotfiles
+
+  ./setup.sh --check
+  ./setup.sh --install-packages --apply
+  source ~/.zshrc
 #+end_src
 
-stow will create symbolic link for the uppermost path it do not find in the target directory. So if you do not want to create symbolic for some folder, create the folder first
+Conflicting files are moved to
+=~/.local/state/dotfiles-backups/<timestamp>/= before symlinks are created.
+The package installation explicitly clears inherited Homebrew mirror variables
+and uses the official source.
 
-* what I use
+* Verification
 
-- window manager:
-  - i3
-- app launcher
-  - rofi
-- password manager
-  - rofi-pass
-- emoji picker
-  - rofi-emoji
-- compositor
-  - picom
-- editor
-  - emacs
-  - vim
-- tmux
-- terminal
-  - st
-- shell
-  - zsh
-- clipboard manager
-  - copyq
-- screenshot
-  - flameshot
-- desktop notification server
-  - dunst
+#+begin_src shell
+  tmux -V
+  wezterm --version
+  wezterm --config-file ~/.wezterm.lua show-keys >/dev/null
+  gpg --list-secret-keys --keyid-format long
+  ssh-add -L
+  git config --global --get user.signingkey
+  git config --global --get commit.gpgsign
+  ssh -T git@github.com
+#+end_src
+
+GitHub reports successful authentication and then exits non-zero because it does
+not provide shell access; that is expected.
+
+* GPG migration
+
+See [[file:docs/GPG-MIGRATION.md][docs/GPG-MIGRATION.md]]. The process exports an encrypted complete
+backup, verifies SHA-256 on both machines, imports in an interactive terminal,
+checks every secret-key component, and removes temporary exports.
+
+* Component documentation
+
+See [[file:docs/README.md][docs/README.md]] for the component map. Each managed component links its
+configuration, personal operating notes, verification commands, troubleshooting,
+and upstream documentation.
+
+macOS-specific applications that need privacy permissions or local signing, such
+as CopyQ, keep those security-sensitive steps explicit and documented rather
+than silently changing system policy during setup.
+
+* AI Agent setup
+
+AI agents must read [[file:AGENTS.md][AGENTS.md]] before changing or applying this repository.
+The expected automated workflow is:
+
+1. Run =./setup.sh --check=.
+2. Report conflicts and request approval for package installation or backups.
+3. Run =./setup.sh --install-packages --apply=.
+4. Guide the user through any password or GPG pinentry prompts in a real
+   terminal; never request secrets in chat.
+5. Run every verification command and clean up temporary key exports.
+
+* Linux desktop configuration
+
+The original i3, rofi, picom, Emacs, Vim, shell, and utility scripts remain in
+the repository. Do not run =stow .= on macOS; use the profile-aware setup script.

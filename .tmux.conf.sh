@@ -1,21 +1,29 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-bind_copy=(bind-key -T copy-mode-vi MouseDragEnd1Pane)
+set -u
 
-# `tmux_bind_copy pbcopy` will make selecting with the mouse (and then
-# releasing the selection) in tmux pipe the selection to `pbcopy`
-function tmux_bind_copy {
-        tmux "${bind_copy[@]}" send-keys -X copy-pipe-and-cancel "$@"
+tmux_bind_clipboard() {
+    local clipboard_command="$1"
+    tmux bind-key -T copy-mode-vi y \
+        send-keys -X copy-pipe-and-cancel "$clipboard_command"
+    tmux bind-key -T copy-mode-vi MouseDragEnd1Pane \
+        send-keys -X copy-pipe-and-cancel "$clipboard_command"
 }
 
-if [[ "$(uname)" == "Darwin" ]]
-then
-    # Copy with pbcopy on macOS
-    tmux_bind_copy pbcopy
-fi
-
-if [[ ! -z "$WSL_DISTRO_NAME" ]]
-then
-    # copy with Windows' clip.exe on WSL
-    tmux_bind_copy /mnt/c/Windows/System32/clip.exe
-fi
+case "$(uname -s)" in
+    Darwin)
+        tmux_bind_clipboard pbcopy
+        ;;
+    Linux)
+        if [[ -n "${WSL_DISTRO_NAME:-}" ]]; then
+            tmux_bind_clipboard /mnt/c/Windows/System32/clip.exe
+        else
+            tmux bind-key -T copy-mode-vi y \
+                send-keys -X copy-selection-and-cancel
+        fi
+        ;;
+    *)
+        tmux bind-key -T copy-mode-vi y \
+            send-keys -X copy-selection-and-cancel
+        ;;
+esac

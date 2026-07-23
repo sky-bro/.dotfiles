@@ -1,0 +1,16 @@
+# GnuPG runtime and secret material must never enter this repository.
+.gnupg/private-keys-v1.d/
+.gnupg/openpgp-revocs.d/
+.gnupg/public-keys.d/
+.gnupg/crls.d/
+.gnupg/*.kbx
+.gnupg/*.kbx~
+.gnupg/*.gpg
+.gnupg/*.lock
+.gnupg/S.*
+.gnupg/random_seed
+.gnupg/trustdb.gpg
+
+# Local setup state.
+.setup.local
+*.bak
