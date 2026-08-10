@@ -1,0 +1,9 @@
+# Keep one Marketplace extension identifier per line.
+EditorConfig.EditorConfig
+charliermarsh.ruff
+golang.go
+jdinhlife.gruvbox
+ms-azuretools.vscode-docker
+ms-python.python
+timonwong.shellcheck
+vscodevim.vim

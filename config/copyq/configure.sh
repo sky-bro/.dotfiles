@@ -5,6 +5,7 @@ repo_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 copyq_app="/Applications/CopyQ.app"
 copyq_bin="$copyq_app/Contents/MacOS/CopyQ"
 commands_file="$repo_dir/config/copyq/commands.ini"
+markdown_link_script="$repo_dir/config/copyq/markdown-link.js"
 
 if [[ ! -x "$copyq_bin" ]]; then
   echo "warning: CopyQ is not installed; skipping CopyQ configuration" >&2
@@ -39,13 +40,19 @@ fi
 
 escaped_commands_file="${commands_file//\\/\\\\}"
 escaped_commands_file="${escaped_commands_file//\'/\\\'}"
+escaped_markdown_link_script="${markdown_link_script//\\/\\\\}"
+escaped_markdown_link_script="${escaped_markdown_link_script//\'/\\\'}"
 
 "$copyq_bin" eval "
   var file = File('$escaped_commands_file');
   if (!file.open())
     throw 'Cannot open CopyQ commands file: ' + file.errorString();
 
-  var imported = importCommands(str(file.readAll()));
+  var commandData = str(file.readAll()).replace(
+    /@MARKDOWN_LINK_SCRIPT@/g,
+    '$escaped_markdown_link_script'
+  );
+  var imported = importCommands(commandData);
   var importedNames = imported.map(function(command) { return command.name; });
   var existing = commands().filter(function(command) {
     return importedNames.indexOf(command.name) < 0;

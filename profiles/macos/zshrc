@@ -33,3 +33,7 @@ elif command -v mise >/dev/null 2>&1; then
 fi
 
 [[ -r "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
+
+# Use Vim for programs that open an external editor, including Codex.
+export VISUAL=vim
+export EDITOR=vim

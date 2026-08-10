@@ -1,0 +1,5 @@
+[tools]
+node = "latest"
+python = "3.13"
+uv = "latest"
+go = { version = "latest", postinstall = "go install golang.org/x/tools/gopls@latest && go install github.com/go-delve/delve/cmd/dlv@latest && go install honnef.co/go/tools/cmd/staticcheck@latest" }

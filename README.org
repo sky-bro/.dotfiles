@@ -33,11 +33,28 @@ and uses the official source.
   tmux -V
   wezterm --version
   wezterm --config-file ~/.wezterm.lua show-keys >/dev/null
+  code --version
+  shellcheck --version
+  go version
+  gopls version
+  dlv version
+  staticcheck -version
+  hugo version
   gpg --list-secret-keys --keyid-format long
   ssh-add -L
   git config --global --get user.signingkey
   git config --global --get commit.gpgsign
+  uv --version
+  colima version
+  docker version
+  docker compose version
+  docker buildx version
+  config/sshd/manage.sh --check
+  xcodebuild -version
+  xcrun --sdk iphoneos --show-sdk-version
+  config/xcode/configure.sh --check
   ssh -T git@github.com
+  ssh -o BatchMode=yes openwrt true
 #+end_src
 
 GitHub reports successful authentication and then exits non-zero because it does

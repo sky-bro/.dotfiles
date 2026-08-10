@@ -63,11 +63,14 @@ declare -a links=(
   "profiles/macos/zshrc:.zshrc"
   "profiles/macos/p10k.zsh:.p10k.zsh"
   "profiles/macos/wezterm.lua:.wezterm.lua"
+  "config/mise/config.toml:.config/mise/config.toml"
+  "config/colima/default.yaml:.colima/_templates/default.yaml"
+  "config/vscode/settings.json:Library/Application Support/Code/User/settings.json"
   ".tmux.conf:.tmux.conf"
   ".tmux.conf.sh:.tmux.conf.sh"
+  "config/ssh/config:.ssh/config"
   ".gnupg/gpg.conf:.gnupg/gpg.conf"
   ".gnupg/gpg-agent.conf:.gnupg/gpg-agent.conf"
-  ".gnupg/sshcontrol:.gnupg/sshcontrol"
 )
 
 timestamp="$(date +%Y%m%d-%H%M%S)-$$"
@@ -102,6 +105,69 @@ for mapping in "${links[@]}"; do
   echo "linked  ~/$target_rel"
 done
 
+if $install_packages; then
+  if command -v mise >/dev/null 2>&1; then
+    mise install
+  else
+    echo "warning: mise is unavailable; managed language runtimes were not installed" >&2
+  fi
+
+  if command -v code >/dev/null 2>&1; then
+    while IFS= read -r extension; do
+      [[ -z "$extension" || "$extension" == \#* ]] && continue
+      code --install-extension "$extension"
+    done < "$repo_dir/config/vscode/extensions.txt"
+  else
+    echo "warning: VS Code CLI is unavailable; extensions were not installed" >&2
+  fi
+fi
+
+if command -v brew >/dev/null 2>&1; then
+  brew_prefix="$(brew --prefix)"
+  declare -a docker_plugins=(
+    "docker-compose"
+    "docker-buildx"
+  )
+
+  for plugin in "${docker_plugins[@]}"; do
+    source_path="$brew_prefix/lib/docker/cli-plugins/$plugin"
+    target_rel=".docker/cli-plugins/$plugin"
+    target_path="$HOME/$target_rel"
+
+    if [[ -L "$target_path" && "$(readlink "$target_path")" == "$source_path" ]]; then
+      echo "ok      ~/$target_rel"
+      continue
+    fi
+
+    if ! $apply; then
+      [[ -e "$target_path" || -L "$target_path" ]] \
+        && echo "replace ~/$target_rel (backup first)" \
+        || echo "create  ~/$target_rel"
+      continue
+    fi
+
+    if [[ ! -e "$source_path" ]]; then
+      echo "warning: $plugin is not installed; re-run with --install-packages" >&2
+      continue
+    fi
+
+    mkdir -p "$(dirname "$target_path")"
+    if [[ -e "$target_path" || -L "$target_path" ]]; then
+      mkdir -p "$backup_root/$(dirname "$target_rel")"
+      mv "$target_path" "$backup_root/$target_rel"
+      did_backup=true
+    fi
+    ln -s "$source_path" "$target_path"
+    echo "linked  ~/$target_rel"
+  done
+fi
+
+if $apply; then
+  bash "$repo_dir/config/vscode/configure.sh" --apply
+else
+  bash "$repo_dir/config/vscode/configure.sh" --check
+fi
+
 if ! $apply; then
   echo
   echo "Dry run only. Re-run with --apply after reviewing the changes."
@@ -110,6 +176,43 @@ fi
 
 chmod 700 "$HOME/.gnupg"
 gpgconf --kill gpg-agent 2>/dev/null || true
+
+configure_gpg_ssh_key() {
+  local label="$1"
+  local keygrip="$2"
+  local priority="$3"
+
+  if gpg-connect-agent "KEYINFO $keygrip" /bye 2>/dev/null \
+      | grep -q "^S KEYINFO $keygrip "; then
+    gpg-connect-agent \
+      "KEYATTR $keygrip Use-for-ssh: $priority" /bye >/dev/null
+    echo "configured $label for SSH with priority $priority"
+  else
+    echo "warning: $label authentication key is not installed" >&2
+  fi
+}
+
+if gpg-connect-agent 'HELP KEYATTR' /bye >/dev/null 2>&1; then
+  configure_gpg_ssh_key \
+    "GitHub" "$GPG_GITHUB_AUTH_KEYGRIP" "$GPG_GITHUB_AUTH_PRIORITY"
+  configure_gpg_ssh_key \
+    "OpenWrt" "$GPG_OPENWRT_AUTH_KEYGRIP" "$GPG_OPENWRT_AUTH_PRIORITY"
+  gpg-connect-agent RELOADAGENT /bye >/dev/null
+else
+  echo "warning: this GnuPG version does not support Use-for-ssh attributes" >&2
+fi
+
+openwrt_public_key="$HOME/.ssh/openwrt-gpg.pub"
+openwrt_public_key_tmp="${openwrt_public_key}.tmp.$$"
+if gpg --export-ssh-key "${GPG_OPENWRT_AUTH_SUBKEY}!" \
+    > "$openwrt_public_key_tmp" 2>/dev/null; then
+  chmod 644 "$openwrt_public_key_tmp"
+  mv "$openwrt_public_key_tmp" "$openwrt_public_key"
+  echo "exported OpenWrt SSH public key"
+else
+  rm -f "$openwrt_public_key_tmp"
+  echo "warning: OpenWrt authentication subkey is not installed" >&2
+fi
 
 bash "$repo_dir/config/copyq/configure.sh"
 

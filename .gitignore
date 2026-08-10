@@ -10,6 +10,7 @@
 .gnupg/S.*
 .gnupg/random_seed
 .gnupg/trustdb.gpg
+.gnupg/sshcontrol
 
 # Local setup state.
 .setup.local

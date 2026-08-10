@@ -61,12 +61,21 @@ cd ~/.dotfiles
 source ~/.zshrc
 ```
 
+During `--apply`, the setup script restores the `Use-for-ssh` priorities from
+the public keygrips in `config/identity.env`. It also exports the OpenWrt
+authentication subkey to `~/.ssh/openwrt-gpg.pub`. A missing authentication
+subkey produces a warning instead of creating or downloading a key.
+
+Do not restore `.gnupg/sshcontrol` from an older backup. It is deprecated and
+has been replaced by the per-key `Use-for-ssh` attribute.
+
 ## Verification
 
 ```sh
 ssh-add -L
 printf 'signing test\n' | gpg --detach-sign --output /dev/null
 ssh -T git@github.com
+ssh -o BatchMode=yes openwrt true
 ```
 
 GitHub success is the message `You've successfully authenticated`; GitHub

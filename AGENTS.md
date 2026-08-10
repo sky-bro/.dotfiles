@@ -20,6 +20,9 @@ be linked wholesale on macOS.
 - Never copy all of `~/.gnupg`; migrate keys with encrypted
   `gpg --export-secret-keys --export-options backup` and import them
   interactively.
+- Do not track or deploy `sshcontrol`, and do not edit private-key files
+  directly. Restore SSH key selection with `gpg-connect-agent KEYATTR` from the
+  public keygrips in `config/identity.env`.
 - Passphrases and SSH passwords must be entered by the user in a real terminal.
 - Public fingerprints, keygrips, and SSH public keys are safe to compare.
 - Verify transferred files with SHA-256 before importing.
@@ -41,3 +44,12 @@ Configuration changes are incomplete until the relevant component entry and
 guide under `docs/` are updated. Document personal intent, install/apply steps,
 verification, troubleshooting, and official upstream links. Link upstream
 material instead of copying it.
+
+## VS Code language integration
+
+When adding a programming language, also review its maintained VS Code
+extension, language server, formatter, linter, debugger, test integration, and
+language-scoped settings. Record tool ownership so VS Code does not duplicate
+tools managed by mise or Homebrew. Update `config/vscode/extensions.txt`,
+`config/vscode/settings.json`, and the component guide as applicable, then run a
+real format/build/test smoke check.

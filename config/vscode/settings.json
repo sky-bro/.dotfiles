@@ -1,0 +1,41 @@
+{
+  "editor.bracketPairColorization.enabled": true,
+  "editor.fontFamily": "'MesloLGS Nerd Font Mono', Menlo, Monaco, monospace",
+  "editor.fontSize": 14,
+  "editor.formatOnSave": true,
+  "editor.renderWhitespace": "boundary",
+  "editor.rulers": [
+    80,
+    100
+  ],
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+  "[go]": {
+    "editor.codeActionsOnSave": {
+      "source.organizeImports": "explicit"
+    },
+    "editor.defaultFormatter": "golang.go"
+  },
+  "files.insertFinalNewline": true,
+  "files.trimTrailingWhitespace": true,
+  "go.formatTool": "default",
+  "go.toolsManagement.autoUpdate": false,
+  "go.toolsManagement.checkForUpdates": "local",
+  "security.workspace.trust.enabled": true,
+  "telemetry.telemetryLevel": "off",
+  "gopls": {
+    "ui.diagnostic.staticcheck": true,
+    "ui.semanticTokens": true
+  },
+  "terminal.integrated.fontFamily": "MesloLGS Nerd Font Mono",
+  "terminal.integrated.fontSize": 13,
+  "vim.highlightedyank.enable": true,
+  "vim.hlsearch": true,
+  "vim.incsearch": true,
+  "vim.leader": "<space>",
+  "vim.smartRelativeLine": true,
+  "vim.useSystemClipboard": true,
+  "window.autoDetectColorScheme": false,
+  "workbench.colorTheme": "Gruvbox Light Medium"
+}

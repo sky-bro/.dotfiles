@@ -13,11 +13,16 @@
 | Oh My Zsh | Zsh 插件框架 | setup 自动安装 | [Shell](SHELL.md) | [Oh My Zsh wiki](https://github.com/ohmyzsh/ohmyzsh/wiki) |
 | Powerlevel10k | Shell prompt 与 Nerd Font 图标 | [`profiles/macos/p10k.zsh`](../profiles/macos/p10k.zsh)、`Brewfile` | [Shell](SHELL.md) | [Powerlevel10k](https://github.com/romkatv/powerlevel10k), [Nerd Fonts](https://www.nerdfonts.com/) |
 | fzf | 模糊搜索与 shell 补全 | `Brewfile`、Zsh plugin | [Shell](SHELL.md) | [fzf README](https://github.com/junegunn/fzf/blob/master/README.md) |
-| mise | 语言运行时、工具与任务管理 | `Brewfile`、Zsh activation | [Shell](SHELL.md) | [mise docs](https://mise.jdx.dev/) |
+| mise / uv | 语言运行时、开发工具与 Python 项目管理 | [`config/mise/config.toml`](../config/mise/config.toml)、`Brewfile`、Zsh activation | [Shell](SHELL.md) | [mise docs](https://mise.jdx.dev/), [uv docs](https://docs.astral.sh/uv/) |
+| Go / Hugo | Go 开发、语言服务、调试、静态分析与静态网站生成 | [`config/mise/config.toml`](../config/mise/config.toml)、[`config/vscode/`](../config/vscode/)、`Brewfile` | [Go 与 Hugo](GO-HUGO.md) | [Go docs](https://go.dev/doc/), [Hugo docs](https://gohugo.io/documentation/) |
+| Docker / Colima | macOS 上的容器 CLI、Compose、Buildx 与轻量 Linux VM | [`config/colima/default.yaml`](../config/colima/default.yaml)、`Brewfile` | [Docker 与 Colima](DOCKER.md) | [Colima docs](https://colima.run/docs/), [Docker docs](https://docs.docker.com/) |
+| Xcode / iPadOS | Apple 平台 SDK、模拟器、真机调试、签名与发布 | [`config/xcode/`](../config/xcode/)、`Brewfile` | [Xcode 与 iPadOS](XCODE.md) | [Xcode support](https://developer.apple.com/support/xcode/), [Xcode documentation](https://developer.apple.com/documentation/xcode) |
+| Visual Studio Code | 跨语言编辑、格式化、静态检查与容器开发 | [`config/vscode/`](../config/vscode/)、`Brewfile` | [Visual Studio Code](VSCODE.md) | [VS Code docs](https://code.visualstudio.com/docs) |
 | CopyQ | 剪贴板历史、全局快捷键和图片分类 | [`config/copyq/`](../config/copyq/)、`Brewfile` | [CopyQ](COPYQ.md) | [CopyQ documentation](https://copyq.readthedocs.io/) |
 | WezTerm | macOS 终端、Gruvbox Light 与字体显示 | [`profiles/macos/wezterm.lua`](../profiles/macos/wezterm.lua)、`Brewfile` | [WezTerm](WEZTERM.md) | [WezTerm configuration](https://wezterm.org/config/files.html) |
 | tmux | 持久终端会话与分屏 | [`.tmux.conf`](../.tmux.conf), [`.tmux.conf.sh`](../.tmux.conf.sh) | [tmux](TMUX.md) | [tmux wiki](https://github.com/tmux/tmux/wiki), [Getting Started](https://github.com/tmux/tmux/wiki/Getting-Started) |
 | GnuPG | 主身份、加密、签名与 SSH 子密钥 | [`.gnupg/`](../.gnupg/) | [GPG 与 SSH](GPG.md), [迁移手册](GPG-MIGRATION.md) | [GnuPG manual](https://gnupg.org/documentation/manuals/gnupg/), [gpg-agent](https://www.gnupg.org/documentation/manuals/gnupg26/gpg-agent.1.html) |
+| OpenSSH | GitHub/OpenWrt 客户端与 macOS Remote Login 服务 | [`config/ssh/config`](../config/ssh/config)、[`config/sshd/`](../config/sshd/) | [SSH](SSH.md) | [Apple Remote Login](https://support.apple.com/guide/mac-help/mchlp1066/mac), [OpenSSH manual pages](https://www.openssh.com/manual.html) |
 | Git/GitHub | 代码身份、签名提交与 SSH | `setup.sh` 写入全局 Git 配置 | [Git 与 GitHub](GIT-GITHUB.md) | [Git docs](https://git-scm.com/doc), [GitHub authentication](https://docs.github.com/authentication) |
 
 ## Linux 桌面组件

@@ -1,0 +1,24 @@
+# Development-oriented defaults for new Colima profiles.
+# Existing profiles keep their own configuration under ~/.colima/<profile>/.
+cpu: 4
+memory: 8
+disk: 100
+
+arch: host
+runtime: docker
+vmType: vz
+mountType: virtiofs
+
+kubernetes:
+  enabled: false
+
+autoActivate: true
+
+network:
+  address: false
+
+forwardAgent: false
+
+docker:
+  features:
+    buildkit: true

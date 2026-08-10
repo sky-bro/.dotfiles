@@ -33,9 +33,32 @@ WezTerm 也由 Brewfile 管理。setup 将
 [`profiles/macos/wezterm.lua`](../profiles/macos/wezterm.lua) 链接为
 `~/.wezterm.lua`；主题、字体与验证方式见 [WezTerm 手册](WEZTERM.md)。
 
+Visual Studio Code 由 Brewfile 管理。setup 链接用户设置，并在
+`--install-packages` 阶段安装仓库记录的扩展；个人约定和验证方式见
+[Visual Studio Code 手册](VSCODE.md)。
+
+Go 运行时及其语言工具由 mise 管理，Hugo 由 Brewfile 管理。
+`--install-packages` 会在链接全局 mise 配置后安装声明的运行时；详见
+[Go 与 Hugo](GO-HUGO.md)。
+
 CopyQ 也由 Brewfile 安装，`--apply` 会在应用可正常启动时写入可移植配置。
 辅助功能授权以及未签名应用的本地修复不会自动执行，详见
 [CopyQ 手册](COPYQ.md)。
+
+Docker CLI、Compose、Buildx 和 Colima 由 Brewfile 安装。setup 部署新
+profile 的 Colima 默认模板与 Docker CLI 插件链接，但不会自动启动虚拟机。
+资源约定、首次启动和验证见 [Docker 与 Colima](DOCKER.md)。
+
+macOS SSH 服务使用系统内置 Remote Login。因为安装服务端策略和启用服务
+需要管理员授权，它不会由普通的 `setup.sh --apply` 静默执行。先运行
+`config/sshd/manage.sh --check`，审核后在真实终端运行
+`sudo config/sshd/manage.sh --apply`。密码登录策略与验证见
+[SSH 手册](SSH.md#macos-server)。
+
+Xcode 稳定版由 Brewfile 通过 Mac App Store 管理。安装后需要在真实终端运行
+`sudo config/xcode/configure.sh --apply`，再按需下载 iOS Simulator runtime。
+Apple Account、签名资产和真机 Developer Mode 由用户在本机界面配置，详见
+[Xcode 与 iPadOS](XCODE.md)。
 
 ## Homebrew
 
@@ -69,10 +92,26 @@ git -C "$(brew --repository)" remote -v
 tmux -V
 wezterm --version
 wezterm --config-file ~/.wezterm.lua show-keys >/dev/null
+code --version
+shellcheck --version
+go version
+gopls version
+dlv version
+staticcheck -version
+hugo version
 gpg --version
 test -x "$(brew --prefix)/bin/pinentry-mac"
 mise --version
+uv --version
 fzf --version
+colima version
+docker version
+docker compose version
+docker buildx version
+config/sshd/manage.sh --check
+xcodebuild -version
+xcrun --sdk iphoneos --show-sdk-version
+config/xcode/configure.sh --check
 /Applications/CopyQ.app/Contents/MacOS/CopyQ --version
 git config --global --get user.signingkey
 ```
