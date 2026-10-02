@@ -45,6 +45,9 @@ CopyQ 也由 Brewfile 安装，`--apply` 会在应用可正常启动时写入可
 辅助功能授权以及未签名应用的本地修复不会自动执行，详见
 [CopyQ 手册](COPYQ.md)。
 
+Tailscale 与 Clash Verge Rev 由 Brewfile 安装。首次登录、服务代理和家庭
+内网分流按 [Tailscale 与 Clash](TAILSCALE.md) 完成；接口配置按本机自动生成。
+
 Docker CLI、Compose、Buildx 和 Colima 由 Brewfile 安装。setup 部署新
 profile 的 Colima 默认模板与 Docker CLI 插件链接，但不会自动启动虚拟机。
 资源约定、首次启动和验证见 [Docker 与 Colima](DOCKER.md)。

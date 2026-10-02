@@ -9,6 +9,7 @@
 | --- | --- | --- | --- | --- |
 | Setup | 安全、幂等地部署 dotfiles | [`setup.sh`](../setup.sh) | [macOS Setup](MACOS-SETUP.md) | — |
 | Homebrew | macOS 软件包管理 | [`Brewfile`](../Brewfile) | [macOS Setup](MACOS-SETUP.md#homebrew) | [Homebrew docs](https://docs.brew.sh/), [Brew Bundle](https://docs.brew.sh/Brew-Bundle-and-Brewfile) |
+| Tailscale / Clash Verge | 私有网络与 Google/Codex 代理共存 | [`config/tailscale/`](../config/tailscale/)、`Brewfile` | [Tailscale 与 Clash](TAILSCALE.md) | [Tailscale CLI](https://tailscale.com/docs/reference/tailscale-cli), [Clash Verge docs](https://www.clashverge.dev/) |
 | Zsh | 交互式 shell | [`profiles/macos/zshrc`](../profiles/macos/zshrc) | [Shell](SHELL.md) | [Zsh manual](https://zsh.sourceforge.io/Doc/Release/) |
 | Oh My Zsh | Zsh 插件框架 | setup 自动安装 | [Shell](SHELL.md) | [Oh My Zsh wiki](https://github.com/ohmyzsh/ohmyzsh/wiki) |
 | Powerlevel10k | Shell prompt 与 Nerd Font 图标 | [`profiles/macos/p10k.zsh`](../profiles/macos/p10k.zsh)、`Brewfile` | [Shell](SHELL.md) | [Powerlevel10k](https://github.com/romkatv/powerlevel10k), [Nerd Fonts](https://www.nerdfonts.com/) |
