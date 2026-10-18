@@ -32,6 +32,11 @@ elif command -v mise >/dev/null 2>&1; then
   eval "$(mise activate zsh)"
 fi
 
+# Native user-installed CLIs (Codex, Claude Code, Sesswitch) are independent
+# of mise language runtimes. Keep the directory present without duplicates.
+typeset -U path PATH
+path=("$HOME/.local/bin" "$HOME/bin" $path)
+
 [[ -r "$HOME/.p10k.zsh" ]] && source "$HOME/.p10k.zsh"
 
 # Use Vim for programs that open an external editor, including Codex.

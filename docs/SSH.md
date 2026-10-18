@@ -98,6 +98,11 @@ put the password in this repository, a command-line argument, or chat.
 GPG Agent is the only SSH agent. Private SSH key material remains in GnuPG;
 `~/.ssh/openwrt-gpg.pub` is a generated public-key selector, not a private key.
 
+The `macmini` alias connects to `192.168.31.247` as `sky` using the default
+SSH authentication policy. Verify the address and host key before first use.
+
+The managed Home Assistant aliases `homeassistant` and `ha` connect to the Advanced SSH & Web Terminal add-on at `192.168.31.228` as `hassio`. They reuse the existing GPG Agent-backed GitHub RSA authentication subkey because no additional HA-specific private key is required. The public selector is `~/.ssh/github-gpg-rsa.pub`; the private key remains in GnuPG.
+
 The managed OpenWrt alias uses:
 
 - host: `192.168.31.2`;
@@ -124,6 +129,13 @@ source ~/.zshrc
 
 The setup script configures `Use-for-ssh`, exports the public key atomically,
 and links `config/ssh/config` to `~/.ssh/config`.
+
+For Home Assistant, the public selector `~/.ssh/github-gpg-rsa.pub` must already
+exist. If missing, export only the SSH public key from the existing GPG identity
+with `gpg --export-ssh-key` after identifying its RSA authentication subkey.
+Compare its fingerprint with `ssh-add -L | ssh-keygen -lf -`; authorization on
+the server is a separate explicit step, not performed by setup. Check the client
+selection with `ssh -G ha` before connecting.
 
 The public key must already be authorized on OpenWrt. Initial installation is
 an explicit interactive operation because it requires the current root

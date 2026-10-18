@@ -8,3 +8,18 @@ Host openwrt
     PubkeyAuthentication yes
     ServerAliveInterval 30
     ServerAliveCountMax 3
+
+Host macmini
+    HostName 192.168.31.247
+    User sky
+
+Host homeassistant ha
+    HostName 192.168.31.228
+    User hassio
+    IdentityFile ~/.ssh/github-gpg-rsa.pub
+    IdentitiesOnly yes
+    PreferredAuthentications publickey
+    PasswordAuthentication no
+    PubkeyAuthentication yes
+    ServerAliveInterval 30
+    ServerAliveCountMax 3

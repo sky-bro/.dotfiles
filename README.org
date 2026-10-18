@@ -34,12 +34,26 @@ and uses the official source.
   wezterm --version
   wezterm --config-file ~/.wezterm.lua show-keys >/dev/null
   code --version
+  claude --version
+  claude doctor
+  security find-generic-password -a "$USER" \
+    -s com.sky.dotfiles.deepseek-api >/dev/null
+  vicinae version
+  vicinae script check config/vicinae/scripts/ai-sessions.sh
   shellcheck --version
+  xelatex --version
+  latexmk --version
+  pdfinfo -v
   go version
   gopls version
   dlv version
   staticcheck -version
   hugo version
+  rustc --version
+  cargo --version
+  cargo fmt --version
+  cargo clippy --version
+  rustup component list --installed
   gpg --list-secret-keys --keyid-format long
   ssh-add -L
   git config --global --get user.signingkey

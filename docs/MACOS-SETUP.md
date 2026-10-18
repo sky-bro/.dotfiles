@@ -37,16 +37,40 @@ Visual Studio Code 由 Brewfile 管理。setup 链接用户设置，并在
 `--install-packages` 阶段安装仓库记录的扩展；个人约定和验证方式见
 [Visual Studio Code 手册](VSCODE.md)。
 
+Codex CLI 使用 OpenAI 官方独立安装器，安装于 `~/.local/bin/codex`，不由
+npm、mise 或 Brewfile 重复管理。setup 不自动安装；安装、更新、迁移与验证见
+[Codex CLI](CODEX.md)。
+
+Claude Code 使用官方原生安装器，以获得自动更新。setup 只链接不含密钥的
+DeepSeek 配置和钥匙串录入脚本；安装、密钥录入和验证见
+[Claude Code 与 DeepSeek](CLAUDE-CODE.md)。
+
 Go 运行时及其语言工具由 mise 管理，Hugo 由 Brewfile 管理。
 `--install-packages` 会在链接全局 mise 配置后安装声明的运行时；详见
 [Go 与 Hugo](GO-HUGO.md)。
+
+Rust 工具链也由 mise 管理，语言服务和调试扩展由 VS Code 安装；详见
+[Rust 手册](RUST.md)。
+
+完整 MacTeX 由 Brewfile 管理，提供 TeX Live、XeLaTeX、`latexmk` 和常用
+宏包；Poppler 提供 PDF 元数据检查与页面渲染工具。安装体积、PATH 刷新、简历
+构建和验证方式见 [TeX 与 PDF 工具](TEX.md)。
 
 CopyQ 也由 Brewfile 安装，`--apply` 会在应用可正常启动时写入可移植配置。
 辅助功能授权以及未签名应用的本地修复不会自动执行，详见
 [CopyQ 手册](COPYQ.md)。
 
+Stats 由 Brewfile 安装，用于在菜单栏常驻显示实时上传与下载速度。偏好设置
+由应用自身管理，不由 setup 写入未承诺稳定的内部 defaults 键；首次配置与
+验证方式见 [Stats 手册](STATS.md)。
+
 Tailscale 与 Clash Verge Rev 由 Brewfile 安装。首次登录、服务代理和家庭
 内网分流按 [Tailscale 与 Clash](TAILSCALE.md) 完成；接口配置按本机自动生成。
+
+Vicinae 由 Brewfile 安装，setup 只链接 **AI Sessions** Script Command，不会
+静默授予辅助功能、全磁盘访问或通知权限，也不会修改登录项。AI session 索引
+项目、Codex hooks、使用与验证见
+[Vicinae 与 Sesswitch](VICINAE.md)。
 
 Docker CLI、Compose、Buildx 和 Colima 由 Brewfile 安装。setup 部署新
 profile 的 Colima 默认模板与 Docker CLI 插件链接，但不会自动启动虚拟机。
@@ -97,6 +121,9 @@ wezterm --version
 wezterm --config-file ~/.wezterm.lua show-keys >/dev/null
 code --version
 shellcheck --version
+xelatex --version
+latexmk --version
+pdfinfo -v
 go version
 gopls version
 dlv version

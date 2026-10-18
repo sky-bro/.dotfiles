@@ -6,7 +6,7 @@
 - Oh My Zsh：插件装载；
 - Powerlevel10k：prompt；
 - fzf：历史、文件和目录模糊搜索；
-- mise：Node、Python、Go 等语言运行时、项目工具和任务；
+- mise：Node、Python、Go、Rust 等语言运行时、项目工具和任务；
 - uv：Python 项目依赖、虚拟环境、锁文件和 Python CLI；
 - GPG Agent：提供 `SSH_AUTH_SOCK` 和签名 pinentry。
 
@@ -15,9 +15,10 @@ macOS 入口是 [`profiles/macos/zshrc`](../profiles/macos/zshrc)。Linux 原有
 
 ## 个人约定
 
+- 将 `~/.local/bin` 加入 PATH 并去重，用于 Codex、Claude Code、Sesswitch 等用户级 CLI；这些工具不依赖 mise 的 Node 版本；GUI 应用仍可能使用不同的 PATH，见 [Codex CLI](CODEX.md)；
 - 清除 Homebrew 镜像环境变量，固定使用官方源；
 - 只有在工具存在时才初始化，避免新机器首个 shell 启动失败；
-- Node、Python、Go 和 uv 的全局版本声明由
+- Node、Python、Go、Rust 和 uv 的全局版本声明由
   [`config/mise/config.toml`](../config/mise/config.toml) 管理；Python 解释器由
   mise 安装，uv 负责项目环境和依赖，避免重复管理解释器；
 - 交互式 shell 设置 `GPG_TTY` 并更新 gpg-agent 的 startup TTY；

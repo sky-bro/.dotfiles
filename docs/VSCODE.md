@@ -20,7 +20,7 @@ VS Code 由 Homebrew Cask 安装。用户设置保存在
 `h/j/k/l` 连续移动；这一系统偏好变更需注销并重新登录后完全生效。
 
 [`config/vscode/extensions.txt`](../config/vscode/extensions.txt) 记录常用扩展：
-EditorConfig、Gruvbox、Vim、Go、Python、Ruff、Docker 与 ShellCheck。
+EditorConfig、Gruvbox、Vim、Go、Rust、CodeLLDB、Python、Ruff、Docker 与 ShellCheck。
 `--install-packages` 会通过 `code --install-extension` 幂等安装它们；命令行
 依赖由 Brewfile 或 mise 管理。
 
@@ -72,8 +72,10 @@ test "$(readlink "$HOME/Library/Application Support/Code/User/settings.json")" \
 
 扩展列表应包含 `editorconfig.editorconfig`、`charliermarsh.ruff`、
 `golang.go`、`jdinhlife.gruvbox`、`ms-azuretools.vscode-docker`、
-`ms-python.python`、`timonwong.shellcheck` 和 `vscodevim.vim`（CLI 输出通常转换
-为小写）。`configure.sh --check` 应显示 `ok`。
+`ms-python.python`、`rust-lang.rust-analyzer`、`timonwong.shellcheck`、
+`vadimcn.vscode-lldb` 和 `vscodevim.vim`（CLI 输出通常转换为小写）。
+Rust 的格式化、诊断、调试和工具归属见 [Rust 手册](RUST.md)。
+`configure.sh --check` 应显示 `ok`。
 
 ## 故障排查
 

@@ -23,6 +23,16 @@ Prefix 从默认 `Ctrl-b` 改为 `Ctrl-a`。
 macOS 下，copy mode 的 `y` 和鼠标选择都通过 `pbcopy` 进入系统剪贴板；
 WSL 使用 `clip.exe`。其他平台的 `y` 仍会复制到 tmux buffer。
 
+## 活动 pane 提示
+
+为便于在 Gruvbox Light 浅色背景下识别焦点，活动 pane 使用深橙色边框，
+其他边框使用灰色。边框同时显示方向箭头；只有两个 pane 时，还会通过
+半段边框着色指示焦点位于哪一侧。
+
+每个 pane 顶部保留一行边框状态：活动 pane 显示橙底的 `▶ ACTIVE` 和
+pane 编号，其他 pane 只显示灰色编号。这会占用每个 pane 的一行高度，
+用于在共享分隔线或复杂布局中明确标识当前输入位置。
+
 ## 安装与应用
 
 先预览 setup 将进行的所有操作：
@@ -63,6 +73,9 @@ tmux source-file ~/.tmux.conf
 tmux -V
 tmux show-options -g
 tmux list-keys
+tmux show-options -gw pane-active-border-style
+tmux show-options -gw pane-border-indicators
+tmux show-options -gw pane-border-status
 printf '\033[38;2;255;100;0mtruecolor\033[0m\n'
 ```
 
@@ -70,6 +83,12 @@ printf '\033[38;2;255;100;0mtruecolor\033[0m\n'
 安装，并检查 `infocmp tmux-256color`。如果复制没有进入 macOS 剪贴板，
 确认 `command -v pbcopy` 有输出，并用 `tmux list-keys -T copy-mode-vi`
 检查 `y` 和 `MouseDragEnd1Pane` 的绑定。
+
+切换两个或更多 pane，确认 `▶ ACTIVE` 跟随焦点移动。若边框样式未变化，
+先重新加载配置，再用上述 `show-options -gw` 命令检查深橙色、`both` 和
+`top` 是否生效；如某个窗口有单独设置，用 `tmux show-options -w` 检查
+是否覆盖了全局窗口选项。样式和边框选项的完整说明见本机 `man tmux`
+的 `pane-active-border-style`、`pane-border-indicators` 和 `pane-border-status`。
 
 ## 资料
 
