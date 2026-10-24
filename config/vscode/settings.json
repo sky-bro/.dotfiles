@@ -43,5 +43,11 @@
     "window.autoDetectColorScheme": false,
     "workbench.colorTheme": "Gruvbox Light Medium",
     "editor.tabCompletion": "on",
-    "editor.snippetSuggestions": "top"
+    "editor.snippetSuggestions": "top",
+    "github.copilot.enable": {
+        "*": false,
+        "plaintext": false,
+        "markdown": false,
+        "scminput": false
+    }
 }

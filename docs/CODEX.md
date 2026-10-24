@@ -112,4 +112,8 @@ OpenWrt 则运行 `redir-host`，返回真实 IP，且该 Mac 不在绕过列表
 
 ## 官方资料
 
+DeepSeek Harness 可通过 pi-ai 的 Codex OAuth 作为主模型接入，或通过官方
+Codex 子代理插件调用 app-server；认证、费用区别与安装约定见
+[DeepSeek Harness](DSH.md#codex-与订阅)。
+
 - [Codex CLI 安装与使用](https://learn.chatgpt.com/docs/codex/cli)

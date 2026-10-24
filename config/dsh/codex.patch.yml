@@ -1,0 +1,16 @@
+- id: llm-pi-ai
+  config:
+    providers:
+      openai-codex: {}
+
+- id: agent-default-model
+  config:
+    provider: openai-codex
+    model: gpt-6.1-sol
+    reasoningEffort: medium
+
+# This profile uses the ChatGPT subscription exclusively.
+- id: llm-deepseek
+  disabled: true
+- id: llm-deepseek-account
+  disabled: true

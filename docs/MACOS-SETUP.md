@@ -45,6 +45,10 @@ Claude Code 使用官方原生安装器，以获得自动更新。setup 只链�
 DeepSeek 配置和钥匙串录入脚本；安装、密钥录入和验证见
 [Claude Code 与 DeepSeek](CLAUDE-CODE.md)。
 
+DeepSeek Harness（`dsh`）使用官方 npm 包独立安装到 `~/.local`，复用 mise
+的 Node.js，不由整套 setup 重复安装。安装、Web 启动和 Codex 接入见
+[DeepSeek Harness](DSH.md)。
+
 Go 运行时及其语言工具由 mise 管理，Hugo 由 Brewfile 管理。
 `--install-packages` 会在链接全局 mise 配置后安装声明的运行时；详见
 [Go 与 Hugo](GO-HUGO.md)。

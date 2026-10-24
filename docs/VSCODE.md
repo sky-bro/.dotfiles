@@ -13,6 +13,10 @@ VS Code 由 Homebrew Cask 安装。用户设置保存在
 列参考线，并关闭遥测。工作区信任保持启用，首次打开陌生仓库时应先审查其中的
 任务、调试配置和扩展建议。
 
+通过 `github.copilot.enable` 关闭所有语言中的 Copilot 代码补全，避免编辑时
+出现自动补全建议。该设置仅控制 Copilot 补全；需要修改时在仓库设置中调整，
+重新加载 VS Code 后检查编辑器中的补全状态。
+
 编辑操作使用 `vscodevim.vim`：Space 是 leader，未命名寄存器连接系统剪贴板，
 搜索与 yank 有高亮，Normal/Visual 模式显示相对行号，Insert 模式显示绝对行号。
 没有添加 `jj` 等个人插入模式映射，Esc 和原生 Vim motions 保持默认行为。
@@ -101,3 +105,4 @@ Rust 的格式化、诊断、调试和工具归属见 [Rust 手册](RUST.md)。
 - [Command-line interface](https://code.visualstudio.com/docs/configure/command-line)
 - [Gruvbox theme](https://marketplace.visualstudio.com/items?itemName=jdinhlife.gruvbox)
 - [VSCodeVim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim)
+- [Copilot 补全设置](https://code.visualstudio.com/docs/copilot/ai-powered-suggestions)

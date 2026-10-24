@@ -36,6 +36,8 @@ and uses the official source.
   code --version
   claude --version
   claude doctor
+  dsh --version
+  dsh web --help
   security find-generic-password -a "$USER" \
     -s com.sky.dotfiles.deepseek-api >/dev/null
   vicinae version
