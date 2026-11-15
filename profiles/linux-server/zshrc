@@ -1,0 +1,43 @@
+# Minimal Linux server profile. Install zsh and zsh-autosuggestions first.
+[[ -o interactive ]] || return
+
+typeset -U path PATH
+path=("$HOME/.local/bin" "$HOME/bin" $path)
+
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=20000
+SAVEHIST=20000
+setopt APPEND_HISTORY SHARE_HISTORY HIST_IGNORE_DUPS HIST_IGNORE_SPACE
+setopt HIST_SAVE_NO_DUPS HIST_REDUCE_BLANKS INTERACTIVE_COMMENTS
+
+autoload -Uz compinit
+compinit
+zmodload zsh/complist
+zstyle ':completion:*' menu select
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}'
+
+# A readable SSH prompt without requiring a special terminal font.
+if (( EUID == 0 )); then
+  PROMPT='%F{red}%n@%m%f %F{blue}%~%f %# '
+else
+  PROMPT='%F{green}%n@%m%f %F{blue}%~%f %# '
+fi
+
+bindkey -e
+# Search history matching the text already typed with Up/Down.
+autoload -Uz up-line-or-beginning-search down-line-or-beginning-search
+zle -N up-line-or-beginning-search
+zle -N down-line-or-beginning-search
+bindkey '^[[A' up-line-or-beginning-search
+bindkey '^[[B' down-line-or-beginning-search
+bindkey '^[OA' up-line-or-beginning-search
+bindkey '^[OB' down-line-or-beginning-search
+
+ZSH_AUTOSUGGEST_STRATEGY=(history)
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+if [[ -r /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]]; then
+  source /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+fi
+# The plugin accepts the suggestion with Right at the end of the input.
+bindkey '^[[C' forward-char
+bindkey '^[OC' forward-char

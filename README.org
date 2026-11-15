@@ -42,6 +42,12 @@ and uses the official source.
     -s com.sky.dotfiles.deepseek-api >/dev/null
   vicinae version
   vicinae script check config/vicinae/scripts/ai-sessions.sh
+  pass --version
+  shellcheck config/pass/passmenu.sh
+  python3 config/pass/test_passmenu.py
+  npm --prefix config/vicinae/passwords run typecheck
+  npm --prefix config/vicinae/passwords test
+  vicinae cmd ls | rg '@sky-bro/pass-passwords:passwords'
   shellcheck --version
   xelatex --version
   latexmk --version
@@ -103,6 +109,14 @@ The expected automated workflow is:
 4. Guide the user through any password or GPG pinentry prompts in a real
    terminal; never request secrets in chat.
 5. Run every verification command and clean up temporary key exports.
+
+* Tailscale outside home
+
+Open Clash Verge with the usual system proxy / TUN settings, then run
+=tailscale-travel=. It refreshes the current Tailscale interface in Clash,
+repairs the home subnet routes, and checks home DNS, Flame HTTPS and public
+HTTPS. Use =tailscale-travel --check= for read-only route/configuration checks.
+See [[file:docs/TAILSCALE.md][Tailscale and Clash]] for setup, backups and home-mode switching.
 
 * Linux desktop configuration
 

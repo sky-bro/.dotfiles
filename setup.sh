@@ -68,7 +68,9 @@ declare -a links=(
   "config/vscode/settings.json:Library/Application Support/Code/User/settings.json"
   "config/claude/settings.json:.claude/settings.json"
   "config/claude/store-deepseek-key.sh:.local/bin/store-deepseek-key"
+  "config/tailscale/travel.py:.local/bin/tailscale-travel"
   "config/vicinae/scripts/ai-sessions.sh:.local/share/vicinae/scripts/ai-sessions.sh"
+  "config/pass/passmenu.sh:.local/bin/passmenu"
   ".tmux.conf:.tmux.conf"
   ".tmux.conf.sh:.tmux.conf.sh"
   "config/ssh/config:.ssh/config"
@@ -122,6 +124,16 @@ if $install_packages; then
     done < "$repo_dir/config/vscode/extensions.txt"
   else
     echo "warning: VS Code CLI is unavailable; extensions were not installed" >&2
+  fi
+
+  if command -v npm >/dev/null 2>&1 && command -v vicinae >/dev/null 2>&1; then
+    (
+      cd "$repo_dir/config/vicinae/passwords"
+      npm ci
+      npm run build
+    )
+  else
+    echo "warning: npm or Vicinae is unavailable; Passwords extension was not built" >&2
   fi
 fi
 

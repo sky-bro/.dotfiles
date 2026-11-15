@@ -42,3 +42,14 @@ path=("$HOME/.local/bin" "$HOME/bin" $path)
 # Use Vim for programs that open an external editor, including Codex.
 export VISUAL=vim
 export EDITOR=vim
+# bab installs its completion locally; keep the profile usable without it.
+if [[ -r "${XDG_DATA_HOME:-$HOME/.local/share}/zsh/site-functions/_bab" ]]; then
+  typeset -U fpath
+  fpath=("${XDG_DATA_HOME:-$HOME/.local/share}/zsh/site-functions" $fpath)
+  if (( ! $+functions[compdef] )); then
+    autoload -Uz compinit
+    compinit
+  fi
+  autoload -Uz _bab
+  compdef _bab bab
+fi

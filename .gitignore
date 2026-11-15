@@ -16,3 +16,6 @@
 .setup.local
 *.bak
 __pycache__/
+config/vicinae/passwords/node_modules/
+config/vicinae/passwords/vicinae-env.d.ts
+config/vicinae/passwords/assets/pass-cli.cjs

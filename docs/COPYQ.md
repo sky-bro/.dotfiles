@@ -12,6 +12,10 @@
 
 剪贴板历史、tab 内容、窗口状态和 macOS 权限不进入仓库。
 
+Vicinae 的 **Passwords** 入口给密码加机密/临时剪贴板标记，并默认在 45 秒后
+清除。用合成文本确认 CopyQ 不收录此类内容，验证方法见
+[密码管理](PASSWORDS.md)；直接 `pass -c` 不经过该入口的标记逻辑。
+
 命令保存在 [`config/copyq/commands.ini`](../config/copyq/commands.ini)。
 重复应用时只替换同名命令，保留其他用户命令。
 

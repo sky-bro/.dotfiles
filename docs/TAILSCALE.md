@@ -68,18 +68,49 @@ macOS（Apple Silicon / Intel）使用 Homebrew 命令行版 Tailscale 访问家
    ```
 
 2. 打开 Clash Verge，选择可用配置与节点，开启 TUN 和系统代理，先确认公网可用。
-3. 在本机终端恢复 Tailscale，并明确使用家庭子网路由和 Split DNS：
+3. 在本机终端执行：
 
    ```sh
-   sudo tailscale set --exit-node= --accept-routes=true --accept-dns=true
-   sudo tailscale up --timeout=30s
-   tailscale status
+   tailscale-travel
    ```
 
-   当前守护进程配置依赖 Clash 的 `7897` 端口，所以应先启动 Clash。
-   首次登录另按“新电脑设置”执行；日常切换不需要重新登录。
-4. 按“外出验证”检查。若内网流量没有走 Tailscale，重新生成 Clash 分流脚本，
-   不要复用已经失效的 `utun` 接口编号。
+   命令会启用 Tailscale、接受子网路由与 Split DNS、取消 Exit Node，识别当前
+   Tailscale 网卡，备份并刷新 Clash 的家庭分流脚本、热加载配置，在 TUN
+   重建后重新安装家庭路由，最后验证 DNS、Flame 直连／经 Clash 访问和公网 HTTPS。
+   保留当前 Clash 的 TUN 开关和代理选择；系统代理按第 2 步在应用内开启。
+   命令会短暂重建 TUN 和家庭路由，应在这台 Mac 本机运行。
+4. 输出应包含五项 `OK`。重启电脑、切换 VPN、Clash 重建 TUN 或家庭访问异常时，
+   再运行同一命令，不需要手工寻找 `utun` 编号或复制脚本。
+
+当前守护进程配置依赖 Clash 的 `7897` 端口，所以应先启动 Clash。
+首次登录另按“新电脑设置”执行；日常切换不需要重新登录。
+命令不持久修改 Wi-Fi DNS；外出前仍须完成第 1 步。
+
+#### 命令安装、检查与备份
+
+[`travel.py`](../config/tailscale/travel.py) 随 `setup.sh` 部署为
+`~/.local/bin/tailscale-travel`，Zsh 已将该目录加入 PATH。已有电脑只部署此命令：
+
+```sh
+ln -s "$HOME/.dotfiles/config/tailscale/travel.py" "$HOME/.local/bin/tailscale-travel"
+tailscale-travel --check
+```
+
+若目标文件已存在，先核对其来源，不覆盖未知文件。`--check` 只检查保存的分流
+绑定和三个家庭目标的实际路由，不修改配置、不执行端到端测试；不匹配时返回非零。
+不带参数会修复并执行完整访问测试。命令使用 Python 3、macOS 自带的 Ruby/Psych
+安全解析 YAML，以及本机 Clash Unix socket，无需安装 Python 包。
+
+每次修改前将原始 `profiles/Script.js` 和生成配置 `clash-verge.yaml` 保存到
+`~/.local/state/dotfiles-backups/<时间>-tailscale-travel/`，文件权限为 `0600`。
+生成配置可能含代理凭据，备份不进 Git，不粘贴完整内容到日志或聊天。
+现有全局脚本保留，命令仅添加／刷新带标记的分流段。Clash 拒绝热加载时自动
+恢复原文件并尝试重新加载原配置，同时保留热加载前 GUI 的实时 mode/TUN 开关；
+服务 socket 失效时继续尝试配置中的自定义 socket。访问测试失败时保留已应用的修复并报告失败项。
+
+如需手工回退，先退出 Clash，将备份目录中的 `Script.js` 复制回应用数据目录
+的 `profiles/Script.js`，将 `clash-verge.yaml` 复制回应用数据目录，再启动 Clash。
+应用数据目录为 `~/Library/Application Support/io.github.clash-verge-rev.clash-verge-rev/`。
 
 ### 在家仍需保持 Tailscale 在线
 
@@ -146,7 +177,11 @@ brew install --cask clash-verge-rev
    `--proxy-url http://127.0.0.1:实际端口`。不加 `--apply` 时只检查；应用前
    自动备份服务配置，重启失败自动恢复。sudo 密码只在本人终端输入。
 
-3. 生成这台电脑的 Clash 分流脚本并复制：
+3. 完成 `setup.sh` 部署后，运行 `tailscale-travel` 自动安装分流并验证。
+   如尚未部署命令，可运行 `python3 ~/.dotfiles/config/tailscale/travel.py`。
+   全局脚本需要已有 `function main(config)` 入口，Clash 默认即提供此入口。
+
+   手工维护扩展脚本时，仍可生成这台电脑的脚本并复制：
 
    ```sh
    python3 config/tailscale/render-clash.py --output /tmp/tailscale-clash.js
@@ -157,8 +192,9 @@ brew install --cask clash-verge-rev
    粘贴并保存。已有自定义脚本时先合并，不直接覆盖。
 
 生成器自动识别 Tailscale 接口和 MagicDNS 域名，并确认家庭路由确实走
-Tailscale。分流脚本让家庭 DNS 和内网请求通过 Tailscale 接口，保留原有
-公网代理规则；家庭/Tailscale 网段排除在 Clash TUN 外。
+Tailscale；路由丢失时先用 `tailscale-travel` 修复，生成器本身只读。
+分流脚本让家庭 DNS 和内网请求通过 Tailscale 接口，保留原有公网代理规则；
+家庭/Tailscale 网段排除在 Clash TUN 外。
 [`clash-verge.js`](../config/tailscale/clash-verge.js) 是模板，使用生成结果。
 
 ## 验证
@@ -186,20 +222,34 @@ NAS 解析为 `192.168.31.248`，安装脚本下载应返回 `200`。
 ### 外出验证
 
 ```sh
+tailscale-travel --check
 tailscale status
-dig +short nas.home.k4i.top
-curl -sS -L -o /dev/null -w '%{http_code}\n' --proxy http://127.0.0.1:7897 --max-time 15 https://nas.home.k4i.top/
+dig +short @100.100.100.100 flame.nas.home.k4i.top
+curl -sS -L -o /dev/null -w '%{http_code}\n' --proxy http://127.0.0.1:7897 --max-time 15 https://flame.nas.home.k4i.top/
 curl -sS -o /dev/null -w '%{http_code}\n' --proxy http://127.0.0.1:7897 --max-time 15 https://www.google.com/
 ```
 
-预期：Tailscale 显示在线设备，NAS 解析为 `192.168.31.248`，两次 HTTPS
+预期：检查通过，Tailscale 显示在线设备，Flame 解析为 `192.168.31.248`，两次 HTTPS
 检查均返回 `200`。代理端口不同则同步替换验证命令。
+macOS 的普通 `dig 域名` 不按系统域名专用 resolver 选择 Split DNS，故这里明确
+查询 Tailscale DNS；应用实际解析路径由 HTTPS 直连检查覆盖。
+
+2026-10-29 已在外部网络实际验证：Tailscale 使用 `utun0`，旧 Clash 家庭分流却
+绑定 `utun7`（当时已变成 Clash TUN），同时 `192.168.31.0/24` 路由丢失。
+重建家庭路由后 DNS 与 Flame 直连恢复；刷新绑定并在 TUN 重建后恢复路由后，
+Flame 经 Clash 和公网 Google 均返回 `200`。客户端已接受路由、服务端已批准路由，
+不代表本机路由表一定仍有对应条目。
 
 ## 后续维护
 
-- 重启或其他 VPN 改变接口编号后，重新生成分流脚本并在 Clash 保存。
+- 重启或其他 VPN 改变接口编号后，运行 `tailscale-travel` 自动刷新和验证。
 - Homebrew 升级或重建 Tailscale 服务后，重新应用 `configure-proxy.py`。
-- 外出时内网不可达，确认 `--accept-routes=true`、Clash 正在运行且分流脚本已保存。
+- 外出时内网不可达，先运行 `tailscale-travel --check`，再用 `tailscale-travel` 修复。
+  若路由仍无法安装，到 Tailscale 后台确认家庭两个网段的批准状态；若需要登录或
+  管理权限，按提示在本机真实终端处理，不向脚本或聊天提供密码。
+- Clash 升级后提示找不到控制接口，确认核心已启动；命令支持新版 service socket
+  和旧版生成配置中的 Unix socket。全局脚本标记损坏或 fake-IP 使用其他过滤模式时
+  命令会停止，先人工检查，避免覆盖现有特殊配置。
 - 回家后公网异常，先确认本地 TUN／系统代理已经关闭，网关与 DNS 指向家庭 OpenWrt。
 - 退出 Clash 后 Tailscale 控制／中继连接失败，检查后台服务的代理依赖；不要把退出
   Clash 当成同时清除了 tailscaled 的代理配置。
@@ -210,5 +260,6 @@ curl -sS -o /dev/null -w '%{http_code}\n' --proxy http://127.0.0.1:7897 --max-ti
 [Tailscale CLI](https://tailscale.com/docs/reference/tailscale-cli) ·
 [Tailscale Exit Nodes](https://tailscale.com/docs/features/exit-nodes) ·
 [Clash Verge 扩展配置](https://www.clashverge.dev/guide/extend.html) ·
+[Mihomo 本地 API](https://wiki.metacubex.one/api/) ·
 [Mihomo DNS](https://wiki.metacubex.one/config/dns/) ·
 [Mihomo TUN](https://wiki.metacubex.one/config/inbound/tun/)

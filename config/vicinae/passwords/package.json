@@ -1,0 +1,113 @@
+{
+  "name": "pass-passwords",
+  "title": "Pass Passwords",
+  "description": "Manage pass passwords, metadata, generation, and encrypted records",
+  "categories": [
+    "Productivity"
+  ],
+  "license": "MIT",
+  "author": "sky-bro",
+  "icon": "key.svg",
+  "commands": [
+    {
+      "name": "passwords",
+      "title": "Passwords",
+      "subtitle": "pass",
+      "description": "Search, create, edit, generate, move, and copy pass passwords",
+      "mode": "view",
+      "icon": "key.svg"
+    }
+  ],
+  "preferences": [
+    {
+      "name": "storePath",
+      "type": "textfield",
+      "required": false,
+      "title": "Password Store",
+      "description": "Absolute path or ~/path. Leave empty for PASSWORD_STORE_DIR or ~/.password-store."
+    },
+    {
+      "name": "clipboardSeconds",
+      "type": "textfield",
+      "required": false,
+      "title": "Clipboard Lifetime (Seconds)",
+      "description": "1–99999 seconds. Leave empty for PASSWORD_STORE_CLIP_TIME or 45 seconds."
+    },
+    {
+      "name": "defaultLength",
+      "type": "textfield",
+      "required": false,
+      "title": "Generated Password Length",
+      "description": "Default length for the generator, from 1 to 1024.",
+      "default": "24"
+    },
+    {
+      "name": "includeSymbols",
+      "type": "checkbox",
+      "required": false,
+      "title": "Password Characters",
+      "description": "Include symbols in generated passwords by default.",
+      "label": "Include symbols by default",
+      "default": true
+    },
+    {
+      "name": "defaultAction",
+      "type": "dropdown",
+      "required": false,
+      "title": "Enter Action",
+      "description": "Choose whether Enter copies, browses fields, types the password/OTP, or types username → Tab → password.",
+      "default": "copy",
+      "data": [
+        {
+          "title": "Copy password / OTP",
+          "value": "copy"
+        },
+        {
+          "title": "Browse fields",
+          "value": "fields"
+        },
+        {
+          "title": "Type password / OTP",
+          "value": "type"
+        },
+        {
+          "title": "Type username → Tab → password",
+          "value": "login"
+        }
+      ]
+    },
+    {
+      "name": "lastUsedSeconds",
+      "type": "textfield",
+      "required": false,
+      "title": "Recent Entry Lifetime",
+      "description": "Pin the last used entry for this many seconds. Use 0 to disable metadata storage.",
+      "default": "120"
+    },
+    {
+      "name": "fileSchema",
+      "type": "textfield",
+      "required": false,
+      "title": "Field Schema (Optional JSON)",
+      "description": "An ordered array of key/type objects. Types: password, field, note, otp. Leave empty for automatic parsing."
+    }
+  ],
+  "scripts": {
+    "build": "node scripts/build-cli.cjs && vici build",
+    "typecheck": "tsc --noEmit",
+    "test": "node --experimental-strip-types --test tests/*.test.ts tests/*.test.cjs",
+    "format": "node scripts/format.cjs",
+    "format:check": "node scripts/format.cjs --check",
+    "pretest": "node scripts/build-cli.cjs"
+  },
+  "dependencies": {
+    "@vicinae/api": "^0.29.0"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "typescript": "^5.9.2",
+    "esbuild": "0.25.12",
+    "react": "19.1.1",
+    "react-test-renderer": "19.1.1"
+  }
+}

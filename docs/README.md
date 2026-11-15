@@ -9,8 +9,8 @@
 | --- | --- | --- | --- | --- |
 | Setup | 安全、幂等地部署 dotfiles | [`setup.sh`](../setup.sh) | [macOS Setup](MACOS-SETUP.md) | — |
 | Homebrew | macOS 软件包管理 | [`Brewfile`](../Brewfile) | [macOS Setup](MACOS-SETUP.md#homebrew) | [Homebrew docs](https://docs.brew.sh/), [Brew Bundle](https://docs.brew.sh/Brew-Bundle-and-Brewfile) |
-| Tailscale / Clash Verge | Mac 在家／外出切换、家庭内网与公网代理共存 | [`config/tailscale/`](../config/tailscale/)、`Brewfile` | [Tailscale 与 Clash](TAILSCALE.md) | [Tailscale CLI](https://tailscale.com/docs/reference/tailscale-cli), [Clash Verge docs](https://www.clashverge.dev/) |
-| Zsh | 交互式 shell | [`profiles/macos/zshrc`](../profiles/macos/zshrc) | [Shell](SHELL.md) | [Zsh manual](https://zsh.sourceforge.io/Doc/Release/) |
+| Tailscale / Clash Verge | `tailscale-travel` 一键刷新外出分流、修复家庭路由并验证访问 | [`config/tailscale/`](../config/tailscale/)、`Brewfile` | [Tailscale 与 Clash](TAILSCALE.md) | [Tailscale CLI](https://tailscale.com/docs/reference/tailscale-cli), [Clash Verge docs](https://www.clashverge.dev/) |
+| Zsh | macOS 交互式 shell，以及 Linux 服务器的精简命令建议配置 | [`profiles/macos/zshrc`](../profiles/macos/zshrc)、[`profiles/linux-server/zshrc`](../profiles/linux-server/zshrc) | [Shell](SHELL.md) | [Zsh manual](https://zsh.sourceforge.io/Doc/Release/)、[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions) |
 | Oh My Zsh | Zsh 插件框架 | setup 自动安装 | [Shell](SHELL.md) | [Oh My Zsh wiki](https://github.com/ohmyzsh/ohmyzsh/wiki) |
 | Powerlevel10k | Shell prompt 与 Nerd Font 图标 | [`profiles/macos/p10k.zsh`](../profiles/macos/p10k.zsh)、`Brewfile` | [Shell](SHELL.md) | [Powerlevel10k](https://github.com/romkatv/powerlevel10k), [Nerd Fonts](https://www.nerdfonts.com/) |
 | fzf | 模糊搜索与 shell 补全 | `Brewfile`、Zsh plugin | [Shell](SHELL.md) | [fzf README](https://github.com/junegunn/fzf/blob/master/README.md) |
@@ -25,8 +25,10 @@
 | DeepSeek Harness / dsh | 插件式 agent 与 Web UI，Codex 订阅作为主模型 | [`config/dsh/`](../config/dsh/)、用户级 npm 包 | [DeepSeek Harness](DSH.md) | [官方项目](https://github.com/deepseek-ai/deepseek-harness) |
 | Claude Code / DeepSeek | 终端编程助手，使用 DeepSeek Flash API 与 macOS 钥匙串 | [`config/claude/`](../config/claude/) | [Claude Code 与 DeepSeek](CLAUDE-CODE.md) | [Claude Code quickstart](https://code.claude.com/docs/en/quickstart), [DeepSeek 接入指南](https://api-docs.deepseek.com/zh-cn/quick_start/agent_integrations/claude_code/) |
 | CopyQ | 剪贴板历史、全局快捷键和图片分类 | [`config/copyq/`](../config/copyq/)、`Brewfile` | [CopyQ](COPYQ.md) | [CopyQ documentation](https://copyq.readthedocs.io/) |
+| pass / Passwords | Vicinae 中管理 pass/GPG 条目、字段浏览、用户名/密码自动输入、TOTP 专用表单与本地二维码导入、最近使用与机密复制 | [`config/pass/`](../config/pass/)、[`Vicinae 扩展`](../config/vicinae/passwords/)、`Brewfile` | [密码管理](PASSWORDS.md) | [pass](https://www.passwordstore.org/)、[Vicinae extensions](https://docs.vicinae.com/extensions/create) |
 | Stats | 在 macOS 菜单栏显示实时网络吞吐 | `Brewfile`、应用内偏好设置 | [Stats](STATS.md) | [Stats](https://github.com/exelban/stats) |
 | VLC | 本地音视频与网络媒体播放 | `Brewfile` | [VLC](VLC.md) | [VideoLAN VLC](https://www.videolan.org/vlc/), [Homebrew cask](https://formulae.brew.sh/cask/vlc) |
+| HSTracker | Mac 炉石传说记牌、卡组管理与对局记录 | `Brewfile` | [炉石记牌器](HEARTHSTONE.md) | [HSTracker](https://github.com/HearthSim/HSTracker), [Homebrew cask](https://formulae.brew.sh/cask/hstracker) |
 | Vicinae / Sesswitch | 从 launcher 搜索、查看状态并聚焦 AI agent session | [`config/vicinae/`](../config/vicinae/)、`Brewfile` | [Vicinae 与 Sesswitch](VICINAE.md) | [Vicinae docs](https://docs.vicinae.com/), [Codex app-server](https://developers.openai.com/zh-Hans/docs/app-server) |
 | WezTerm | macOS 终端、Gruvbox Light 与字体显示 | [`profiles/macos/wezterm.lua`](../profiles/macos/wezterm.lua)、`Brewfile` | [WezTerm](WEZTERM.md) | [WezTerm configuration](https://wezterm.org/config/files.html) |
 | tmux | 持久终端会话、pane 交换／标记后方向插入、标记当前位置的跨 session/window 移动菜单 | [`.tmux.conf`](../.tmux.conf), [`.tmux.conf.sh`](../.tmux.conf.sh) | [tmux](TMUX.md) | [tmux wiki](https://github.com/tmux/tmux/wiki), [Getting Started](https://github.com/tmux/tmux/wiki/Getting-Started) |

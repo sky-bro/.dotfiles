@@ -1,3 +1,7 @@
+Host pro5000-8x
+    HostName 8.130.140.66
+    User root
+
 Host openwrt
     HostName 192.168.31.2
     User root
