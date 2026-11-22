@@ -20,6 +20,9 @@
     "[rust]": {
         "editor.defaultFormatter": "rust-lang.rust-analyzer"
     },
+    "[swift]": {
+        "editor.defaultFormatter": "swiftlang.swift-vscode"
+    },
     "files.insertFinalNewline": true,
     "files.trimTrailingWhitespace": true,
     "go.formatTool": "default",

@@ -1,14 +1,33 @@
 #!/bin/sh
-
-# notification_id=1998
-notify-send -r 1998 "click the window you want to kill"
-
-# look behind & look ahead
-# https://unix.stackexchange.com/questions/437405/opposite-of-k-to-keep-the-stuff-right
-# IIRC the difference between pat\K and (?<=pat) is that \K permits variable-length lookbehind
-# AFAIK there's no such restriction for the lookahead version
-# which is perhaps why there's no lookahead equivalent of \K
-
-xprop WM_NAME _NET_WM_PID \
-  | grep -oP '_NET_WM_PID[^0-9]+\K\d+|WM_NAME[^"]+"\K.+(?="$)' \
-  | xargs -d'\n' sh -c 'notify-send -r 1998 "killing window \"$0\" with pid $1" && kill -9 $1'
+# Shared entry point; resolve links installed in ~/.local/bin.
+set -eu
+entry=$0
+while [ -L "$entry" ]; do
+  directory=$(CDPATH='' cd -- "$(dirname -- "$entry")" && pwd)
+  entry=$(readlink "$entry")
+  case "$entry" in /*) ;; *) entry=$directory/$entry ;; esac
+done
+repo=$(CDPATH='' cd -- "$(dirname -- "$entry")/.." && pwd)
+case "${1:-}" in
+  -h|--help)
+    cat <<'HELP'
+Usage: kill-window [--dry-run | --list | --build | --self-test]
+Click a window, review its owning process, then confirm force quit.
+Esc or right-click cancels. Force quit closes every window of that process.
+macOS: native picker; --dry-run only inspects, --list lists window owners,
+       --build prepares the helper, --self-test checks selection and signaling.
+Linux: original interactive xprop picker (requires xprop and notify-send).
+HELP
+    exit 0 ;;
+  --compile) echo 'Unknown option; run kill-window --help.' >&2; exit 2 ;;
+esac
+case "$(uname -s)" in
+  Darwin) exec /bin/bash "$repo/config/kill-window/macos.sh" "$@" ;;
+  Linux)
+    if [ "$#" -ne 0 ]; then
+      echo 'Linux supports interactive selection only; see --help.' >&2
+      exit 2
+    fi
+    exec /bin/sh "$repo/config/kill-window/linux.sh" ;;
+  *) echo 'kill-window supports macOS and Linux.' >&2; exit 1 ;;
+esac

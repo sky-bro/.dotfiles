@@ -1,5 +1,12 @@
 #+TITLE: Manual
 
+* kill-window.sh / kill-window
+
+统一入口按平台分派：Linux 保留 =xprop= 点选和结束逻辑；macOS 使用原生
+窗口覆盖层，点选后显示进程身份，确认才强制结束。macOS setup 将它链接为
+=~/.local/bin/kill-window=。=--dry-run= 只查看，=--help= 查看命令。
+快捷键、安装、验证与排查见 [[file:../docs/KILL-WINDOW.md][Kill Window 手册]]。
+
 * start-proxy, stop-proxy, chk-proxy
 
 These commands are for quickly setting/clearing/checking proxy related environment variables: =. start-proxy [1081] [scheme] [host]=
