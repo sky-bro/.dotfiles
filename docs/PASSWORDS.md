@@ -157,15 +157,15 @@ Schema 只决定字段浏览/复制的布局，不改写密码文件；编辑表
 
 ## 安装与应用
 
-`Brewfile` 管理 `pass`、`gnupg`、`pinentry-mac` 和 Vicinae。按仓库流程先检查，
+`Brewfile` 默认安装 `pass`、`gnupg` 和 `pinentry-mac`。Vicinae 通过 `--with vicinae` 启用。按仓库流程先检查，
 批准安装软件包和备份冲突文件后再应用：
 
 ```sh
-./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --check --with vicinae
+./setup.sh --apply --with vicinae
 ```
 
-setup 链接 `~/.local/bin/passmenu`，在 `--install-packages` 时为原生扩展执行
+setup 链接 `~/.local/bin/passmenu`，在选择安装 Vicinae 时为原生扩展执行
 `npm ci` 和构建。依赖只属于此扩展；Node/npm 由已有 mise 工具链提供，
 TypeScript、vici 和 CLI 打包用的 esbuild 由项目依赖提供，不安装全局版本。
 `passmenu` shell 脚本只负责分派，`--list` / `--copy` 由扩展打包的同一套 Node

@@ -17,17 +17,28 @@ The setup script is intentionally a dry run by default:
   git clone git@github.com:sky-bro/.dotfiles.git ~/.dotfiles
   cd ~/.dotfiles
 
-  ./setup.sh --check
-  ./setup.sh --install-packages --apply
+  ./setup.sh --apply
   source ~/.zshrc
 #+end_src
 
 Conflicting files are moved to
 =~/.local/state/dotfiles-backups/<timestamp>/= before symlinks are created.
 The package installation explicitly clears inherited Homebrew mirror variables
-and uses the official source.
+and uses the official source. =--apply= opens one checklist for software and
+configuration. Use the arrow keys to move, Space to toggle an item, =S= to clear
+software choices, and =C= to clear configuration choices. Review the plan with
+Enter, then confirm. Use =--interactive= for a checklist preview, or add
+=--non-interactive= to =--apply= for automation.
+
+=Brewfile= contains the default packages. =Brewfile.optional= contains opt-in
+packages. Use =./setup.sh --list= to see all software and configuration choices. Repeat
+=--with NAME= and =--without NAME= to override choices for one run. For
+example, add =--with docker --without visual-studio-code= to both the preview
+and apply commands.
 
 * Verification
+
+Run the checks for the components you selected.
 
 #+begin_src shell
   tmux -V
@@ -100,15 +111,7 @@ than silently changing system policy during setup.
 
 * AI Agent setup
 
-AI agents must read [[file:AGENTS.md][AGENTS.md]] before changing or applying this repository.
-The expected automated workflow is:
-
-1. Run =./setup.sh --check=.
-2. Report conflicts and request approval for package installation or backups.
-3. Run =./setup.sh --install-packages --apply=.
-4. Guide the user through any password or GPG pinentry prompts in a real
-   terminal; never request secrets in chat.
-5. Run every verification command and clean up temporary key exports.
+See [[file:AGENTS.md][AGENTS.md]] before changing or applying this repository.
 
 * Tailscale outside home
 
@@ -117,6 +120,12 @@ Open Clash Verge with the usual system proxy / TUN settings, then run
 repairs the home subnet routes, and checks home DNS, Flame HTTPS and public
 HTTPS. Use =tailscale-travel --check= for read-only route/configuration checks.
 See [[file:docs/TAILSCALE.md][Tailscale and Clash]] for setup, backups and home-mode switching.
+
+* Window tools
+
+=kill-window= 在 macOS 上提供原生的“点选窗口 → 确认 → 结束所属进程”，
+与 Linux/i3 的 =bin/kill-window.sh= 共用入口。Vicinae 也可搜索
+=Kill Window= 并绑定快捷键。详见 [[file:docs/KILL-WINDOW.md][Kill Window 手册]]。
 
 * Linux desktop configuration
 

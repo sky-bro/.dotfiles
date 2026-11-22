@@ -118,13 +118,12 @@ recovery remains possible before it is disabled separately.
 ## Install
 
 Import the complete GPG identity first, following
-[GPG-MIGRATION.md](GPG-MIGRATION.md), then apply the dotfiles:
+[GPG-MIGRATION.md](GPG-MIGRATION.md), then select the SSH, GnuPG and Git configuration:
 
 ```sh
 cd ~/.dotfiles
-./setup.sh --check
-./setup.sh --apply
-source ~/.zshrc
+./setup.sh --check --without software --without configuration --with config-security
+./setup.sh --apply --without software --without configuration --with config-security
 ```
 
 The setup script configures `Use-for-ssh`, exports the public key atomically,
@@ -171,7 +170,7 @@ If the host key changes, verify it through the PVE console before modifying
 
 ## Troubleshooting
 
-- `Identity file ... not accessible`: rerun `./setup.sh --apply` after
+- `Identity file ... not accessible`: reapply the SSH, GnuPG and Git configuration after
   importing the OpenWrt authentication subkey.
 - Too many authentication failures: confirm `IdentitiesOnly yes` and the
   generated public `IdentityFile`.

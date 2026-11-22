@@ -26,8 +26,8 @@ Colima 不设置为开机自动启动，需要容器环境时手动启动，避�
 先检查所有目标；如果有 `replace`，确认列出的文件可以备份后再应用：
 
 ```sh
-./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --check --with docker
+./setup.sh --apply --with docker
 ```
 
 setup 会把 Homebrew 安装的 Compose 和 Buildx 链接到
@@ -94,7 +94,7 @@ brew --prefix
 brew list docker-compose docker-buildx
 ```
 
-然后重新运行 `./setup.sh --apply`。setup 只管理这两个插件链接，不覆盖整个
+然后运行 `./setup.sh --apply --without software --without configuration --with config-containers`。setup 只管理这两个插件链接，不覆盖整个
 Docker CLI 配置。
 
 ### Docker daemon 无法连接

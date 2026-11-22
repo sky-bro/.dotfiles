@@ -23,7 +23,7 @@ macOS 使用 Homebrew 的 `pinentry-mac`。因此从没有可用 TTY 的 Git GUI
 编辑器或自动化进程请求签名时，gpg-agent 仍可通过本地图形弹窗请求口令。
 `GPG_TTY` 仍用于终端和 SSH agent。
 
-仓库不再管理已弃用的 `sshcontrol`。`setup.sh --apply` 会在对应私钥已经
+仓库不再管理已弃用的 `sshcontrol`。启用 `config-security` 时，setup 会在对应私钥已经
 导入时设置：
 
 | 用途 | `Use-for-ssh` | 算法 |

@@ -5,7 +5,7 @@
 
 ## 安装与部署
 
-VLC 已记录在 `Brewfile` 中，完整部署使用仓库标准流程。
+VLC 在 `Brewfile.optional` 中，可通过 setup 的 `--with vlc` 启用。
 仅安装 VLC 时运行：
 
 ```sh

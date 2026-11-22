@@ -12,7 +12,7 @@
 先运行 `./setup.sh --check`，审查所有将替换的文件。获得安装和备份授权后：
 
 ```sh
-./setup.sh --install-packages --apply
+./setup.sh --apply
 exec zsh
 ```
 

@@ -20,8 +20,8 @@ claude --version
 先审查 dotfiles 将发生的变化，再应用 Claude settings 和密钥录入脚本：
 
 ```sh
-./setup.sh --check
-./setup.sh --apply
+./setup.sh --check --without software --without configuration --with config-claude
+./setup.sh --apply --without software --without configuration --with config-claude
 ```
 
 在真实终端录入或替换 DeepSeek API Key。`security` 自己读取密钥，输入不会回显，密钥不会出现在命令参数中：

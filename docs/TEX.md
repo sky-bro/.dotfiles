@@ -13,12 +13,12 @@
 
 ## 安装
 
-MacTeX 与 Poppler 都由 [`Brewfile`](../Brewfile) 管理。按仓库标准流程安装：
+MacTeX 与 Poppler 都在 [`Brewfile.optional`](../Brewfile.optional) 中。按仓库流程启用两项：
 
 ```sh
 cd ~/.dotfiles
-./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --check --with mactex --with poppler
+./setup.sh --apply --with mactex --with poppler
 ```
 
 MacTeX 使用系统安装包，安装期间可能要求管理员认证。新安装完成后启动新的

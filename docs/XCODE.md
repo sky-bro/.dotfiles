@@ -3,7 +3,7 @@
 ## 个人约定
 
 本机安装 Mac App Store 的稳定版 Xcode，不安装 beta，也不使用第三方镜像。
-Xcode 的 App Store ID 是 `497799835`，由 `Brewfile` 通过 `mas` 声明。
+Xcode 的 App Store ID 是 `497799835`，由 `Brewfile.optional` 通过 `mas` 声明。
 Command Line Tools 可以与完整 Xcode 共存，但活动开发目录应指向
 `/Applications/Xcode.app/Contents/Developer`。
 
@@ -15,8 +15,8 @@ Apple Account、开发团队、签名证书和 provisioning profile 是敏感的
 先审核普通 dotfiles 与软件包变化：
 
 ```sh
-./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --check --with xcode
+./setup.sh --apply --with xcode
 ```
 
 Xcode 由 Mac App Store 下载，体积较大。`mas` 要求已经在 App Store 登录，

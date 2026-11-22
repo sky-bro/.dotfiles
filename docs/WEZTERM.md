@@ -17,7 +17,7 @@
 
 ```sh
 ./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --apply
 ```
 
 ## 验证

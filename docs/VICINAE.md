@@ -38,8 +38,8 @@ Vicinae 的主入口是 Sesswitch 项目中的原生 React/TypeScript extension�
 按仓库标准流程安装 Vicinae 并链接 Script Command：
 
 ```sh
-./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --check --with vicinae
+./setup.sh --apply --with vicinae
 ```
 
 构建独立项目并安装 Codex location hooks：
@@ -168,6 +168,12 @@ Code 目前没有对外提供稳定的 session→tab/panel 坐标，所以只能
 不能保证选中应用内的那条对话；后续需要分别增加扩展 bridge。
 
 ## 验证
+
+**Kill Window** 是独立的 Script Command，调用统一的 `~/.local/bin/kill-window`。
+支持点选卡住的窗口、显示其真实 PID 并确认强制结束；可在 action panel 设置
+全局快捷键（例如 `⌃⌥⌘K`）。重载 Script Directories 后运行
+`vicinae cmd launch scripts:kill-window.sh`。安装与权限说明见
+[Kill Window 手册](KILL-WINDOW.md)。
 
 ```sh
 vicinae version

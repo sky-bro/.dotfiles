@@ -52,13 +52,12 @@ gpg --list-secret-keys --keyid-format long --with-subkey-fingerprint
 Every `sec`/`ssb` line must appear without `#`. A `#` means the corresponding
 secret component was not imported.
 
-Apply the managed configuration:
+Apply the SSH, GnuPG and Git configuration:
 
 ```sh
 cd ~/.dotfiles
-./setup.sh --check
-./setup.sh --apply
-source ~/.zshrc
+./setup.sh --check --without software --without configuration --with config-security
+./setup.sh --apply --without software --without configuration --with config-security
 ```
 
 During `--apply`, the setup script restores the `Use-for-ssh` priorities from

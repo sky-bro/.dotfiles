@@ -24,8 +24,8 @@ VS Code 由 Homebrew Cask 安装。用户设置保存在
 `h/j/k/l` 连续移动；这一系统偏好变更需注销并重新登录后完全生效。
 
 [`config/vscode/extensions.txt`](../config/vscode/extensions.txt) 记录常用扩展：
-EditorConfig、Gruvbox、Vim、Go、Rust、CodeLLDB、Python、Ruff、Docker 与 ShellCheck。
-`--install-packages` 会通过 `code --install-extension` 幂等安装它们；命令行
+EditorConfig、Gruvbox、Vim、Go、Rust、Swift、CodeLLDB、Python、Ruff、Docker 与 ShellCheck。
+同时选中 VS Code 软件和配置时，setup 通过 `code --install-extension` 幂等安装它们；命令行
 依赖由 Brewfile 或 mise 管理。
 
 ## 新增语言的配套规则
@@ -56,7 +56,7 @@ EditorConfig、Gruvbox、Vim、Go、Rust、CodeLLDB、Python、Ruff、Docker 与
 确认没有意外替换后：
 
 ```sh
-./setup.sh --install-packages --apply
+./setup.sh --apply
 ```
 
 如果 VS Code 已在安装期间运行，应用后执行 “Developer: Reload Window” 或重启
@@ -79,6 +79,11 @@ test "$(readlink "$HOME/Library/Application Support/Code/User/settings.json")" \
 `ms-python.python`、`rust-lang.rust-analyzer`、`timonwong.shellcheck`、
 `vadimcn.vscode-lldb` 和 `vscodevim.vim`（CLI 输出通常转换为小写）。
 Rust 的格式化、诊断、调试和工具归属见 [Rust 手册](RUST.md)。
+Swift 使用 `swiftlang.swift-vscode`，全局 `[swift]` formatter 指向该扩展；
+编译器、SourceKit-LSP、swift-format（格式化/lint）、LLDB 都复用 Xcode 工具链，
+不由 mise、Homebrew 或 VS Code 额外下载。SwiftPM 项目使用扩展测试发现与
+`swift test`；本仓库原生工具的 format/build/test smoke 检查见
+[Kill Window 手册](KILL-WINDOW.md#验证与开发)。
 `configure.sh --check` 应显示 `ok`。
 
 ## 故障排查

@@ -42,8 +42,8 @@ Vicinae 的 **Passwords** 入口给密码加机密/临时剪贴板标记，并�
 ## 安装与应用
 
 ```sh
-./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --check --with copyq --with config-copyq
+./setup.sh --apply --with copyq --with config-copyq
 ```
 
 仅重新应用 CopyQ：

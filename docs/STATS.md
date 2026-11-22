@@ -12,11 +12,11 @@ macOS 单独保存。
 
 ## 安装与首次配置
 
-Stats 由 [`Brewfile`](../Brewfile) 管理。按仓库标准流程安装：
+Stats 在 [`Brewfile.optional`](../Brewfile.optional) 中，按需启用：
 
 ```sh
-./setup.sh --check
-./setup.sh --install-packages --apply
+./setup.sh --check --with stats
+./setup.sh --apply --with stats
 ```
 
 首次启动 Stats 后：

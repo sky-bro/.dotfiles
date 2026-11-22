@@ -93,7 +93,7 @@ pane 编号，其他 pane 只显示灰色编号。这会占用每个 pane 的一
 确认冲突文件的备份计划后，安装 Homebrew 依赖并应用全部 macOS 配置：
 
 ```sh
-./setup.sh --install-packages --apply
+./setup.sh --apply
 ```
 
 如果 tmux 已安装且只想启用本组件，可手动为 `.tmux.conf` 和

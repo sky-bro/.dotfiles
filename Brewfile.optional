@@ -1,0 +1,21 @@
+# Opt-in packages. A trailing '# group: name' selects related entries together.
+brew "hugo"
+brew "poppler"
+cask "mactex"
+
+brew "docker" # group: docker
+brew "docker-compose" # group: docker
+brew "docker-buildx" # group: docker
+brew "colima" # group: docker
+
+brew "tailscale"
+cask "clash-verge-rev"
+
+cask "copyq"
+cask "stats"
+cask "vlc"
+cask "vicinae"
+cask "hstracker"
+
+brew "mas" # group: xcode
+mas "Xcode", id: 497799835 # group: xcode

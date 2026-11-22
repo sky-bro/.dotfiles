@@ -32,13 +32,13 @@ imports，同时启用 semantic tokens 与完整 Staticcheck analyzers。由于 
 先审查 dry-run：
 
 ```sh
-./setup.sh --check
+./setup.sh --check --with hugo
 ```
 
 确认后安装 Homebrew 软件、mise 运行时和 VS Code 扩展，并应用链接：
 
 ```sh
-./setup.sh --install-packages --apply
+./setup.sh --apply --with hugo
 exec zsh
 ```
 

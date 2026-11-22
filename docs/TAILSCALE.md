@@ -155,7 +155,8 @@ sudo tailscale set --exit-node= --accept-routes=true --accept-dns=true
 ## 新电脑设置
 
 需要 Homebrew 和 Python 3（仓库的 Xcode / mise 环境均提供）。软件包已列入
-`Brewfile`；若尚未安装，在普通终端（tmux 外）执行：
+`Brewfile.optional`，可通过 setup 的 `--with tailscale --with clash-verge-rev` 启用。
+也可在普通终端（tmux 外）单独安装：
 
 ```sh
 brew install --formula tailscale
